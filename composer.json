@@ -2,5 +2,12 @@
     "require": {
         "slim/slim": "^3.0",
         "slim/php-view": "^2.1"
+    },
+    "autoload": {
+        "psr-4" : {
+            "Admin\\" : "Admin",
+            "Apps\\" : "Apps",
+            "Core\\" : "Boom"
+        }
     }
 }
