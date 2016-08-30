@@ -28,9 +28,9 @@ class ComposerStaticInite016d50c48632790d6927c8affcd886f
         array (
             'FastRoute\\' => 10,
         ),
-        'C' => 
+        'B' => 
         array (
-            'Core\\' => 5,
+            'Boom\\' => 5,
         ),
         'A' => 
         array (
@@ -60,9 +60,9 @@ class ComposerStaticInite016d50c48632790d6927c8affcd886f
         array (
             0 => __DIR__ . '/..' . '/nikic/fast-route/src',
         ),
-        'Core\\' => 
+        'Boom\\' => 
         array (
-            0 => __DIR__ . '/../..',
+            0 => __DIR__ . '/../..' . '/Boom',
         ),
         'Apps\\' => 
         array (

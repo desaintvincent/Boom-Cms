@@ -19,19 +19,30 @@ $container = $app->getContainer();
 //définition des vues:
 $container['view'] = new \Slim\Views\PhpRenderer("./views/");
 
-//pages
-$app->get('/{app}[/{pagename}]', function (Request $request, Response $response) use ($app) {
-    echo('pages');
-    //if applicationname == $application => go to app
-    //else if page.find($pagename) => go to page $pagename
-    $pagename = $request->getAttribute('pagename');
+//accueil
+$app->get('/', function (Request $request, Response $response) use ($app) {
+    $boom = new \Boom\Bootstrap($request, $response);
+    $response = $boom->dispatch('pages', array('accueil'));
+    return $response;
+})->setName('home');
+
+
+//application
+$app->get('/{app}[/{params:.*}]', function (Request $request, Response $response) use ($app) {
     $application = $request->getAttribute('app');
-    echo($pagename);
-    echo($application);
+    $params = $request->getAttribute('params');
     //$app->redirect('/'.$pages);
 
+    if ($application == 'pages' && empty($params)) {
+        $router = $this->router;
+        return $response->withRedirect('/');
+    }
+    $boom = new \Boom\Bootstrap($request, $response);
+    $response = $boom->dispatch($application, $params);
     return $response;
-});
+})->setName('app');
+
+
 
 
 

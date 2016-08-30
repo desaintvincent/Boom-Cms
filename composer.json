@@ -7,7 +7,7 @@
         "psr-4" : {
             "Admin\\" : "Admin",
             "Apps\\" : "Apps",
-            "Core\\" : "Boom"
+            "Boom\\" : "Boom"
         }
     }
 }
