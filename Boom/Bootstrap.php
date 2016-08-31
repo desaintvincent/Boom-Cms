@@ -1,6 +1,9 @@
 <?php
 namespace Boom;
 
+use Apps\Catalogue\Ctrl\Products;
+use Boom\Helper\App;
+
 class Bootstrap {
     private $request;
     private $response;
@@ -11,13 +14,18 @@ class Bootstrap {
         $this->response = $response;
     }
 
-    function dispatch($app, $params = array()) {
-        $appname = '\Apps\\'.ucfirst($app).'\Ctrl\\'.ucfirst($app);
-        if (class_exists($appname)) {
-            $myapp = new $appname($this->request, $this->response, $params);
-        } else {
-            echo 'Error: classe ' .$appname . ' doesn\'t exist!';
-        }
+    function dispatch($appname, $params = array()) {
+        $appname = ucfirst($appname);
+        if (App::exist($appname)) {
+            $ctrl = App::getCtrlFromRoute($appname, $params);
+            $action = App::getActionFromRoute($appname, $ctrl, $params);
 
+            $appnamespace = '\Apps\\'.ucfirst($appname).'\Ctrl\\'.$ctrl;
+
+            $app = new $appnamespace($this->request, $this->response);
+            $app->$action($params);
+        } else {
+            echo 'Error: Application ' .$appname . ' doesn\'t exist!';
+        }
     }
 }

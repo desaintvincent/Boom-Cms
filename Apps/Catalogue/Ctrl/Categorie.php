@@ -1,15 +1,15 @@
 <?php
-namespace Apps\Pages\Ctrl;
+namespace Apps\Catalogue\Ctrl;
 
 use Boom\Ctrl\Controller;
 
-class Pages extends Controller {
+class Categorie extends Controller {
     function exist($name) {
         //c'est du statique c'est moche
 
     }
 
     function action_main($params) {
-        echo 'action main : page = ' .$params[0];
+        echo 'action main : catégorie = ' .$params[0];
     }
 }

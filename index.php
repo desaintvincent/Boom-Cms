@@ -10,37 +10,33 @@ $config_site = require_once ("site.config.php");
 
 
 //creation de l'application SLIM
-$app = new \Slim\App(["settings" => $config_site]);
+$slim = new \Slim\App(["settings" => $config_site]);
 
 //création du container
-$container = $app->getContainer();
+$container = $slim->getContainer();
 
 
 //définition des vues:
 $container['view'] = new \Slim\Views\PhpRenderer("./views/");
 
-//accueil
-$app->get('/', function (Request $request, Response $response) use ($app) {
-    $boom = new \Boom\Bootstrap($request, $response);
-    $response = $boom->dispatch('pages', array('accueil'));
-    return $response;
-})->setName('home');
-
-
-//application
-$app->get('/{app}[/{params:.*}]', function (Request $request, Response $response) use ($app) {
-    $application = $request->getAttribute('app');
+$slim->get('/app/{appname}[/{params:.*}]', function (Request $request, Response $response) use ($slim) {
+    $appname = $request->getAttribute('appname');
     $params = $request->getAttribute('params');
-    //$app->redirect('/'.$pages);
-
-    if ($application == 'pages' && empty($params)) {
-        $router = $this->router;
-        return $response->withRedirect('/');
-    }
     $boom = new \Boom\Bootstrap($request, $response);
-    $response = $boom->dispatch($application, $params);
+    $boom->dispatch($appname, explode('/', $params));
     return $response;
 })->setName('app');
+
+//page
+$slim->get('[/{params:.*}]', function (Request $request, Response $response) use ($slim) {
+    $params = $request->getAttribute('params');
+    if (empty($params)) {
+        $params  = 'accueil';
+    }
+    $boom = new \Boom\Bootstrap($request, $response);
+    $boom->dispatch('pages', explode('/', $params));
+    return $response;
+})->setName('pages');
 
 
 
@@ -48,7 +44,7 @@ $app->get('/{app}[/{params:.*}]', function (Request $request, Response $response
 
 
 //affichage
-$app->run();
+$slim->run();
 
 
 
