@@ -22,7 +22,7 @@ class Bootstrap {
 
             $appnamespace = '\Apps\\'.ucfirst($appname).'\Ctrl\\'.$ctrl;
 
-            $app = new $appnamespace($this->request, $this->response);
+            $app = new $appnamespace(ucfirst($appname), $this->request, $this->response);
             $app->$action($params);
         } else {
             echo 'Error: Application ' .$appname . ' doesn\'t exist!';

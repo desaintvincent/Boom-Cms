@@ -17,8 +17,9 @@ $container = $slim->getContainer();
 
 
 //définition des vues:
-$container['view'] = new \Slim\Views\PhpRenderer("./views/");
+//$container['view'] = new \Slim\Views\PhpRenderer("./views/");
 
+//applications
 $slim->get('/app/{appname}[/{params:.*}]', function (Request $request, Response $response) use ($slim) {
     $appname = $request->getAttribute('appname');
     $params = $request->getAttribute('params');
@@ -27,7 +28,18 @@ $slim->get('/app/{appname}[/{params:.*}]', function (Request $request, Response 
     return $response;
 })->setName('app');
 
-//page
+//admin
+$slim->get('/admin[/{params:.*}]', function (Request $request, Response $response) use ($slim) {
+    $params = $request->getAttribute('params');
+    if (empty($params)) {
+        $params  = 'accueil';
+    }
+    $boom = new \Boom\Bootstrap($request, $response);
+    $boom->dispatch('admin', explode('/', $params));
+    return $response;
+})->setName('admin');
+
+//pages
 $slim->get('[/{params:.*}]', function (Request $request, Response $response) use ($slim) {
     $params = $request->getAttribute('params');
     if (empty($params)) {

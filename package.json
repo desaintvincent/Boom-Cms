@@ -1,5 +1,5 @@
 {
-  "name": "test2",
+  "name": "paneladmin",
   "version": "0.0.0",
   "description": "",
   "main": "index.js",
@@ -8,11 +8,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/stvince/guitare.git"
+    "url": "https://github.com/stvince/panel-admin.git"
   },
   "author": "",
-  "license": "BSD-2-Clause",
+  "license": "ISC",
   "bugs": {
-    "url": "https://github.com/stvince/guitare/issues"
+    "url": "https://github.com/stvince/panel-admin/issues"
+  },
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-notify": "^2.2.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.3.2",
+    "gulp-uglify": "^2.0.0"
   }
 }

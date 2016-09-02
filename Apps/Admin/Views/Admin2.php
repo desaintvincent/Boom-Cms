@@ -1,0 +1,1 @@
+<h1>View 2: <?=$params['aaaaa']?></h1>
