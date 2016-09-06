@@ -7,14 +7,14 @@ var uglify = require('gulp-uglify');
 var notify = require("gulp-notify");
 
 //paths
-var sass_site_files = 'assets/src/sass/site.scss';
-var css_site_dest = './assets/dist/css/';
-var sass_admin_files = 'assets/src/sass/admin/admin.scss';
-var css_admin_dest = './assets/dist/css/';
-var js_site_files = ['assets/src/js/libs/*.js', 'assets/src/js/site.js'];
-var js_site_dest = 'assets/dist/js';
-var js_admin_files = ['assets/src/js/libs/*.js', 'assets/src/js/admin.js'];
-var js_admin_dest = 'assets/dist/js';
+var sass_site_files = 'Static/src/sass/site.scss';
+var css_site_dest = './Static/dist/css/';
+var sass_admin_files = 'Apps/Admin/Static/sass/Admin.scss';
+var css_admin_dest = './Apps/Admin/Static/dist/css/';
+var js_site_files = ['Static/js/libs/jQuery.min.js','static/js/libs/*.js', 'static/js/site.js'];
+var js_site_dest = 'Static/dist/js';
+var js_admin_files = ['Static/src/js/libs/*.js', 'assets/src/js/admin.js'];
+var js_admin_dest = 'Apps/Admin/Static/dist/js';
 
 
 //tasks

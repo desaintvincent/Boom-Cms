@@ -1,0 +1,314 @@
+/*.logs {
+  width: 35px;
+  position: absolute;
+  right: 0;
+  background: red;
+  .notice {
+    position: relative;
+    margin: 0 1em;
+    border-left: 4px solid #DDD;
+    min-height: 65px;
+    &::before {
+      position: absolute;
+      top: 50%;
+      margin-top: -17px;
+      left: -17px;
+      background-color: #DDD;
+      color: #FFF;
+      width: 30px;
+      height: 30px;
+      border-radius: 100%;
+      text-align: center;
+      line-height: 30px;
+      font-weight: bold;
+      font-family: Georgia;
+      text-shadow: 1px 1px rgba(0, 0, 0, 0.5);
+    }
+    &:hover .text {
+      opacity: 1;
+    }
+    &.info {
+      border-color: #0074D9;
+      &::before {
+        content: "i";
+        background-color: #0074D9;
+      }
+    }
+    &.success {
+      border-color: #2ECC40;
+      &::before {
+        content: "√";
+        background-color: #2ECC40;
+      }
+    }
+    &.warning {
+      border-color: #FFDC00;
+      &::before {
+        content: "!";
+        background-color: #FFDC00;
+      }
+    }
+    &.error {
+      border-color: #FF4136;
+      &::before {
+        content: "X";
+        background-color: #FF4136;
+      }
+    }
+    .text {
+      background: rgba(0, 0, 0, 0.7);
+      padding: 20px;
+      position: absolute;
+      //display: none;
+      opacity: 0;
+      transition: opacity 0.5s;
+      border-radius: 10px;
+      color: white;
+      display: block;
+      top: 50%;
+      transform: translateY(-50%);
+      width: auto;
+      max-width: 500px;
+      right: 0;
+      margin: 0;
+      margin-right: 25px;
+      min-width: 500px;
+    }
+  }
+}
+/*
+@import "libs/foundation";
+@import "libs/font-awesome.min";
+
+body {
+  background: lightgray;
+}
+
+.page {
+  position: fixed;
+  overflow-y: scroll;
+  right: 30px;
+  left: 0;
+  top:0;
+  bottom: 0;
+  background: lightgray;
+}
+
+.logs {
+  position: fixed;
+  right: 0;
+  width: 30px;
+  top:0;
+  bottom: 0;
+  background: lightblue;
+
+
+
+  .notice {
+    height: 50px;
+    border-radius: 100%;
+    text-align: center;
+    line-height: 30px;
+    font-weight: bold;
+    font-family: Georgia;
+    text-shadow: 1px 1px rgba(0, 0, 0, 0.5);
+    &::before {
+      width: 30px;
+      height: 30px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      display: inline-block;
+      border-radius: 100%;
+      color: white;
+    }
+
+    &.info {
+      border-color: #0074D9;
+      &::before {
+        content: "i";
+        background-color: #0074D9;
+      }
+    }
+    &.success {
+      border-color: #2ECC40;
+      &::before {
+        content: "√";
+        background-color: #2ECC40;
+      }
+    }
+    &.warning {
+      border-color: orange;
+      &::before {
+        content: "!";
+        background-color: orange;
+      }
+    }
+    &.error {
+      border-color: #FF4136;
+      &::before {
+        content: "X";
+        background-color: #FF4136;
+      }
+    }
+
+    .content {
+      display: none;
+    }
+  }
+}
+*/
+
+$color_info: #0074D9;
+$color_success: #2ECC40;
+$color_warning: orange;
+$color_error: #FF4136;
+.logs {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 30px;
+  //height: 150px; //taille de 3 notices
+  .notice {
+    position: relative;
+    margin: 0 15px;
+    height: 50px;
+    &::before {
+      position: absolute;
+      top: 50%;
+      margin-top: -15px;
+      left: -15px;
+      background-color: #DDD;
+      color: #FFF;
+      width: 30px;
+      height: 30px;
+      border-radius: 100%;
+      text-align: center;
+      line-height: 30px;
+      font-weight: bold;
+      font-family: Georgia;
+      text-shadow: 1px 1px rgba(0, 0, 0, 0.5);
+    }
+    &::after {
+      content: ' ';
+      background-color: black;
+      height: 20px;
+      width: 5px;
+      position: absolute;
+      top: -10px;
+      left: calc(50% - 3px);
+    }
+    &:first-child::after {
+      display: none;
+    }
+    &:hover .content {
+      opacity: 1;
+    }
+    &.info {
+      border-color: $color_info;
+      &::before {
+        content: "i";
+        background-color: $color_info;
+      }
+      &::after {
+        background-color: $color_info;
+      }
+    }
+    &.success {
+      border-color: $color_success;
+      &::before {
+        content: "√";
+        background-color: $color_success;
+      }
+      &::after {
+        background-color: $color_success;
+      }
+    }
+    &.warning {
+      border-color: $color_warning;
+      &::before {
+        content: "!";
+        background-color: $color_warning;
+      }
+      &::after {
+        background-color: $color_warning;
+      }
+    }
+    &.error {
+      border-color: $color_error;
+      &::before {
+        content: "X";
+        background-color: $color_error;
+      }
+      &::after {
+        background-color: $color_error;
+      }
+    }
+    .content {
+      background: rgba(0, 0, 0, 0.7);
+      position: absolute;
+      //opacity: 0;
+      transition: opacity 0.5s;
+      border-radius: 10px;
+      color: white;
+      display: none;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 0;
+      margin: 0;
+      margin-right: 25px;
+      width: 800px;
+    }
+  }
+  .info + .info::after {
+    background: linear-gradient(to bottom, $color_info, $color_info);
+  }
+  .info + .success::after {
+    background: linear-gradient(to bottom, $color_info, $color_success);
+  }
+  .info + .warning::after {
+    background: linear-gradient(to bottom, $color_info, $color_warning);
+  }
+  .info + .error::after {
+    background: linear-gradient(to bottom, $color_info, $color_error);
+  }
+
+  .success + .info::after {
+    background: linear-gradient(to bottom, $color_success, $color_info);
+  }
+  .success + .success::after {
+    background: linear-gradient(to bottom, $color_success, $color_success);
+  }
+  .success + .warning::after {
+    background: linear-gradient(to bottom, $color_success, $color_warning);
+  }
+  .success + .error::after {
+    background: linear-gradient(to bottom, $color_success, $color_error);
+  }
+
+  .warning + .info::after {
+    background: linear-gradient(to bottom, $color_warning, $color_info);
+  }
+  .warning + .success::after {
+    background: linear-gradient(to bottom, $color_warning, $color_success);
+  }
+  .warning + .warning::after {
+    background: linear-gradient(to bottom, $color_warning, $color_warning);
+  }
+  .warning + .error::after {
+    background: linear-gradient(to bottom, $color_warning, $color_error);
+  }
+
+  .error + .info::after {
+    background: linear-gradient(to bottom, $color_error, $color_info);
+  }
+  .error + .success::after {
+    background: linear-gradient(to bottom, $color_error, $color_success);
+  }
+  .error + .warning::after {
+    background: linear-gradient(to bottom, $color_error, $color_warning);
+  }
+  .error + .error::after {
+    background: linear-gradient(to bottom, $color_error, $color_error);
+  }
+}
