@@ -1,6 +1,8 @@
 <?php
 namespace Boom\Model;
 
-class Model {
+class Model
+{
+
 
 }

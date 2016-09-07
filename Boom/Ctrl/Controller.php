@@ -1,7 +1,8 @@
 <?php
 namespace Boom\Ctrl;
 
-class Controller {
+class Controller
+{
     protected $request;
     protected $response;
     protected $params;
@@ -19,16 +20,19 @@ class Controller {
         }
     }
 
-    public function run() {
+    public function run()
+    {
 
     }
 
-    public function action_main() {
+    public function action_main()
+    {
 
     }
 
-    public function view($view, $params = array()) {
-        $path = 'Apps/'.$this->appname.'/Views/'.ucfirst($view).'.php';
+    public function view($view, $params = array())
+    {
+        $path = 'Apps/' . $this->appname . '/Views/' . ucfirst($view) . '.php';
         ob_start();
         require($path);
         $tampon = ob_get_contents();
@@ -36,8 +40,9 @@ class Controller {
         echo $tampon;
     }
 
-    public static function view_static($view, $params = array()) {
-        $path = 'Apps/'.substr(strrchr(get_called_class(), "\\"), 1).'/Views/'.ucfirst($view).'.php';
+    public static function view_static($view, $params = array())
+    {
+        $path = 'Apps/' . substr(strrchr(get_called_class(), "\\"), 1) . '/Views/' . ucfirst($view) . '.php';
         ob_start();
         require($path);
         $tampon = ob_get_contents();

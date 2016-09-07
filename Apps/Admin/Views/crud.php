@@ -1,0 +1,1 @@
+<?= \Boom\Helper\Crud::make_form($params['crud']) ?>

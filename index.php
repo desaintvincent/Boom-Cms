@@ -2,6 +2,8 @@
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 
+define('DS', DIRECTORY_SEPARATOR);
+
 //require
 require 'vendor/autoload.php';
 

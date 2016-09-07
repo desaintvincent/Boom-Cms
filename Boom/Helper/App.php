@@ -97,8 +97,9 @@ class App
         $appList = array();
         if ($handle = opendir('Apps')) {
             while (false !== ($entry = readdir($handle))) {
-                if ($entry[0] != '.' && $entry != 'Admin')
+                if ($entry[0] != '.' && $entry != 'Admin') {
                     $appList[] = $entry;
+                }
             }
             closedir($handle);
             return $appList;

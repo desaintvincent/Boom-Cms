@@ -1,3 +1,6 @@
-<h1>View: <?=$params['aaaaa']?></h1>
-
-<?php \Apps\Admin\Ctrl\Admin::view_static('Admin2', ['aaaaa' => 'CCCCC']) ?>
+<h1>Administration</h1>
+<div class="sidebare">
+    <?php foreach($params['apps'] as $app): ?>
+        <a href="admin/crud/<?= $app['name'] ?>/<?= $app['crud'] ?>"><?= $app['name'] ?></a>
+    <?php endforeach; ?>
+</div>
