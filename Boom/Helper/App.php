@@ -91,4 +91,19 @@ class App
 			echo "Enhancer $enhancername doesn't exit!";
 		}
 	}
+
+    public static function getApps()
+    {
+        $appList = array();
+        if ($handle = opendir('Apps')) {
+            while (false !== ($entry = readdir($handle))) {
+                if ($entry[0] != '.' && $entry != 'Admin')
+                    $appList[] = $entry;
+            }
+            closedir($handle);
+            return $appList;
+        } else {
+            die('impossible d\'ouvrir le dossier des applications');
+        }
+    }
 }
