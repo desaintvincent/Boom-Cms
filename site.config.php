@@ -2,9 +2,9 @@
 $config['displayErrorDetails'] = true;
 $config['addContentLengthHeader'] = false;
 
-$config['db']['host']   = "localhost";
-$config['db']['user']   = "user";
-$config['db']['pass']   = "password";
-$config['db']['dbname'] = "exampleapp";
+define('DB_HOST', 'localhost');
+define('DB_USER', 'root');
+define('DB_PASS', 'root');
+define('DB_NAME', 'hmvc');
 
 return $config;
