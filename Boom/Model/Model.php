@@ -43,6 +43,7 @@ class Model
 
     public function forge($data)
     {
+        $this->data = $data;
         foreach ($data as $name => $value) {
             $this->$name = $value;
         }
@@ -136,24 +137,64 @@ class Model
     public function find($what, $conditions = null, $table = null)
     {
         if (is_null($table)) {
-        	$table = $this->table;
+            $table = $this->table;
         }
 
         if (is_int($what)) { // le cas ou on chrche un id
-        	$conditions['where'][] = ['id' => $what];
+            $conditions['where'][] = ['id' => $what];
         }
 
         if (is_string($what)) {
-        	switch ($what) {
+            switch ($what) {
                 case "first":
                     $conditions['limit'] = 1;
+                    $results = $this->get($conditions, $table);
+                    break;
+                case "last":
+                    $conditions['order'] = 'id DESC';
+                    $conditions['limit'] = 1;
+                    $results = $this->get($conditions, $table);
                     break;
                 default:
+                    $results = $this->get($conditions, $table);
                     break;
             }
         }
 
-        return $this->get($conditions, $table);
+        return $results;
+    }
+
+    public function save($data, $table = null)
+    {
+        $fields = $values = $tmp = [];
+
+        if (empty($data)) {
+            $data = $this->data;
+        }
+
+        foreach ($data as $k => $v) {
+            $fields[] = $k;
+            $tmp[] = ':' . $k;
+            $values[':' . $k] = htmlentities($v, ENT_QUOTES, "UTF-8");
+        }
+
+        $fields = "(" . implode(',', $fields) . ")";
+        $tmp = "(" . implode(',', $tmp) . ")";
+
+        if ($table == null) {
+            $table = $this->table;
+        }
+
+        $sql = 'INSERT INTO ' . $table . ' ' . $fields . ' VALUES ' . $tmp;
+
+        $pdost = $this->db->prepare($sql);
+
+        try {
+            $pdost->execute($values);
+            return true;
+        } catch (\PDOException $e) {
+            die($e->getMessage());
+        }
     }
 
 }

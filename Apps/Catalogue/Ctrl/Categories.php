@@ -1,7 +1,6 @@
 <?php
 namespace Apps\Catalogue\Ctrl;
 
-use Apps\Catalogue\Model\Product;
 use Boom\Ctrl\Controller;
 
 class Categories extends Controller
