@@ -54,12 +54,14 @@ class Controller
         echo $tampon;
     }
 
-    public function loadModel()
+    public function loadModel($name = null)
     {
-        if (substr($this->name, -1) != "s") {
-            $name = $this->name;
-        } else {
-            $name = ucfirst(substr($this->name, 0, -1));
+        if (is_null($name)) {
+            if (substr($this->name, -1) != "s") {
+                $name = $this->name;
+            } else {
+                $name = ucfirst(substr($this->name, 0, -1));
+            }
         }
 
         $namespace = 'Apps\\' . ucfirst($this->appname) . '\Model\\' . $name;
