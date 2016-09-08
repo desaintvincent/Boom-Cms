@@ -5,12 +5,6 @@ use Boom\Model\Orm\DbProvider;
 
 class Model
 {
-    public $queryFields = "";
-    public $queryFrom = "FROM ";
-    public $queryWhere = "WHERE ";
-    public $queryJoin = "JOIN ";
-    public $queryOrder = "ORDER BY";
-    public $queryLimit = "LIMIT ";
     public $name;
     public $table;
 
