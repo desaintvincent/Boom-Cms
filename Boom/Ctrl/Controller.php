@@ -63,8 +63,10 @@ class Controller
         }
 
         $namespace = 'Apps\\' . ucfirst($this->appname) . '\Model\\' . $name;
-        if (!isset($this->$name)) {
+        if (class_exists($namespace) && !isset($this->$name)) {
             $this->$name = new $namespace();
+        } else {
+            echo 'Model ' . $name . 'not found';
         }
     }
 }
