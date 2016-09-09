@@ -32,14 +32,21 @@ class Categories extends Controller
     {
         $this->loadModel('Product');
 
+        $category = $this->Categorie->find('first', [
+            "where" => [
+                "cate_slug" => $category
+            ]
+        ]);
+
         $products = $this->Product->find('all', [
             "joins" => [
                 "categories"
             ],
             "where" => [
-                "categories.slug" => $category
+                "prod_category_id" => $category->id
             ]
         ]);
-        $this->view('categories/view', compact('products'));
+
+        $this->view('categories/view', compact('products', 'category'));
     }
 }

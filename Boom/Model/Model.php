@@ -143,6 +143,7 @@ class Model
                 case "first":
                     $conditions['limit'] = 1;
                     $results = $this->get($conditions, $table);
+                    $results = $results[0];
                     break;
                 case "last":
                     $conditions['order'] = 'id DESC';
