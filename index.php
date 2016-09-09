@@ -22,7 +22,7 @@ $container = $slim->getContainer();
 //$container['view'] = new \Slim\Views\PhpRenderer("./views/");
 
 //applications
-$slim->get('/app/{appname}[/{params:.*}]', function (Request $request, Response $response) use ($slim) {
+$slim->any('/app/{appname}[/{params:.*}]', function (Request $request, Response $response) use ($slim) {
     $appname = $request->getAttribute('appname');
     $params = $request->getAttribute('params');
     $boom = new \Boom\Bootstrap($request, $response);
@@ -31,7 +31,7 @@ $slim->get('/app/{appname}[/{params:.*}]', function (Request $request, Response 
 })->setName('app');
 
 //admin
-$slim->get('/admin[/{params:.*}]', function (Request $request, Response $response) use ($slim) {
+$slim->any('/admin[/{params:.*}]', function (Request $request, Response $response) use ($slim) {
     $params = $request->getAttribute('params');
     if (empty($params)) {
         $params  = 'accueil';
@@ -42,7 +42,7 @@ $slim->get('/admin[/{params:.*}]', function (Request $request, Response $respons
 })->setName('admin');
 
 //pages
-$slim->get('[/{params:.*}]', function (Request $request, Response $response) use ($slim) {
+$slim->any('[/{params:.*}]', function (Request $request, Response $response) use ($slim) {
     $params = $request->getAttribute('params');
     if (empty($params)) {
         $params  = 'accueil';
