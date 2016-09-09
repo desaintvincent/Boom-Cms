@@ -162,8 +162,18 @@ class Model
     {
         $fields = $values = $tmp = [];
 
+        if ($table == null) {
+            $table = $this->table;
+        }
+
         if (empty($data)) {
             $data = $this->data;
+        }
+
+        if (isset($data['id'])) {
+            return $this->update($data['id'], $data, $table);
+        } elseif (isset($data->id)) {
+            return $this->update($data->id, $data, $table);
         }
 
         foreach ($data as $k => $v) {
@@ -174,11 +184,6 @@ class Model
 
         $fields = "(" . implode(',', $fields) . ")";
         $tmp = "(" . implode(',', $tmp) . ")";
-
-        if ($table == null) {
-            $table = $this->table;
-        }
-
         $sql = 'INSERT INTO ' . $table . ' ' . $fields . ' VALUES ' . $tmp;
 
         $pdost = $this->db->prepare($sql);
@@ -189,6 +194,44 @@ class Model
         } catch (\PDOException $e) {
             die($e->getMessage());
         }
+    }
+
+    public function update($id, $data =null, $table = null)
+    {
+        $values = $tmp = [];
+
+        if (is_null($data)) {
+            $data = $this->data;
+        }
+
+        if ($table == null) {
+            $table = $this->table;
+        }
+
+        foreach ($data as $d => $v) {
+            $values[':' . $d] = htmlentities($v, ENT_QUOTES, "UTF-8");
+            $tmp[] = $d . "=:" . $d;
+        }
+
+        $tmp = implode(',', $tmp);
+
+        $sql = 'UPDATE ' . $table . ' SET ' . $tmp . ' WHERE id = ' . $id;
+        $pdost = $this->db->prepare($sql);
+        try {
+            $pdost->execute($values);
+            return true;
+        } catch (\PDOException $e) {
+            die($e->getMessage());
+        }
+    }
+
+    public function delete($id, $table = null)
+    {
+        if ($table == null) {
+            $table = $this->table;
+        }
+
+        $this->db->query("DELETE FROM " . $table . " WHERE id=$id");
     }
 
 }
