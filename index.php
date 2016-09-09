@@ -10,13 +10,11 @@ require 'vendor/autoload.php';
 //récupération de la config du site
 $config_site = require_once ("site.config.php");
 
-
 //creation de l'application SLIM
 $slim = new \Slim\App(["settings" => $config_site]);
 
 //création du container
 $container = $slim->getContainer();
-
 
 //définition des vues:
 //$container['view'] = new \Slim\Views\PhpRenderer("./views/");
@@ -52,19 +50,5 @@ $slim->any('[/{params:.*}]', function (Request $request, Response $response) use
     return $response;
 })->setName('pages');
 
-
-
-
-
-
 //affichage
 $slim->run();
-
-
-
-
-
-
-
-
-

@@ -37,6 +37,7 @@ class Controller
     public function view($view, $params = array(), $name)
     {
         $path = 'Apps/' . $this->appname . '/Views/' . ucfirst($view) . '.php';
+        extract($params);
         ob_start();
         require($path);
         $tampon = ob_get_contents();
@@ -47,6 +48,7 @@ class Controller
     public static function view_static($view, $params = array())
     {
         $path = 'Apps/' . substr(strrchr(get_called_class(), "\\"), 1) . '/Views/' . ucfirst($view) . '.php';
+        extract($params);
         ob_start();
         require($path);
         $tampon = ob_get_contents();

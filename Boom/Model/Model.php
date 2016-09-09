@@ -65,7 +65,7 @@ class Model
         if (isset($conditions['joins'])) {
             $joins = [];
             foreach ($conditions['joins'] as $j) {
-                if (!isset($this->relations) || !isset($this->relations[$j])) {
+                if (!isset($this->joins) || !isset($this->joins[$j])) {
                     echo "Le model " . $this->name . " n'a pas d'association avec la table $j ! Veuillez créer un tableau public \$relations dans votre model " . $this->name;
                 } else {
                     $joins[] = " JOIN $j ON $j.id = {$this->table}." . $this->joins[$j];
@@ -138,7 +138,7 @@ class Model
             $conditions['where'][] = ['id' => $what];
         }
 
-        if (is_string($what)) {
+        if (is_string($what) || is_null($what)) {
             switch ($what) {
                 case "first":
                     $conditions['limit'] = 1;
