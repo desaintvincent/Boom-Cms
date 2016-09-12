@@ -34,7 +34,7 @@ class Controller
 
     }
 
-    public function view($view, $params = array(), $name)
+    public function view($view, $params = array())
     {
         $path = 'Apps/' . $this->appname . '/Views/' . ucfirst($view) . '.php';
         ob_start();
@@ -68,7 +68,7 @@ class Controller
         if (class_exists($namespace) && !isset($this->$name)) {
             $this->$name = new $namespace();
         } else {
-            echo 'Model ' . $name . 'not found';
+            echo 'Model ' . $namespace . ' not found </br>';
         }
     }
 }

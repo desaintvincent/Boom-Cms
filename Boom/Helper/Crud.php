@@ -8,7 +8,7 @@ class Crud
 {
     public static $item;
 
-    public static function make_form($conf, $item) {
+    public static function make_form($conf, $item = null) {
         if ($item) {
             self::$item = $item;
         }

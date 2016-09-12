@@ -2,9 +2,9 @@
 $config['displayErrorDetails'] = true;
 $config['addContentLengthHeader'] = false;
 
-define('DB_HOST', 'localhost');
-define('DB_USER', 'root');
-define('DB_PASS', 'root');
-define('DB_NAME', 'hmvc');
+define('DB_HOST', '0.0.0.0');
+define('DB_USER', 'boom_cms');
+define('DB_PASS', 'boom_cms');
+define('DB_NAME', 'boom_cms');
 
 return $config;
