@@ -102,7 +102,17 @@ class App
                 }
             }
             closedir($handle);
-            return $appList;
+            $apps = [];
+            foreach ($appList as $i => $app) {
+                $conf = App::getConfig($app);
+                $apps[$i]['name'] = $app;
+                if (isset($conf['default_crud'])) {
+                    $apps[$i]['crud'] = $conf['default_crud'];
+                } else {
+                    $apps[$i]['crud'] = $app;
+                }
+            }
+            return $apps;
         } else {
             die('impossible d\'ouvrir le dossier des applications');
         }

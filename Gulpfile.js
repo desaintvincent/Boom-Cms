@@ -9,11 +9,14 @@ var notify = require("gulp-notify");
 //paths
 var sass_site_files = 'Static/src/sass/site.scss';
 var css_site_dest = './Static/dist/css/';
-var sass_admin_files = 'Apps/Admin/Static/sass/Admin.scss';
+
+var sass_admin_files = 'Apps/Admin/Static/sass/admin.scss';
 var css_admin_dest = './Apps/Admin/Static/dist/css/';
-var js_site_files = ['Static/js/libs/jQuery.min.js','static/js/libs/*.js', 'static/js/site.js'];
+
+var js_site_files = ['Static/src/js/libs/jQuery.min.js','static/src/js/libs/*.js', 'static/dist/js/site.js'];
 var js_site_dest = 'Static/dist/js';
-var js_admin_files = ['Static/src/js/libs/*.js', 'assets/src/js/admin.js'];
+
+var js_admin_files = ['Static/src/js/libs/jQuery.min.js','static/src/js/libs/*.js', './Apps/Admin/Static/js/libs/*.js', './Apps/Admin/Static/js/admin.js'];
 var js_admin_dest = 'Apps/Admin/Static/dist/js';
 
 
@@ -73,11 +76,11 @@ gulp.task('sass_admin', function() {
 //Watch task
 gulp.task('default',function() {
     //sass site
-    gulp.watch(['assets/src/sass/components/*.scss', 'assets/src/sass/site.scss'],['sass_site']);
+    gulp.watch(['Static/src/sass/components/*.scss', 'Static/src/sass/site.scss'],['sass_site']);
     //sase admin
-    gulp.watch(['assets/src/sass/admin/components/*.scss', 'assets/src/sass/admin/admin.scss'],['sass_admin']);
+    gulp.watch(['Apps/Admin/Static/sass/components/*.scss', 'Apps/Admin/Static/sass/admin.scss'],['sass_admin']);
     //js site
     gulp.watch(['assets/src/js/libs/*.js', 'assets/src/js/site.js'],['uglify_site']);
-    //js site
-    gulp.watch(['assets/src/js/libs/*.js', 'assets/src/js/admin/admin.js'],['uglify_admin']);
+    //js admin
+    gulp.watch(['Apps/Admin/Static/js/libs/*.js', 'Apps/Admin/Static/js/admin.js'],['uglify_admin']);
 });

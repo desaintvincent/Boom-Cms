@@ -25,7 +25,7 @@ class Controller
 
     }
 
-    public function action_main()
+    public function action_main($params = null)
     {
 
     }

@@ -4,6 +4,12 @@ use \Psr\Http\Message\ResponseInterface as Response;
 
 define('DS', DIRECTORY_SEPARATOR);
 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+ini_set('mysql.connect_timeout', 300);
+ini_set('default_socket_timeout', 300);
+error_reporting(E_ALL);
+
 //require
 require 'vendor/autoload.php';
 
