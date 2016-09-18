@@ -1,7 +1,7 @@
 <?php
 return [
     'required' => true,
-    'default_ctrl' => 'categorie',
+    'default_ctrl' => 'categories',
     'default_crud' => 'product',
 	'enhancers' => [
 		'list_categories' => [
