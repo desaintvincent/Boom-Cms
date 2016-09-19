@@ -1,6 +1,7 @@
-<h1>Administration</h1>
-<div class="sidebare">
-    <?php foreach($params['apps'] as $app): ?>
-        <a href="admin/crud/<?= $app['name'] ?>/<?= $app['crud'] ?>"><?= $app['name'] ?></a>
-    <?php endforeach; ?>
-</div>
+<?php
+echo \Apps\Admin\Ctrl\Admin::view_static('head', $params);
+echo \Apps\Admin\Ctrl\Admin::view_static('header', $params);
+echo \Apps\Admin\Ctrl\Admin::view_static('leftbar', $params);
+echo \Apps\Admin\Ctrl\Admin::view_static('content', $params);
+echo \Apps\Admin\Ctrl\Admin::view_static('foot', $params);
+?>

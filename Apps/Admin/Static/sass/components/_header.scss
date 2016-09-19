@@ -1,0 +1,26 @@
+.header {
+  background-color: black;
+  color: white;
+  height: 50px;
+  line-height: 50px;
+  padding: 5px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  h2, h3 {
+    display: inline-block;
+    margin: 0;
+  }
+
+  form {
+    float: right;
+    height: 100%;
+
+    button {
+      margin: 0;
+      height: 100%;
+    }
+  }
+}

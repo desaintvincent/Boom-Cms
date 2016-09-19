@@ -1,0 +1,15 @@
+.content {
+  position: fixed;
+  left: 200px;
+  right: 0;
+  top:50px;
+  bottom: 0;
+  overflow-y: scroll;
+  background-color: #2d8ac7;
+
+  button.button {
+    position: fixed;
+    top: 5px;
+    right: 110px;
+  }
+}

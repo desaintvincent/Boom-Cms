@@ -8,7 +8,7 @@ class Model
     public $name;
     public $table;
 
-    public function __construct($data)
+    public function __construct($data = null)
     {
         if ($data) {
             $this->forge($data);
