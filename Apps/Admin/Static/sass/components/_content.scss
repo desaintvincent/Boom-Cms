@@ -1,11 +1,12 @@
 .content {
-  position: fixed;
-  left: 200px;
-  right: 0;
-  top:50px;
-  bottom: 0;
+  display: inline-block;
+  width: calc(100vw - 200px);
+  margin-top: 50px;
   overflow-y: scroll;
+  height: calc(100vh - 50px);
   background-color: #2d8ac7;
+
+  float: right;
 
   button.button {
     position: fixed;
