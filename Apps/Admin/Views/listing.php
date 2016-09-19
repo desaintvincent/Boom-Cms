@@ -7,12 +7,12 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <?php foreach($items as $item): ?>
+        <?php foreach($items as $item): ?>
+            <tr>
                 <?php foreach($fields as $field => $title): ?>
                     <td><?= $item->{$field} ?></td>
                 <?php endforeach; ?>
-            <?php endforeach; ?>
-        </tr>
+            </tr>
+        <?php endforeach; ?>
     </tbody>
 </table>
