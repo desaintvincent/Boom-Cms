@@ -5,6 +5,9 @@ use \Psr\Http\Message\ResponseInterface as Response;
 //récupération de la config du site
 $config_site = require_once ("site.config.php");
 
+//récupération des tools en tout genre
+require_once ('Boom/Tools/Tools.php');
+
 
 if (ENV == 'dev') {
     ini_set('display_errors', 1);
