@@ -1,6 +1,9 @@
 <?php
 function d()
 {
+    if (ENV != 'dev') {
+        return;
+    }
     $args = func_get_args();
     if ( empty($args) ) {
         $args = array(null);
@@ -99,10 +102,20 @@ function d()
 
 function dd()
 {
+    if (ENV != 'dev') {
+        return;
+    }
     $args = func_get_args();
     $args[] = array(
         'trace_jump'    => 3,
     );
     call_user_func_array('d', $args);
     exit;
+}
+
+function error($string) {
+    if (ENV != 'dev') {
+        return;
+    }
+    echo '<div class="warning" style="border: 1px solid red; padding: 10px; color: red">'. $string .'</div>';
 }
