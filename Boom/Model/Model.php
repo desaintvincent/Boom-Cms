@@ -129,7 +129,7 @@ class Model
         return $results;
     }
 
-    public function find($what, $conditions = null, $table = null)
+    public function find($what = 'all', $conditions = null, $table = null)
     {
         if (is_null($table)) {
             $table = $this->table;

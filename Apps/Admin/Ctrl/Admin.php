@@ -7,7 +7,8 @@ use Boom\Helper\App;
 class Admin extends Controller
 {
 
-    function get_apps() {
+    function get_apps()
+    {
 
     }
 
@@ -18,7 +19,25 @@ class Admin extends Controller
 
     function action_listing($params = null)
     {
-        
+        $appname = 'Pages';
+        if (!empty($params)) {
+        	$appname = $params[0];
+        }
+
+        $conf = App::getConfig($appname);
+        $listing = $conf['default_listing'];
+
+        $listingFile = 'Apps' . DS . ucfirst($appname) . DS . 'Listings' . DS . ucfirst($listing) . '.php';
+        if (file_exists($listingFile)) {
+            $listingConfig = require $listingFile;
+
+            $model = '\Apps\\' . ucfirst($appname) . '\Model\\' . ucfirst($listingConfig['model']);
+            $model = new $model();
+            $items = $model->find();
+            $this->view('listing', ['items' => $items, 'fields' => $listingConfig['fields']]);
+        } else {
+            echo 'Listing configuration not found';
+        }
     }
 
     function action_crud($params)
@@ -35,7 +54,7 @@ class Admin extends Controller
 
         $crudFile = 'Apps' . DS . ucfirst($appname) . DS . 'Cruds' . DS . ucfirst($crudName) . '.php';
         if (file_exists($crudFile)) {
-        	$crud = require $crudFile;
+            $crud = require $crudFile;
             $this->view('admin', ['apps' => App::getApps(), 'crud' => $crud]);
         } else {
             echo 'Crud configuration not found';
