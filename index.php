@@ -2,31 +2,34 @@
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 
-define('DS', DIRECTORY_SEPARATOR);
-
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-ini_set('mysql.connect_timeout', 300);
-ini_set('default_socket_timeout', 300);
-error_reporting(E_ALL);
-
-//require
-require 'vendor/autoload.php';
-
 //récupération de la config du site
 $config_site = require_once ("site.config.php");
 
-//creation de l'application SLIM
+
+if (ENV == 'dev') {
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    ini_set('mysql.connect_timeout', 300);
+    ini_set('default_socket_timeout', 300);
+    error_reporting(E_ALL);
+}
+
+//require autoload
+require 'vendor/autoload.php';
+
+
+//creation of SLIM application
 $slim = new \Slim\App(["settings" => $config_site]);
 
 //création du container
-$container = $slim->getContainer();
+//$container = $slim->getContainer();
+
 
 //définition des vues:
 //$container['view'] = new \Slim\Views\PhpRenderer("./views/");
 
 //applications
-$slim->any('/app/{appname}[/{params:.*}]', function (Request $request, Response $response) use ($slim) {
+$slim->any('/app/{appname}[/{params:.*}]', function (Request $request, Response $response) {
     $appname = $request->getAttribute('appname');
     $params = $request->getAttribute('params');
     $boom = new \Boom\Bootstrap($request, $response);
@@ -35,7 +38,7 @@ $slim->any('/app/{appname}[/{params:.*}]', function (Request $request, Response 
 })->setName('app');
 
 //admin
-$slim->any('/admin[/{params:.*}]', function (Request $request, Response $response) use ($slim) {
+$slim->any('/admin[/{params:.*}]', function (Request $request, Response $response) {
     $params = $request->getAttribute('params');
     if (empty($params)) {
         $params  = 'accueil';
@@ -46,7 +49,7 @@ $slim->any('/admin[/{params:.*}]', function (Request $request, Response $respons
 })->setName('admin');
 
 //pages
-$slim->any('[/{params:.*}]', function (Request $request, Response $response) use ($slim) {
+$slim->any('[/{params:.*}]', function (Request $request, Response $response) {
     $params = $request->getAttribute('params');
     if (empty($params)) {
         $params  = 'accueil';
@@ -58,3 +61,12 @@ $slim->any('[/{params:.*}]', function (Request $request, Response $response) use
 
 //affichage
 $slim->run();
+
+
+
+
+
+
+
+
+
