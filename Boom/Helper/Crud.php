@@ -27,7 +27,7 @@ class Crud
 
     public static function input_wysiwyg($key, $item)
     {
-        $html = "<div class={$item['type']}-field\">
+        $html = "<div class='{$item['type']}-field'>
             <label>{$item['label']} :
                 <textarea class='wysiwyg' name='{$key}' id='{$key}'>".self::$item[$key]."</textarea>
             </label>
@@ -35,14 +35,50 @@ class Crud
         return $html;
     }
 
-
-
     public static function input_text($key, $item)
     {
         $html = "<div class='{$item['type']}-field'>
                     <label for='{$key}'>{$item['label']}</label>
                     <input type='text' value='" . self::$item[$key] . "' name='{$key}' id='{$key}' " . self::required($item) . ">
                 </div>";
+        return $html;
+    }
+
+    public static function input_password($key, $item)
+    {
+        $html = "<div class='{$item['type']}-field'>
+                    <label for='{$key}'>{$item['label']}</label>
+                    <input type='password' value='" . self::$item[$key] . "' name='{$key}' id='{$key}' " . self::required($item) . ">
+                </div>";
+        return $html;
+    }
+
+    public static function input_textarea($key, $item)
+    {
+        $html = "<div class='{$item['type']}-field'>
+            <label>{$item['label']} :
+                <textarea name='{$key}' id='{$key}'>".self::$item[$key]."</textarea>
+            </label>
+        </div>";
+        return $html;
+    }
+
+    public static function input_select($key, $item) {
+        $html = "<div class='{$item['type']}-field'>
+                    <label>{$item['label']} :
+                        <select name='{$key}' id='{$key}'>";
+
+        foreach ($item['value'] as $kval => $val) {
+            if ($val == self::$item[$key]) {
+                $html .= "<option value='{$kval}' selected>{$val}</option>";
+            } else {
+                $html .= "<option value='{$kval}'>{$val}</option>";
+            }
+        }
+        $html .= "</select>
+            </label>
+        </div>";
+
         return $html;
     }
 
