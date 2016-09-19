@@ -7,6 +7,7 @@ class Model
 {
     public $name;
     public $table;
+    //public $db;
 
     public function __construct($data = null)
     {
@@ -14,7 +15,7 @@ class Model
             $this->forge($data);
         }
 
-        if (is_null($this->db)) {
+        if (!isset($this->db)) {
             $this->db = DbProvider::getDb();
         }
 
