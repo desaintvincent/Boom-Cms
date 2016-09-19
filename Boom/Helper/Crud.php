@@ -82,6 +82,14 @@ class Crud
         return $html;
     }
 
+    public static function input_checkbox($key, $item) {
+        $html = "<div class='{$item['type']}-field'>
+                    <input type='checkbox' name='{$key}' id='{$key}' " . self::$item[$key] ? 'checked ' : ' ' . self::required($item) . ">
+                    <label for='{$key}'>{$item['label']}</label>
+                </div>";
+        return $html;
+    }
+
     public static function required($item) {
         if (isset($item['option']['required'])) {
             return "required";
