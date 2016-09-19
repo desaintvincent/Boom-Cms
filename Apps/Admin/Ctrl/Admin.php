@@ -31,6 +31,7 @@ class Admin extends Controller
         $crudFile = 'Apps' . DS . ucfirst($appname) . DS . 'Cruds' . DS . ucfirst($crudName) . '.php';
         if (file_exists($crudFile)) {
         	$crud = require $crudFile;
+            d($crud);
             $this->view('admin', ['apps' => App::getApps(), 'crud' => $crud]);
         } else {
             echo 'Crud configuration not found';
