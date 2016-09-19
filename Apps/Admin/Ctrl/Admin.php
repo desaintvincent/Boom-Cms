@@ -16,6 +16,11 @@ class Admin extends Controller
         $this->view('admin', ['apps' => App::getApps()]);
     }
 
+    function action_listing($params = null)
+    {
+        
+    }
+
     function action_crud($params)
     {
         $appname = 'Pages';
