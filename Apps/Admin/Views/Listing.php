@@ -1,18 +1,18 @@
-<table>
-    <thead>
+<table class="admin_listing">
+    <thead class="admin_listing_header">
         <tr>
             <?php foreach($fields as $field => $title): ?>
-                <th><?= $title ?></th>
-                <th>Actions</th>
+                <th class="admin_listing_header_item"><?= $title ?></th>
+                <th class="admin_listing_header_item">Actions</th>
             <?php endforeach; ?>
         </tr>
     </thead>
-    <tbody>
+    <tbody class="class="admin_listing_body">
         <?php foreach($items as $item): ?>
             <tr>
                 <?php foreach($fields as $field => $title): ?>
-                    <td><?= $item->{$field} ?></td>
-                    <td><a href="<?= $base_url . $item->id ?>">Editer</a></td>
+                    <td class="admin_listing_body_item"><?= $item->{$field} ?></td>
+                    <td class="admin_listing_body_item"><a href="<?= $base_url . $item->id ?>">Editer</a></td>
                 <?php endforeach; ?>
             </tr>
         <?php endforeach; ?>
