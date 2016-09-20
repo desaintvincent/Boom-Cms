@@ -7,14 +7,14 @@ use Boom\Helper\App;
 class Admin extends Controller
 {
 
-    function get_apps()
+    function setLayoutVars()
     {
-
+        $this->layoutVars['apps'] = App::getApps();
     }
 
     function action_main($params = null)
     {
-        $this->view('admin', ['apps' => App::getApps()]);
+        $this->view('content');
     }
 
     function action_listing($params = null)
@@ -55,7 +55,7 @@ class Admin extends Controller
         $crudFile = 'Apps' . DS . ucfirst($appname) . DS . 'Cruds' . DS . ucfirst($crudName) . '.php';
         if (file_exists($crudFile)) {
             $crud = require $crudFile;
-            $this->view('admin', ['apps' => App::getApps(), 'crud' => $crud]);
+            $this->view('crud', ['crud' => $crud]);
         } else {
             echo 'Crud configuration not found';
         }
