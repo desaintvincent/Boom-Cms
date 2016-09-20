@@ -1,6 +1,6 @@
 <?php
 return [
-    'required' => true,
+    'required' => false,
     'default_ctrl' => 'categories',
     'default_crud' => 'product',
     'default_listing' => 'products', // Required
