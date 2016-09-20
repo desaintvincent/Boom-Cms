@@ -1,7 +1,7 @@
 <?php
-echo \Apps\Admin\Ctrl\Admin::view_static('head', $params);
-echo \Apps\Admin\Ctrl\Admin::view_static('header', $params);
-echo \Apps\Admin\Ctrl\Admin::view_static('leftbar', ['apps' => $apps]);
+echo \Apps\Admin\Ctrl\Admin::view_static('Commun/Head', $params);
+echo \Apps\Admin\Ctrl\Admin::view_static('Commun/Header', $params);
+echo \Apps\Admin\Ctrl\Admin::view_static('Commun/Leftbar', ['apps' => $apps]);
 ?>
 <div class="content">
     <div class="row">
@@ -11,4 +11,4 @@ echo \Apps\Admin\Ctrl\Admin::view_static('leftbar', ['apps' => $apps]);
     </div>
 </div>
 <?php
-echo \Apps\Admin\Ctrl\Admin::view_static('foot', $params);
+echo \Apps\Admin\Ctrl\Admin::view_static('Commun/Foot', array_merge($params, ['enhancers' => $enhancers]));

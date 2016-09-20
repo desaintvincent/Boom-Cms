@@ -10,6 +10,7 @@ class Admin extends Controller
     function setLayoutVars()
     {
         $this->layoutVars['apps'] = App::getAllApps();
+        $this->layoutVars['enhancers'] = App::getAllEnhancers();
     }
 
     function action_main($params = null)

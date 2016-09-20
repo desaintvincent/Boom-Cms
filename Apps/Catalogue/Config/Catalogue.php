@@ -11,7 +11,7 @@ return [
 			'action' => 'categories'
 		],
 		'lsit_products_category' => [
-			'name' => 'Liste les produits d\'une catégorie' ,
+			'name' => 'Liste les produits de chaque catégorie' ,
             'controller' => 'categories',
 			'action' => 'cat_products'
 		]

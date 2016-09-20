@@ -188,4 +188,16 @@ class App
             'not_required' => self::getAppsNotRequired()
         ];
     }
+
+    public static function getAllEnhancers() {
+        $result = [];
+        $apps = self::getApps();
+        foreach ($apps as $app) {
+            $enhancers = self::getAllEnhancersConfig($app['name']);
+            if (!empty($enhancers)) {
+                $result = array_merge($enhancers);
+            }
+        }
+        return $result;
+    }
 }
