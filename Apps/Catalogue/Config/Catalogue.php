@@ -3,7 +3,7 @@ return [
     'required' => true,
     'default_ctrl' => 'categories',
     'default_crud' => 'product',
-    'default_listing' => 'product', // Required
+    'default_listing' => 'products', // Required
 	'enhancers' => [
 		'list_categories' => [
 			'name' => 'Liste les catégories',

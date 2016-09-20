@@ -47,9 +47,6 @@ class Admin extends Controller
         if (!empty($params) && !empty($params[0])) {
             $appname = $params[0];
             $crudName = $params[0];
-            if (isset($params[1])) {
-                $crudName = $params[1];
-            }
         }
 
         if (isset($params[1]) && !empty($params[1])) {
