@@ -34,7 +34,7 @@ class Admin extends Controller
             $model = '\Apps\\' . ucfirst($appname) . '\Model\\' . ucfirst($listingConfig['model']);
             $model = new $model();
             $items = $model->find();
-            $base_url = "/admin/crud/" . $appname . "/" . $listingConfig['model'] . "/";
+            $base_url = "/admin/update/" . $appname . "/" . $listingConfig['model'] . "/";
 
             $this->view('listing', [
                 'items' => $items,
