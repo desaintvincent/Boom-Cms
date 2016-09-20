@@ -124,4 +124,68 @@ class App
             die('impossible d\'ouvrir le dossier des applications');
         }
     }
+
+    public static function getAppsRequired()
+    {
+        $appList = array();
+        if ($handle = opendir('Apps')) {
+            while (false !== ($entry = readdir($handle))) {
+                if ($entry[0] != '.' && $entry != 'Admin') {
+                    $appList[] = $entry;
+                }
+            }
+            closedir($handle);
+            $apps = [];
+            foreach ($appList as $i => $app) {
+                $conf = App::getConfig($app);
+                if (isset($conf['required']) && $conf['required']) {
+                    $apps[$i]['name'] = $app;
+                    if (isset($conf['default_crud'])) {
+                        $apps[$i]['crud'] = $conf['default_crud'];
+                    } else {
+                        $apps[$i]['crud'] = $app;
+                    }
+                }
+            }
+            return $apps;
+        } else {
+            die('impossible d\'ouvrir le dossier des applications');
+        }
+    }
+
+    public static function getAppsNotRequired()
+    {
+        $appList = array();
+        if ($handle = opendir('Apps')) {
+            while (false !== ($entry = readdir($handle))) {
+                if ($entry[0] != '.' && $entry != 'Admin') {
+                    $appList[] = $entry;
+                }
+            }
+            closedir($handle);
+            $apps = [];
+            foreach ($appList as $i => $app) {
+                $conf = App::getConfig($app);
+                if (!isset($conf['required']) || (isset($conf['required']) && !$conf['required'])) {
+                    $apps[$i]['name'] = $app;
+                    if (isset($conf['default_crud'])) {
+                        $apps[$i]['crud'] = $conf['default_crud'];
+                    } else {
+                        $apps[$i]['crud'] = $app;
+                    }
+                }
+            }
+            return $apps;
+        } else {
+            die('impossible d\'ouvrir le dossier des applications');
+        }
+    }
+
+    public static function getAllApps()
+    {
+        return [
+            'required' => self::getAppsRequired(),
+            'not_required' => self::getAppsNotRequired()
+        ];
+    }
 }

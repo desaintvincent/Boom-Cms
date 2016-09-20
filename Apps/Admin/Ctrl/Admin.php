@@ -9,7 +9,7 @@ class Admin extends Controller
 
     function setLayoutVars()
     {
-        $this->layoutVars['apps'] = App::getApps();
+        $this->layoutVars['apps'] = App::getAllApps();
     }
 
     function action_main($params = null)
