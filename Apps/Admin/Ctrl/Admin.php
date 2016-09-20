@@ -34,7 +34,13 @@ class Admin extends Controller
             $model = '\Apps\\' . ucfirst($appname) . '\Model\\' . ucfirst($listingConfig['model']);
             $model = new $model();
             $items = $model->find();
-            $this->view('listing', ['items' => $items, 'fields' => $listingConfig['fields']]);
+            $base_url = "/admin/crud/" . $appname . "/" . $listingConfig['model'] . "/";
+
+            $this->view('listing', [
+                'items' => $items,
+                'fields' => $listingConfig['fields'],
+                'base_url' => $base_url
+            ]);
         } else {
             echo 'Listing configuration not found';
         }
@@ -43,7 +49,7 @@ class Admin extends Controller
     function action_crud($params)
     {
         $appname = 'Pages';
-        $crudName = 'Pages';
+        $crudName = 'Page';
         if (!empty($params) && !empty($params[0])) {
             $appname = $params[0];
             $crudName = $params[0];
