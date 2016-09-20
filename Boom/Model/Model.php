@@ -136,7 +136,13 @@ class Model
         }
 
         if (is_int($what)) { // le cas ou on chrche un id
-            $conditions['where'][] = ['id' => $what];
+            if (empty($conditions['where'])) {
+            	$conditions = ['id' => $what];
+            } else {
+                $conditions['where'][] = ['id' => $what];
+            }
+
+            $what = "first";
         }
 
         if (is_string($what) || is_null($what)) {
