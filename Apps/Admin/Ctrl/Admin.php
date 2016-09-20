@@ -71,4 +71,43 @@ class Admin extends Controller
             error('"'.$crudName . '" \'s crud configuration of "'. $appname .'" application is not found');
         }
     }
+
+    function action_update($params)
+    {
+        $appname = 'Pages';
+        $crudName = 'Page';
+        if (!empty($params) && !empty($params[0])) {
+            $appname = $params[0];
+            $crudName = $params[0];
+        }
+
+        if (isset($params[1]) && !empty($params[1]) || is_int(intval($params[1]))) {
+            $crudName = $params[1];
+        } else {
+            $config_app = App::getConfig($appname);
+            if (isset($config_app['default_crud'])) {
+                $crudName = $config_app['default_crud'];
+            }
+        }
+        
+        if (
+            (isset($params[1]) && is_int(intval($params[1]))) ||
+            (isset($params[2]) && is_int(intval($params[2])))
+        ) {
+            $item_id = is_int($params[1]) ? intval($params[1]) : intval($params[2]);
+            $model = '\Apps\\' . ucfirst($appname) . '\Model\\' . ucfirst($crudName);
+            $model = new $model();
+            $item = $model->find($item_id);
+        } else {
+            error("No id passed to edit");
+        }
+
+        $crudFile = 'Apps' . DS . ucfirst($appname) . DS . 'Cruds' . DS . ucfirst($crudName) . '.php';
+        if (file_exists($crudFile)) {
+            $crud = require $crudFile;
+            $this->view('update', ['crud' => $crud, 'item' => $item]);
+        } else {
+            error('"'.$crudName . '" \'s crud configuration of "'. $appname .'" application is not found');
+        }
+    }
 }
