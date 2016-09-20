@@ -10,7 +10,7 @@ class Crud
 
     public static function make_form($conf, $item = null) {
         if ($item) {
-            self::$item = $item;
+            self::$item = (array) $item;
         }
         $html = "";
         foreach ($conf as $key => $item) {
