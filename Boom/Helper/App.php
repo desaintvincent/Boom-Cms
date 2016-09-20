@@ -12,11 +12,14 @@ class App
 	public static function getConfig($appname)
 	{
 		$appname = ucfirst($appname);
-        $path = "./Apps/" . $appname . '/Config/' . $appname . '.php';
-        $config = [];
-        if (is_file($path)) {
-        	$config = require($path);
+        $config_path = "./Apps/" . $appname . '/Config/' . $appname . '.php';
+        if (file_exists($config_path)) {
+            $config = require $config_path;
+        } else {
+            error($appname . '\'s config doesn\'t exist');
+            $config = null;
         }
+
 
 		return $config;
 	}

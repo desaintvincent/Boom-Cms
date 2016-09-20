@@ -2,7 +2,10 @@
 @import "libs/foundation";
 @import "libs/font-awesome.min";
 
+//Variables
+@import "components/variables";
 //components
+@import "components/form";
 @import "components/login";
 @import "components/header";
 @import "components/leftbar";

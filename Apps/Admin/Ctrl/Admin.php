@@ -43,8 +43,8 @@ class Admin extends Controller
     function action_crud($params)
     {
         $appname = 'Pages';
-        $crudName = 'Page';
-        if (!empty($params)) {
+        $crudName = 'Pages';
+        if (!empty($params) && !empty($params[0])) {
             $appname = $params[0];
             $crudName = $params[0];
             if (isset($params[1])) {
@@ -52,12 +52,20 @@ class Admin extends Controller
             }
         }
 
+        if (isset($params[1]) && !empty($params[1])) {
+            $crudName = $params[1];
+        } else {
+            $config_app = App::getConfig($appname);
+            if (isset($config_app['default_crud'])) {
+                $crudName = $config_app['default_crud'];
+            }
+        }
         $crudFile = 'Apps' . DS . ucfirst($appname) . DS . 'Cruds' . DS . ucfirst($crudName) . '.php';
         if (file_exists($crudFile)) {
             $crud = require $crudFile;
             $this->view('crud', ['crud' => $crud]);
         } else {
-            echo 'Crud configuration not found';
+            error('"'.$crudName . '" \'s crud configuration of "'. $appname .'" application is not found');
         }
     }
 }

@@ -18,7 +18,7 @@ class Crud
                 $function_name = 'input_'.$item['type'];
                 $html .= self::$function_name($key, $item);
             } else {
-                $html .= '<div class="warning" style="border: 1px solid red; padding: 10px; color: red">Type ' .$item['type']. ' doesn\'t exist! (yet)</div>';
+                error('Type ' .$item['type']. ' doesn\'t exist! (yet)');
             }
         }
 
@@ -53,6 +53,15 @@ class Crud
         return $html;
     }
 
+    public static function input_email($key, $item)
+    {
+        $html = "<div class='{$item['type']}-field'>
+                    <label for='{$key}'>{$item['label']}</label>
+                    <input type='email' value='" . self::$item[$key] . "' name='{$key}' id='{$key}' " . self::required($item) . ">
+                </div>";
+        return $html;
+    }
+
     public static function input_textarea($key, $item)
     {
         $html = "<div class='{$item['type']}-field'>
@@ -79,6 +88,14 @@ class Crud
             </label>
         </div>";
 
+        return $html;
+    }
+
+    public static function input_checkbox($key, $item) {
+        $html = "<div class='{$item['type']}-field'>
+                    <input type='checkbox' name='{$key}' id='{$key}' " . (self::$item[$key] ? "checked " : " ") . self::required($item) . ">
+                    <label for='{$key}'>{$item['label']}</label>
+                </div>";
         return $html;
     }
 
