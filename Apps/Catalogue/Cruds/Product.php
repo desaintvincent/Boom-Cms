@@ -7,6 +7,6 @@ return [
     ),
     'content' => array(
         'label' => 'Le contenu',
-        'type' => 'text'
+        'type' => 'wysiwyg'
     ),
 ];
