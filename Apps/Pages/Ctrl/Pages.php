@@ -10,6 +10,7 @@ class Pages extends Controller {
     }
 
     function action_main($params = NULL) {
-        echo 'action main : page = ' .$params[0];
+        echo 'action main : page = ';
+        d($params);
     }
 }

@@ -34,7 +34,7 @@ class Admin extends Controller
             $model = '\Apps\\' . ucfirst($appname) . '\Model\\' . ucfirst($listingConfig['model']);
             $model = new $model();
             $items = $model->find();
-            $base_url = "/admin/update/" . $appname . "/" . $listingConfig['model'] . "/";
+            $base_url = BASE_URL . "admin/crud/" . $appname . "/" . $listingConfig['model'] . "/";
 
             $this->view('listing', [
                 'items' => $items,
@@ -89,7 +89,7 @@ class Admin extends Controller
                 $crudName = $config_app['default_crud'];
             }
         }
-        
+
         if (
             (isset($params[1]) && is_int(intval($params[1]))) ||
             (isset($params[2]) && is_int(intval($params[2])))
