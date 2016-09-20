@@ -42,7 +42,7 @@ class Admin extends Controller
                 'base_url' => $base_url
             ]);
         } else {
-            echo 'Listing configuration not found';
+            error("Listing configuration not found");
         }
     }
 
