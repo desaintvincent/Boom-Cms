@@ -9,6 +9,8 @@ class Controller
     public $params;
     public $action;
     public $appname;
+    public $layout;
+    public $layoutVars = [];
 
     public function __construct($appname, $request, $response, $params = array(), $name)
     {
@@ -21,7 +23,13 @@ class Controller
             $this->action = 'main';
         }
 
+        $this->layout = "default";
+
         $this->loadModel();
+
+        if (method_exists($this, 'setLayoutVars')) {
+        	$this->setLayoutVars();
+        }
     }
 
     public function run()
@@ -42,7 +50,9 @@ class Controller
         require($path);
         $tampon = ob_get_contents();
         ob_end_clean();
-        echo $tampon;
+        extract($this->layoutVars);
+        $layout = 'Apps/' . $this->appname . '/Views/Layouts/' . $this->layout . '.php';
+        include($layout);
     }
 
     public static function view_static($view, $params = array())
