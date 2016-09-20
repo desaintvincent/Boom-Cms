@@ -5,4 +5,13 @@
   margin-top: 50px;
   overflow-y: scroll;
   background-color: $darkerblue;
+  background: linear-gradient(45deg, $yellow, $red 30%);
+
+  ul {
+    li {
+      margin: 5px;
+      padding: 10px;
+      color: $white;
+    }
+  }
 }
