@@ -12,7 +12,11 @@ class App
 	public static function getConfig($appname)
 	{
 		$appname = ucfirst($appname);
-		$config = require_once "./Apps/" . $appname . '/Config/' . $appname . '.php';
+        $path = "./Apps/" . $appname . '/Config/' . $appname . '.php';
+        $config = [];
+        if (is_file($path)) {
+        	$config = require($path);
+        }
 
 		return $config;
 	}
