@@ -98,6 +98,9 @@ class Admin extends Controller
             $item_id = is_int($params[1]) ? intval($params[1]) : intval($params[2]);
             $model = '\Apps\\' . ucfirst($appname) . '\Model\\' . ucfirst($crudName);
             $model = new $model();
+            if ($this->request->isPost()) {
+            	$model->update($item_id, $this->request->getParsedBody());
+            }
             $item = $model->find($item_id);
         } else {
             error("No id passed to edit");
