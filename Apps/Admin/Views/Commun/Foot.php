@@ -20,11 +20,11 @@
             custom_elements: "~enhancer",
             noneditable_noneditable_class: "noneditable",
             noneditable_regexp: [/<enhancer>(.*?)<\/enhancer>/g],
-            protect: [
+            /*protect: [
                 /\<\/?(if|endif)\>/g, // Protect <if> & </endif>
                 /\<xsl\:[^>]+\>/g, // Protect <xsl:...>
                 /<\?php.*?\?>/g // Protect php code
-            ],
+            ],*/
             setup: function(editor) {
                 editor.addButton('myapps', {
                     type: 'menubutton',
@@ -35,7 +35,7 @@
                         {
                             text: "<?=addslashes($enhancer['name'])?>",
                             onclick: function() {
-                                editor.insertContent('<enhancer class="noneditable <?=$key?>" data-params="<?=json_encode($enhancer)?>"><?=addslashes($enhancer['name'])?></enhancer>');
+                                editor.insertContent('<enhancer class="noneditable <?=$key?>" data-params=\'' + '<?=addslashes(json_encode($enhancer))?>'.replace(/'/g, "&apos;") + '\'><?=addslashes($enhancer['name'])?></enhancer>');
                             }
                         },
                         <?php endforeach; ?>

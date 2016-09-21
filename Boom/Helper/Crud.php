@@ -12,7 +12,8 @@ class Crud
         if ($item) {
             self::$item = (array) $item;
         }
-        $html = "";
+
+        $html = '<form class="form-signin" enctype="multipart/form-data" action="'.htmlspecialchars($_SERVER['PHP_SELF']).'" method="post">';
         foreach ($conf as $key => $item) {
             if (method_exists(self::class, 'input_'.$item['type'])) {
                 $function_name = 'input_'.$item['type'];
@@ -21,6 +22,8 @@ class Crud
                 error('Type ' .$item['type']. ' doesn\'t exist! (yet)');
             }
         }
+        $html .= '<button class="button" type="submit">Enregistrer les informations</button>';
+        $html .= '</form>';
 
         return $html;
     }

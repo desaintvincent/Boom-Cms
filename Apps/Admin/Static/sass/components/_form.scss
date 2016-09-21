@@ -1,6 +1,11 @@
 .button {
   background: $yellow;
-  color: $black;
+  color: $darkblue;
+
+  &:focus, &:active, &:hover {
+    background: $lightblue;
+    color: $darkerblue;
+  }
 }
 
 label {
