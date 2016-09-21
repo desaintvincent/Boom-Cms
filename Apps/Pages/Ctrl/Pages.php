@@ -15,6 +15,7 @@ class Pages extends Controller {
         $pattern = '/<enhancer .*">.*<\/enhancer>/';
         $page->content = preg_replace_callback($pattern, function ($matches) {
             $params = '{'.GetBetween("data-params=\"{", "}\"", $matches[0]).'}';
+            d($params);
             $params = str_replace("&quot;", "\"", $params);
             $params = json_decode($params);
             $ctrl = 'ctrl';
