@@ -13,13 +13,12 @@ class Pages extends Controller {
         $page = $this->Page->find(1);
 
         $pattern = '/<enhancer .*">.*<\/enhancer>/';
-        $results = preg_replace_callback($pattern, function ($matches) {
-            d($matches);
+        $page->content = preg_replace_callback($pattern, function ($matches) {
+            //d($matches);
             $ctrl = 'ctrl';
             $response = 'action';//$ctrl->{'action_'. 'blabla'}();
             return $response;
         }, htmlspecialchars_decode($page->content));
-        d($results);
         return $this->view('pages', ['page' => $page]);
     }
 }
