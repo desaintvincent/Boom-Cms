@@ -10,7 +10,7 @@
             plugins: [
                 "advlist autolink autosave link image lists charmap print preview hr anchor pagebreak spellchecker",
                 "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
-                "table contextmenu directionality emoticons template textcolor paste fullpage textcolor colorpicker textpattern noneditable"
+                "table contextmenu directionality emoticons template textcolor paste textcolor colorpicker textpattern noneditable"
             ],
 
             toolbar1: "styleselect | forecolor backcolor | fontselect fontsizeselect | link anchor image media code |bullist | preview | myapps",

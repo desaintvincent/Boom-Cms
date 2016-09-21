@@ -13,10 +13,10 @@ var css_site_dest = './Static/dist/css/';
 var sass_admin_files = 'Apps/Admin/Static/sass/admin.scss';
 var css_admin_dest = './Apps/Admin/Static/dist/css/';
 
-var js_site_files = ['Static/src/js/libs/jQuery.min.js','static/src/js/libs/*.js', 'static/dist/js/site.js'];
+var js_site_files = ['Static/src/js/libs/jquery.min.js','Static/src/js/libs/*.js', 'Static/src/js/site.js'];
 var js_site_dest = 'Static/dist/js';
 
-var js_admin_files = ['Static/src/js/libs/jQuery.min.js','static/src/js/libs/*.js', './Apps/Admin/Static/js/libs/*.js', './Apps/Admin/Static/js/admin.js'];
+var js_admin_files = ['Static/src/js/libs/jquery.min.js','Static/src/js/libs/*.js', './Apps/Admin/Static/js/libs/*.js', './Apps/Admin/Static/js/admin.js'];
 var js_admin_dest = 'Apps/Admin/Static/dist/js';
 
 
@@ -80,7 +80,7 @@ gulp.task('default',function() {
     //sase admin
     gulp.watch(['Apps/Admin/Static/sass/components/*.scss', 'Apps/Admin/Static/sass/admin.scss'],['sass_admin']);
     //js site
-    gulp.watch(['assets/src/js/libs/*.js', 'assets/src/js/site.js'],['uglify_site']);
+    gulp.watch(['Static/src/js/libs/*.js', 'Static/src/js/site.js'],['uglify_site']);
     //js admin
     gulp.watch(['Apps/Admin/Static/js/libs/*.js', 'Apps/Admin/Static/js/admin.js'],['uglify_admin']);
 });

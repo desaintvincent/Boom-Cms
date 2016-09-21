@@ -10,7 +10,14 @@ class Pages extends Controller {
     }
 
     function action_main($params = NULL) {
-        echo 'action main : page = ';
-        d($params);
+        $page = $this->Page->find(1);
+
+        $pattern = '/<enhancer .*">.*<\/enhancer>/';
+        $results = preg_replace_callback($pattern, function ($matches) {
+            d($matches);
+            return 'enhancer remplacé';
+        }, $page->content);
+        d($results);
+        return $this->view('pages', ['page' => $page]);
     }
 }

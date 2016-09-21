@@ -1,4 +1,11 @@
 <?php
+function callback ($match) {
+    d($match);
+    /*if ($match[0] === "Jonathan")
+        return "Superman";
+    return $match[0];*/
+}
+
 function d()
 {
     if (ENV != 'dev') {
