@@ -36,11 +36,13 @@ class Admin extends Controller
             $model = new $model();
             $items = $model->find();
             $base_url = BASE_URL . "admin/update/" . $appname . "/" . $listingConfig['model'] . "/";
+            $add_url = BASE_URL . "admin/crud/" . $appname;
 
             $this->view('listing', [
                 'items' => $items,
                 'fields' => $listingConfig['fields'],
-                'base_url' => $base_url
+                'base_url' => $base_url,
+                'add_url' => $add_url
             ]);
         } else {
             error("Listing configuration not found");
@@ -67,6 +69,11 @@ class Admin extends Controller
         $crudFile = 'Apps' . DS . ucfirst($appname) . DS . 'Cruds' . DS . ucfirst($crudName) . '.php';
         if (file_exists($crudFile)) {
             $crud = require $crudFile;
+            if ($this->request->isPost()) {
+                $model = '\Apps\\' . ucfirst($appname) . '\Model\\' . ucfirst($crudName);
+                $model = new $model($this->request->getParsedBody());
+                $model->save();
+            }
             $this->view('crud', ['crud' => $crud]);
         } else {
             error('"'.$crudName . '" \'s crud configuration of "'. $appname .'" application is not found');
