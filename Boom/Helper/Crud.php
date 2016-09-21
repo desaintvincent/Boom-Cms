@@ -13,7 +13,7 @@ class Crud
             self::$item = (array) $item;
         }
 
-        $html = '<form class="form-signin" enctype="multipart/form-data" action="'.htmlspecialchars($_SERVER['PHP_SELF']).'" method="post">';
+        $html = '<form class="form-signin" enctype="multipart/form-data" action="#" method="post">';
         foreach ($conf as $key => $item) {
             if (method_exists(self::class, 'input_'.$item['type'])) {
                 $function_name = 'input_'.$item['type'];

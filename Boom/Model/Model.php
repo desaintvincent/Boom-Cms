@@ -166,7 +166,7 @@ class Model
         return $results;
     }
 
-    public function save($data, $table = null)
+    public function save($data = [], $table = null)
     {
         $fields = $values = $tmp = [];
 
