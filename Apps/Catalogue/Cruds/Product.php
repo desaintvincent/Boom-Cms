@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'title' => array(
+    'prod_title' => array(
         'label' => 'Le titre',
         'type' => 'text'
     ),

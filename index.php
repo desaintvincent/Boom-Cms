@@ -55,7 +55,9 @@ $slim->any('/admin[/{params:.*}]', function (Request $request, Response $respons
 $slim->any('[/{params:.*}]', function (Request $request, Response $response) {
     $params = $request->getAttribute('params');
     if (empty($params)) {
-        $params  = 'accueil';
+        ///@todo faire en sorte de pouvoir selectionner la page d'accueil. actuellement c'est en dure
+
+        $params  = 'page1';
     }
     $boom = new \Boom\Bootstrap($request, $response);
     $boom->dispatch('pages', explode('/', $params));

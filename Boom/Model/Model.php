@@ -49,7 +49,6 @@ class Model
     public function get($conditions, $table)
     {
         $query = "SELECT ";
-
         if (!isset($conditions['fields'])) {
             $query .= "*";
         } else {
@@ -137,7 +136,7 @@ class Model
 
         if (is_int($what)) { // le cas ou on chrche un id
             if (empty($conditions['where'])) {
-            	$conditions = ['id' => $what];
+            	$conditions['where'] = ['id' => $what];
             } else {
                 $conditions['where'][] = ['id' => $what];
             }
@@ -150,6 +149,9 @@ class Model
                 case "first":
                     $conditions['limit'] = 1;
                     $results = $this->get($conditions, $table);
+                    if (empty($results)) {
+                        return null;
+                    }
                     $results = $results[0];
                     break;
                 case "last":

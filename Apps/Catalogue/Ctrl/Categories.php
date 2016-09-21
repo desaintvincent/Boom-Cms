@@ -10,7 +10,7 @@ class Categories extends Controller
         //c'est du statique c'est moche
     }
 
-    public function action_main($params)
+    public function action_main($params = NULL)
     {
         if (empty($params) || empty($params[0])) {
             // Liste les catégories
@@ -38,15 +38,20 @@ class Categories extends Controller
             ]
         ]);
 
-        $products = $this->Product->find('all', [
-            "joins" => [
-                "categories"
-            ],
-            "where" => [
-                "prod_category_id" => $category->id
-            ]
-        ]);
+        if (!empty($category)) {
+            $products = $this->Product->find('all', [
+                "joins" => [
+                    "categories"
+                ],
+                "where" => [
+                    "prod_category_id" => $category->id
+                ]
+            ]);
 
-        $this->view('categories/view', compact('products', 'category'));
+            $this->view('categories/view', compact('products', 'category'));
+        } else {
+            d('la catégorie existe pas');
+        }
+
     }
 }

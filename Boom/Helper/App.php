@@ -19,8 +19,6 @@ class App
             error($appname . '\'s config doesn\'t exist');
             $config = null;
         }
-
-
 		return $config;
 	}
 
@@ -35,7 +33,6 @@ class App
 	public static function isCtrlAction($appname, $ctrl, $action)
 	{
 		$namespace = 'Apps\\' . $appname . '\Ctrl\\' . $ctrl;
-
 		return method_exists($namespace, 'action_' . $action);
 	}
 
@@ -78,7 +75,6 @@ class App
 	public static function getAllEnhancersConfig($appname)
 	{
 		$config = self::getConfig($appname);
-
 		if (isset($config['enhancers']) && !empty($config['enhancers'])) {
 			return $config['enhancers'];
 		}

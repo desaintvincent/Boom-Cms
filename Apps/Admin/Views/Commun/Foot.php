@@ -3,6 +3,7 @@
     <script src="<?=BASE_URL?>Apps/Admin/Static/dist/js/admin.min.js"></script>
     <script src="<?=BASE_URL?>Apps/Admin/Static/dist/js/tinymce/tinymce.min.js"></script>
     <script>
+        console.log("<?=str_replace("'", "&apos;", addslashes(json_encode($enhancers['list_products_category'])))?>");
         tinymce.init({
             selector: ".wysiwyg",
             height: 200,
@@ -35,7 +36,7 @@
                         {
                             text: "<?=addslashes($enhancer['name'])?>",
                             onclick: function() {
-                                editor.insertContent('<enhancer class="noneditable <?=$key?>" data-params=\'' + '<?=addslashes(json_encode($enhancer))?>'.replace(/'/g, "\\&apos;") + '\'><?=addslashes($enhancer['name'])?></enhancer>');
+                                editor.insertContent('<enhancer class="noneditable <?=$key?>" data-params=\'' + '<?= str_replace("'", "&apos;", addslashes(json_encode($enhancer)))?>' + '\'><?=addslashes($enhancer['name'])?></enhancer>');
                             }
                         },
                         <?php endforeach; ?>

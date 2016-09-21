@@ -15,7 +15,7 @@ class Admin extends Controller
 
     function action_main($params = null)
     {
-        $this->view('content');
+        $this->view('content', [], true);
     }
 
     function action_listing($params = null)
@@ -43,7 +43,7 @@ class Admin extends Controller
                 'fields' => $listingConfig['fields'],
                 'base_url' => $base_url,
                 'add_url' => $add_url
-            ]);
+            ], true);
         } else {
             error("Listing configuration not found");
         }
@@ -74,7 +74,7 @@ class Admin extends Controller
                 $model = new $model($this->request->getParsedBody());
                 $model->save();
             }
-            $this->view('crud', ['crud' => $crud]);
+            $this->view('crud', ['crud' => $crud], true);
         } else {
             error('"'.$crudName . '" \'s crud configuration of "'. $appname .'" application is not found');
         }
@@ -103,6 +103,7 @@ class Admin extends Controller
             (isset($params[2]) && is_int(intval($params[2])))
         ) {
             $item_id = is_int($params[1]) ? intval($params[1]) : intval($params[2]);
+
             $model = '\Apps\\' . ucfirst($appname) . '\Model\\' . ucfirst($crudName);
             $model = new $model();
             if ($this->request->isPost()) {
@@ -116,7 +117,7 @@ class Admin extends Controller
         $crudFile = 'Apps' . DS . ucfirst($appname) . DS . 'Cruds' . DS . ucfirst($crudName) . '.php';
         if (file_exists($crudFile)) {
             $crud = require $crudFile;
-            $this->view('update', ['crud' => $crud, 'item' => $item]);
+            $this->view('update', ['crud' => $crud, 'item' => $item], true);
         } else {
             error('"'.$crudName . '" \'s crud configuration of "'. $appname .'" application is not found');
         }

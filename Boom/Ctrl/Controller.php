@@ -19,7 +19,7 @@ class Controller
         $this->response = $response;
         $this->params = $params;
         $this->name = $name;
-        if (!empty($params[0])) {
+        if (!isset($params[0]) || (isset($params[0]) && !empty($params[0]))) {
             $this->action = 'main';
         }
 
@@ -42,7 +42,7 @@ class Controller
 
     }
 
-    public function view($view, $params = array())
+    public function view($view, $params = array(), $layout = false)
     {
         $path = 'Apps/' . $this->appname . '/Views/' . ucfirst($view) . '.php';
         extract($params);
@@ -50,12 +50,18 @@ class Controller
         require($path);
         $tampon = ob_get_contents();
         ob_end_clean();
-        extract($this->layoutVars);
-        $layout = 'Apps/' . $this->appname . '/Views/Layouts/' . $this->layout . '.php';
-        include($layout);
+        if($layout) {
+
+
+            extract($this->layoutVars);
+            $layout = 'Apps/' . $this->appname . '/Views/Layouts/' . $this->layout . '.php';
+            include($layout);
+        } else {
+            echo $tampon;
+        }
     }
 
-    public static function view_static($view, $params = array())
+    public static function view_static($view, $params = array(), $layout = false)///@todo gerer le fait qu'on puisse ne pas avoir de layouts
     {
         $path = 'Apps/' . substr(strrchr(get_called_class(), "\\"), 1) . '/Views/' . ucfirst($view) . '.php';
         extract($params);

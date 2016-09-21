@@ -3,6 +3,6 @@
 return [
     'model' => 'Product',
     'fields' => [
-        'title' => 'Titre du produit'
+        'prod_title' => 'Titre du produit'
     ]
 ];
