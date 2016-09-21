@@ -15,8 +15,10 @@ class Pages extends Controller {
         $pattern = '/<enhancer .*">.*<\/enhancer>/';
         $results = preg_replace_callback($pattern, function ($matches) {
             d($matches);
-            return 'enhancer remplacé';
-        }, $page->content);
+            $ctrl = 'ctrl';
+            $response = 'action';//$ctrl->{'action_'. 'blabla'}();
+            return $response;
+        }, htmlspecialchars_decode($page->content));
         d($results);
         return $this->view('pages', ['page' => $page]);
     }
