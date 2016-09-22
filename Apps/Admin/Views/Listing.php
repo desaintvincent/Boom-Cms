@@ -4,8 +4,8 @@
         <tr>
             <?php foreach($fields as $field => $title): ?>
                 <th class="admin_listing_header_item"><?= $title ?></th>
-                <th class="admin_listing_header_item"><?= __('Actions') ?></th>
             <?php endforeach; ?>
+            <th class="admin_listing_header_item"><?= __('Actions') ?></th>
         </tr>
     </thead>
     <tbody class="class="admin_listing_body">
@@ -13,8 +13,8 @@
             <tr>
                 <?php foreach($fields as $field => $title): ?>
                     <td class="admin_listing_body_item"><?= $item->{$field} ?></td>
-                    <td class="admin_listing_body_item"><a href="<?= $base_url . $item->id ?>"><?= __('Editer') ?></a></td>
                 <?php endforeach; ?>
+                <td class="admin_listing_body_item"><a href="<?= $base_url . $item->id ?>"><?= __('Editer') ?></a></td>
             </tr>
         <?php endforeach; ?>
     </tbody>
