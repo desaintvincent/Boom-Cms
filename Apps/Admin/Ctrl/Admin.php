@@ -36,13 +36,14 @@ class Admin extends Controller
             $model = new $model();
             $items = $model->find();
             $base_url = BASE_URL . "admin/update/" . $appname . "/" . $listingConfig['model'] . "/";
-            $add_url = BASE_URL . "admin/crud/" . $appname;
+            //$add_url = BASE_URL . "admin/crud/" . $appname;
 
             $this->view('listing', [
+                'listing_title' => $listingConfig['name'],
                 'items' => $items,
                 'fields' => $listingConfig['fields'],
                 'base_url' => $base_url,
-                'add_url' => $add_url
+                'add_items' => $listingConfig['add_item']
             ], true);
         } else {
             error("Listing configuration not found");

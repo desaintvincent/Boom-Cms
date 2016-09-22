@@ -1,6 +1,8 @@
 .button {
   background: $yellow;
   color: $darkblue;
+  margin: 0 5px;
+  transition: background .25s ease-out, color .25s ease-out;
 
   &:focus, &:active, &:hover {
     background: $lightblue;

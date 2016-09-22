@@ -6,7 +6,7 @@ a {
   color: inherit;
   text-decoration: none;
 
-  &:hover {
+  &:hover:not(.button) {
     color: inherit;
     text-decoration: underline;
   }
