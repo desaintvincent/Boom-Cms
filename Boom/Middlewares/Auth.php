@@ -4,12 +4,14 @@
 namespace Boom\Middlewares;
 
 
+use Boom\Helper\Session;
+
 class Auth
 {
     public function __invoke($request, $response, $next)
     {
         // On check la session s'il y a un token
-        if (!isset($_SESSION['token']) || empty($_SESSION['token'])) {
+        if (!Session::get("token")) {
         	error("You are not authorized to do this!");
         } else {
             // On check si ça correspon bien a un user
