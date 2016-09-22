@@ -49,7 +49,7 @@ $slim->any('/admin[/{params:.*}]', function (Request $request, Response $respons
     $boom = new \Boom\Bootstrap($request, $response);
     $boom->dispatch('admin', explode('/', $params));
     return $response;
-})->setName('admin');
+})->setName('admin')/*->add( new \Boom\Middlewares\Auth() )*/;
 
 //pages
 $slim->any('[/{params:.*}]', function (Request $request, Response $response) {
