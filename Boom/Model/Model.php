@@ -36,7 +36,7 @@ class Model
         }
     }
 
-    public function forge($data)
+    public function forge($data = [])
     {
         $this->data = $data;
         foreach ($data as $name => $value) {
