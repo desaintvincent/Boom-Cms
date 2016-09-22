@@ -8,9 +8,14 @@ class Token
 {
     public static function generate($item)
     {
-        $id = isset($item->id) ? $item->id : isset($item['id']) ? $item['id'] : uniqid();
+        $id = uniqid();
+        if (is_object($item) && isset($item->id)) {
+        	$id = $item->id;
+        } elseif (is_array($item) && isset($item['id'])) {
+            $id = $item['id'];
+        }
         $time = time();
 
-        return sha1(md5($id . $time));
+        return Security::crypt($id . $time);
     }
 }
