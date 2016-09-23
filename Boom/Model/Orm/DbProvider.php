@@ -19,7 +19,7 @@ class DbProvider
                 DB_USER,
                 DB_PASS,
                 [
-                    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ,
+                    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_CLASS,
                     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
                 ]
             );
