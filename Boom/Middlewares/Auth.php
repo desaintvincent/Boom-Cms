@@ -4,6 +4,7 @@
 namespace Boom\Middlewares;
 
 
+use Apps\Users\Model\User;
 use Boom\Helper\Session;
 
 class Auth
@@ -15,10 +16,10 @@ class Auth
         	error("You are not authorized to do this!");
         } else {
             // On check si ça correspon bien a un user
-            /*$model = new User();
+            $model = new User();
             $user = $model->find('first', [
                 "where" => [
-                    "token" => $_SESSION['token']
+                    "token" => Session::get("token")
                 ]
             ]);
 
@@ -26,7 +27,7 @@ class Auth
                 error("You are not authorized to do this!");
             } else {
                 return $next($request, $response);
-            }*/
+            }
         }
     }
 }
