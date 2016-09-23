@@ -8,7 +8,7 @@ class Session
 {
     public static function set($name, $value)
     {
-        $_SERVER[$name] = $value;
+        $_SESSION[$name] = $value;
     }
 
     public static function get($name)
@@ -18,5 +18,12 @@ class Session
         }
 
         return null;
+    }
+
+    public static function delete($name)
+    {
+        if (isset($_SESSION[$name])) {
+        	unset($_SESSION[$name]);
+        }
     }
 }
