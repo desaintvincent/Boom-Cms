@@ -7,7 +7,7 @@
 #
 # Hôte: 127.0.0.1 (MySQL 5.5.42)
 # Base de données: boom_cms
-# Temps de génération: 2016-09-22 11:08:40 +0000
+# Temps de génération: 2016-09-23 11:36:29 +0000
 # ************************************************************
 
 
@@ -105,15 +105,16 @@ CREATE TABLE `users` (
   `lastname` varchar(255) DEFAULT NULL,
   `login` varchar(255) NOT NULL DEFAULT '',
   `password` varchar(255) NOT NULL DEFAULT '',
+  `token` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 
-INSERT INTO `users` (`id`, `firstname`, `lastname`, `login`, `password`)
+INSERT INTO `users` (`id`, `firstname`, `lastname`, `login`, `password`, `token`)
 VALUES
-	(1,'admin','admin','admin','admin');
+	(1,'admin','admin','admin','90b9aa7e25f80cf4f64e990b78a9fc5ebd6cecad','0617c750ecb985b048b8b3b2dd9c42520faab6e4');
 
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
