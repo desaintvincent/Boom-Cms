@@ -2,6 +2,8 @@
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 
+session_start();
+
 //récupération de la config du site
 $config_site = require_once ("site.config.php");
 
@@ -49,7 +51,7 @@ $slim->any('/admin[/{params:.*}]', function (Request $request, Response $respons
     $boom = new \Boom\Bootstrap($request, $response);
     $boom->dispatch('admin', explode('/', $params));
     return $response;
-})->setName('admin')/*->add( new \Boom\Middlewares\Auth() )*/;
+})->setName('admin')->add( new \Boom\Middlewares\Auth() );
 
 //pages
 $slim->any('[/{params:.*}]', function (Request $request, Response $response) {
