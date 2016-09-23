@@ -8,6 +8,7 @@ class Model
     public $name;
     public $table;
     //public $db;
+    public $appname;
 
     public function __construct($data = null)
     {
@@ -111,7 +112,12 @@ class Model
         }
 
         $req = $this->db->query($query);
-        $results = $req->fetchAll();
+        $entityNamespace = '\Apps\\' . ucfirst($this->appname) . '\Model\Entities\\' . ucfirst($this->name) . 'Entity';
+        if (class_exists($entityNamespace)) {
+            $results = $req->fetchAll(\PDO::FETCH_CLASS, $entityNamespace);
+        } else {
+            $results = $req->fetchAll(\PDO::FETCH_CLASS, '\Boom\Model\Entities\Entity');
+        }
 
         if (isset($conditions['hasMany'])) {
             foreach ($conditions['hasMany'] as $hm => $v) {
@@ -120,7 +126,7 @@ class Model
                     $groupby = isset($v['groupBy']) ? ' GROUP BY ' . $v['groupBy'] : '';
                     $q = "SELECT $fields FROM $hm WHERE " . strtolower($this->name) . "_id = " . $r->id . $groupby;
                     $pdost = $this->db->query($q);
-                    $r->$hm = $pdost->fetchAll();
+                    $r->$hm = $pdost->fetchAll(\PDO::FETCH_CLASS, '\Boom\Model\Entities\Entity');
                 }
             }
         }
