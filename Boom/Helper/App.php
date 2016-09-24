@@ -136,6 +136,7 @@ class App
                 $conf = App::getConfig($app);
                 if (isset($conf['required']) && $conf['required']) {
                     $apps[$i]['name'] = $app;
+                    $apps[$i]['icon'] = $conf['icon'];
                     if (isset($conf['default_crud'])) {
                         $apps[$i]['crud'] = $conf['default_crud'];
                     } else {
@@ -164,6 +165,7 @@ class App
                 $conf = App::getConfig($app);
                 if (!isset($conf['required']) || (isset($conf['required']) && !$conf['required'])) {
                     $apps[$i]['name'] = $app;
+                    $apps[$i]['icon'] = $conf['icon'];
                     if (isset($conf['default_crud'])) {
                         $apps[$i]['crud'] = $conf['default_crud'];
                     } else {

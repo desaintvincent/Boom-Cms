@@ -35,14 +35,18 @@ class Admin extends Controller
             $model = '\Apps\\' . ucfirst($appname) . '\Model\\' . ucfirst($listingConfig['model']);
             $model = new $model();
             $items = $model->find();
-            $base_url = BASE_URL . "admin/update/" . $appname . "/" . $listingConfig['model'] . "/";
+            $update_url = BASE_URL . "admin/update/" . $appname . "/" . $listingConfig['model'] . "/";
+            $see_url = BASE_URL . "admin/see/" . $appname . "/" . $listingConfig['model'] . "/";
+            $delete_url = BASE_URL . "admin/delete/" . $appname . "/" . $listingConfig['model'] . "/";
             //$add_url = BASE_URL . "admin/crud/" . $appname;
 
             $this->view('listing', [
                 'listing_title' => $listingConfig['name'],
                 'items' => $items,
                 'fields' => $listingConfig['fields'],
-                'base_url' => $base_url,
+                'update_url' => $update_url,
+                'see_url' => $see_url,
+                'delete_url' => $delete_url,
                 'add_items' => $listingConfig['add_item']
             ], true);
         } else {

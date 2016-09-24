@@ -3,6 +3,7 @@ return [
     'required' => false,
     'default_ctrl' => 'categories',
     'default_crud' => 'product',
+    'icon' => 'fa-book',
     'default_listing' => 'products', // Required
 	'enhancers' => [
 		'list_categories' => [

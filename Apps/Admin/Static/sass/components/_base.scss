@@ -45,3 +45,21 @@ h1 {
     background-image: -o-linear-gradient(left, $red, transparent);
   }
 }
+
+.center-vertically {
+
+  &:before {
+    content: '';
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  &>* {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  &.height:before {
+    height: 100%;
+  }
+}

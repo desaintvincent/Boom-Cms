@@ -2,6 +2,7 @@
 
 return [
     'name' => __('Listing des utilisateurs'),
+    'icon' => 'fa-user',
     'model' => 'User',
     'fields' => [
         'firstname' => 'Prénom',

@@ -1,21 +1,159 @@
 .leftbar {
+  position: relative;
   display: inline-block;
   height: calc(100vh - 50px);
-  width: 200px;
+  width: 50px;
   margin-top: 50px;
-  overflow-y: hidden;
   background-color: $darkerblue;
-  background: linear-gradient(45deg, $yellow, $red 30%);
+  background: linear-gradient(45deg, $yellow, $darkblue 30%);
+  transition: width 0.2s linear;
 
   h2 {
     font-size: 1.5em;
+    margin: 0;
+    height: 50px;
+    border-bottom: 1px solid $darkerblue;
+    font-weight: bold;
+    color: white;
+    position: relative;
+
+    .icon {
+      padding-top: 10px;
+      width: 50px;
+      height: 50px;
+      text-align: center;
+      display: inline-block;
+    }
+
+    .name {
+      position: absolute;
+      left: 50px;
+      right: 0px;
+      top: 0;
+      bottom: 0;
+      overflow: hidden;
+      //opacity: 0;
+      transition: all 0.2s linear;
+      padding-top: 9px;
+    }
+  }
+
+  ul {
+    margin-bottom: 0;
+    
+    li {
+      color: $white;
+      display: block;
+      position: relative;
+
+      a:hover {
+        text-decoration: none;
+      }
+
+      .icon {
+        padding-top: 8px;
+        width: 50px;
+        height: 50px;
+        text-align: center;
+        display: inline-block;
+      }
+
+      .name {
+        position: absolute;
+        left: 50px;
+        right: 0px;
+        top: 0;
+        bottom: 0;
+        overflow: hidden;
+        //opacity: 0;
+        transition: all 0.2s linear;
+        padding-top: 12px;
+      }
+
+      &:hover {
+        background: $darkerblue;
+      }
+    }
+
+    &.required {
+      border-bottom: 5px solid $yellow;
+    }
+  }
+
+  .toggle_applications {
+    position: absolute;
+    top :0;
+    left: 100%;
+    width: 50px;
+    height: 50px;
+    background: $darkblue;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    .hamburger {
+
+      span {
+        width: 30px;
+        height: 5px;
+        position: absolute;
+        background: $red;
+        content: ' ';
+        transition: all 0.2s linear;
+
+        &:first-child {
+          left: 10px;
+          top: 14px;
+        }
+
+        &:nth-child(2) {
+          left: 10px;
+          top: calc(50px / 2 - 2px);
+        }
+
+        &:last-child {
+          left: 10px;
+          bottom: 13px;
+        }
+      }
+    }
+  }
+}
+
+.leftbar_active .leftbar {
+  width: 200px;
+
+  .toggle_applications {
+    .hamburger {
+      span:first-child {
+        top: 22px;
+        transform: rotateZ(225deg);
+      }
+      span:nth-child(2) {
+        opacity: 0;
+        transform: rotateZ(270deg);
+      }
+      span:last-child {
+        bottom: 23px;
+        transform: rotateZ(315deg);
+      }
+    }
   }
 
   ul {
     li {
-      margin: 5px;
-      padding: 10px;
-      color: $white;
+      a {
+
+        .icon {
+        }
+
+        .name {
+          /*display: inline-block;
+          width: calc(100% - 55px);*/
+          //opacity: 1;
+        }
+      }
     }
   }
 }

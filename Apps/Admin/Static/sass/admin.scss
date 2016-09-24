@@ -1,6 +1,7 @@
 //libs fondamentales
 @import "libs/foundation";
 @import "libs/font-awesome.min";
+@import "libs/sweetalert";
 
 //Variables
 @import "components/variables";
@@ -12,3 +13,4 @@
 @import "components/leftbar";
 @import "components/content";
 @import "components/admin_listing";
+@import "components/popup";

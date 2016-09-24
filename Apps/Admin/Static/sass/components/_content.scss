@@ -1,16 +1,20 @@
 .content {
   display: inline-block;
-  width: calc(100vw - 200px);
+  width: calc(100vw - 50px);
   margin-top: 50px;
   overflow-y: scroll;
   height: calc(100vh - 50px);
   background-color: $white;
-
+  transition: width 0.2s linear;
   float: right;
 
-  .add_item {
+  .add_item, .save {
     position: fixed;
     top: 5px;
     right: 128px;
   }
+}
+
+.leftbar_active .content {
+  width: calc(100vw - 200px);
 }

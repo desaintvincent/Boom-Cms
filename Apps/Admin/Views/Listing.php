@@ -22,9 +22,10 @@
                     <td class="admin_listing_body_item"><?= $item->{$field} ?></td>
                 <?php endforeach; ?>
                 <td class="admin_listing_body_item action">
-                    <a href="<?= $base_url . $item->id ?>"><span class="edit"><i class="fa fa-pencil" aria-hidden="true"></i></span></a>
-                    <a href="<?= $base_url . $item->id ?>"><span class="see"><i class="fa fa-eye" aria-hidden="true"></i></span></a>
-                    <a href="<?= $base_url . $item->id ?>" class="popup_confirm"><span class="delete"><i class="fa fa-trash-o" aria-hidden="true"></i></span></a>
+                    <a href="<?= $update_url . $item->id ?>"><span class="edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span></a>
+                    <a href="<?= $see_url . $item->id ?>"><span class="see"><i class="fa fa-eye" aria-hidden="true"></i></span></a>
+                    <a href="<?= $delete_url . $item->id ?>" class="popup_confirm" data-what="<?=$item->id?>"><span class="delete"><i class="fa fa-trash-o" aria-hidden="true"></i></span></a>
+                </td>
             </tr>
         <?php endforeach; ?>
     </tbody>
