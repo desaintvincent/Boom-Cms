@@ -18,7 +18,7 @@ h1 {
   margin-left: 3px;
   margin-bottom: 40px;
   color: $black;
-
+/*
   &:before, &:after {
     content: "";
     position: absolute;
@@ -43,7 +43,7 @@ h1 {
     background-image: -webkit-linear-gradient(left, $red, transparent);
     background-image: -moz-linear-gradient(left, $red, transparent);
     background-image: -o-linear-gradient(left, $red, transparent);
-  }
+  }*/
 }
 
 .center-vertically {

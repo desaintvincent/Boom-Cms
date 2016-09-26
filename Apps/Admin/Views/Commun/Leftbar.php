@@ -1,13 +1,12 @@
-<div class="leftbar reduced">
-    <div class="toggle_applications">
-        <span class="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-        </span>
-    </div>
+<div class="leftbar">
     <h2>
-        <span class="icon"><i class="fa fa-th" aria-hidden="true"></i></span>
+        <div class="toggle_applications">
+            <span class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </span>
+        </div>
         <span class="name"><?=__('Applications')?></span>
     </h2>
     <?php if (!empty($apps['required'])) : ?>
@@ -34,5 +33,4 @@
             <?php endforeach; ?>
         </ul>
     <?php endif ?>
-
 </div>

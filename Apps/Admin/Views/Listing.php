@@ -6,6 +6,9 @@
         <?php endforeach ?>
     </div>
 <?php endif ?>
+<?php
+d($appname);
+?>
 <table class="admin_listing">
     <thead class="admin_listing_header">
         <tr>
@@ -18,10 +21,16 @@
     <tbody class="admin_listing_body">
         <?php foreach($items as $item): ?>
             <tr>
+
                 <?php foreach($fields as $field => $title): ?>
                     <td class="admin_listing_body_item"><?= $item->{$field} ?></td>
                 <?php endforeach; ?>
-                <td class="admin_listing_body_item action">
+                <td class="admin_listing_body_item action <?= $appname == 'Pages' ? 'listing_page' : ''?>">
+                    <?php if ($appname == 'Pages') : ?>
+                        <?php if ($item->id == $home) : ?>
+                            <span class="edit"><i class="fa fa-home" aria-hidden="true"></i></span>
+                        <?php endif ?>
+                    <?php endif ?>
                     <a href="<?= $update_url . $item->id ?>"><span class="edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span></a>
                     <a href="<?= $see_url . $item->id ?>"><span class="see"><i class="fa fa-eye" aria-hidden="true"></i></span></a>
                     <a href="<?= $delete_url . $item->id ?>" class="popup_confirm" data-what="<?=$item->id?>"><span class="delete"><i class="fa fa-trash-o" aria-hidden="true"></i></span></a>

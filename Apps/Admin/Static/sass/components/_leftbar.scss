@@ -83,10 +83,11 @@
   .toggle_applications {
     position: absolute;
     top :0;
-    left: 100%;
+    left: 0;
     width: 50px;
     height: 50px;
     background: $darkblue;
+    //transition: left 0.2s linear;
 
     &:hover {
       cursor: pointer;
@@ -125,6 +126,7 @@
   width: 200px;
 
   .toggle_applications {
+
     .hamburger {
       span:first-child {
         top: 22px;

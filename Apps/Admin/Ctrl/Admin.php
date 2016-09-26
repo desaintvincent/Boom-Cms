@@ -3,6 +3,7 @@ namespace Apps\Admin\Ctrl;
 
 use Boom\Ctrl\Controller;
 use Boom\Helper\App;
+use Boom\Helper\Data;
 
 class Admin extends Controller
 {
@@ -40,7 +41,8 @@ class Admin extends Controller
             $delete_url = BASE_URL . "admin/delete/" . $appname . "/" . $listingConfig['model'] . "/";
             //$add_url = BASE_URL . "admin/crud/" . $appname;
 
-            $this->view('listing', [
+            $params_view = [
+                'appname' => $appname,
                 'listing_title' => $listingConfig['name'],
                 'items' => $items,
                 'fields' => $listingConfig['fields'],
@@ -48,7 +50,13 @@ class Admin extends Controller
                 'see_url' => $see_url,
                 'delete_url' => $delete_url,
                 'add_items' => $listingConfig['add_item']
-            ], true);
+            ];
+
+            if ($appname == 'Pages') {
+                $datas = Data::get('main');
+                $params_view['home'] = $datas->home;
+            }
+            $this->view('listing', $params_view, true);
         } else {
             error("Listing configuration not found");
         }
@@ -63,10 +71,11 @@ class Admin extends Controller
             $crudName = $params[0];
         }
 
+
+        $config_app = App::getConfig($appname);
         if (isset($params[1]) && !empty($params[1])) {
             $crudName = $params[1];
         } else {
-            $config_app = App::getConfig($appname);
             if (isset($config_app['default_crud'])) {
                 $crudName = $config_app['default_crud'];
             }
@@ -79,7 +88,7 @@ class Admin extends Controller
                 $model = new $model($this->request->getParsedBody());
                 $model->save();
             }
-            $this->view('crud', ['crud' => $crud], true);
+            $this->view('crud', ['crud' => $crud, 'config' => $config_app], true);
         } else {
             error('"'.$crudName . '" \'s crud configuration of "'. $appname .'" application is not found');
         }
@@ -94,10 +103,10 @@ class Admin extends Controller
             $crudName = $params[0];
         }
 
+        $config_app = App::getConfig($appname);
         if (isset($params[1]) && !empty($params[1]) || is_int(intval($params[1]))) {
             $crudName = $params[1];
         } else {
-            $config_app = App::getConfig($appname);
             if (isset($config_app['default_crud'])) {
                 $crudName = $config_app['default_crud'];
             }
@@ -122,7 +131,7 @@ class Admin extends Controller
         $crudFile = 'Apps' . DS . ucfirst($appname) . DS . 'Cruds' . DS . ucfirst($crudName) . '.php';
         if (file_exists($crudFile)) {
             $crud = require $crudFile;
-            $this->view('update', ['crud' => $crud, 'item' => $item], true);
+            $this->view('crud', ['crud' => $crud, 'config' => $config_app, 'item' => $item], true);
         } else {
             error('"'.$crudName . '" \'s crud configuration of "'. $appname .'" application is not found');
         }
