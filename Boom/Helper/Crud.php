@@ -22,7 +22,7 @@ class Crud
                 error('Type ' .$item['type']. ' doesn\'t exist! (yet)');
             }
         }
-        $html .= '<div class="save"><a class="button" type="submit">Enregistrer les informations</a></div>';
+        $html .= '<div class="save"><button class="button" type="submit">Enregistrer les informations</button></div>';
         $html .= '</form>';
 
         return $html;
