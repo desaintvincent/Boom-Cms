@@ -26,7 +26,7 @@ $('.popup_confirm').click(function (e) {
         closeOnConfirm: false
     }, function (isConfirm) {
         if (isConfirm) {
-            swal("Deleted!", "Your imaginary file has been deleted.", "success");
+            //swal("Deleted!", "Your imaginary file has been deleted.", "success");
             window.location.href = href;
         }
 
