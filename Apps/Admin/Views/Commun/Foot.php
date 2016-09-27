@@ -1,9 +1,8 @@
 <footer>
 
-    <script src="<?=BASE_URL?>Apps/Admin/Static/dist/js/admin.min.js"></script>
+    <script src="<?=BASE_URL?>Apps/Admin/Static/dist/js/admin.js"></script>
     <script src="<?=BASE_URL?>Apps/Admin/Static/dist/js/tinymce/tinymce.min.js"></script>
     <script>
-        console.log("<?=str_replace("'", "&apos;", addslashes(json_encode($enhancers['list_products_category'])))?>");
         tinymce.init({
             selector: ".wysiwyg",
             height: 200,
@@ -21,11 +20,11 @@
             custom_elements: "~enhancer",
             noneditable_noneditable_class: "noneditable",
             noneditable_regexp: [/<enhancer>(.*?)<\/enhancer>/g],
-            /*protect: [
+            protect: [
                 /\<\/?(if|endif)\>/g, // Protect <if> & </endif>
                 /\<xsl\:[^>]+\>/g, // Protect <xsl:...>
                 /<\?php.*?\?>/g // Protect php code
-            ],*/
+            ],
             setup: function(editor) {
                 editor.addButton('myapps', {
                     type: 'menubutton',

@@ -108,6 +108,10 @@ class Admin extends Controller
         }
     }
 
+    function update_menu($crud, $config_app, $item) {
+        return $this->view('crud_menu', ['crud' => $crud, 'config' => $config_app, 'item' => $item], true);
+    }
+
     function action_update($params)
     {
         $appname = 'Pages';
@@ -143,7 +147,11 @@ class Admin extends Controller
         $crudFile = 'Apps' . DS . ucfirst($appname) . DS . 'Cruds' . DS . ucfirst($crudName) . '.php';
         if (file_exists($crudFile)) {
             $crud = require $crudFile;
-            return $this->view('crud', ['crud' => $crud, 'config' => $config_app, 'item' => $item], true);
+            if ($appname == 'Menu') {
+                return $this->update_menu($crud, $config_app, $item);
+            } else {
+                return $this->view('crud', ['crud' => $crud, 'config' => $config_app, 'item' => $item], true);
+            }
         } else {
             error('"'.$crudName . '" \'s crud configuration of "'. $appname .'" application is not found');
         }

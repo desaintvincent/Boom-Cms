@@ -39,3 +39,6 @@
     <?php endforeach; ?>
     </tbody>
 </table>
+<?php if (empty($items)) : ?>
+    <div class="empty_listing"><?=__('Aucun item n\'a été créé')?></div>
+<?php endif ?>
