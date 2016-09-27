@@ -1,6 +1,6 @@
 <?php
 return [
-    'title' => array(
+    'menu_title' => array(
         'label' => 'Titre',
         'type' => 'text'
     ),

@@ -126,10 +126,8 @@ class Admin extends Controller
             }
         }
 
-        if (
-            (isset($params[1]) && is_int(intval($params[1]))) ||
-            (isset($params[2]) && is_int(intval($params[2])))
-        ) {
+        if ((isset($params[1]) && is_int(intval($params[1]))) ||
+            (isset($params[2]) && is_int(intval($params[2])))) {
             $item_id = is_int($params[1]) ? intval($params[1]) : intval($params[2]);
 
             $model = '\Apps\\' . ucfirst($appname) . '\Model\\' . ucfirst($crudName);
