@@ -7,6 +7,14 @@ use Boom\Helper\Data;
 
 class Admin extends Controller
 {
+    function __construct($appname, $request, $response, array $params, $name)
+    {
+        parent::__construct($appname, $request, $response, $params, $name);
+        if (isset($_SESSION['current_admin_url'])) {
+            $_SESSION['previous_admin_url'] = $_SESSION['current_admin_url'];
+        }
+        $_SESSION['current_admin_url'] = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+    }
 
     function setLayoutVars()
     {
@@ -55,10 +63,20 @@ class Admin extends Controller
             if ($appname == 'Pages') {
                 $datas = Data::get('main');
                 $params_view['home'] = $datas->home;
+                $params_view['sethome_url'] = BASE_URL . "admin/sethome/";
             }
             $this->view('listing', $params_view, true);
         } else {
             error("Listing configuration not found");
+        }
+    }
+
+    function action_sethome($params) {
+        if (isset($params[0]) && !empty($params[0])) {
+            Data::set('main', ['home' => $params[0]]);
+            return $this->response->withRedirect($_SESSION['previous_admin_url']);
+        } else {
+            error(__('il faut impérativement un id de page ici!'));
         }
     }
 

@@ -1,19 +1,19 @@
 <?php
 namespace Apps\Pages\Ctrl;
-
 use Boom\Ctrl\Controller;
 use Boom\Helper\App;
-
+use Boom\Helper\Data;
 class Pages extends Controller {
-    function exist($name) {
-        //c'est du statique c'est moche
-
+    function __construct($appname, $request, $response, array $params, $name)
+    {
+        parent::__construct($appname, $request, $response, $params, $name);
+        if (isset($_SESSION['current_url'])) {
+            $_SESSION['previous_url'] = $_SESSION['current_url'];
+        }
+        $_SESSION['current_url'] = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
     }
-
     function action_main($params = NULL) {
         ///@todo faire en sorte de pouvoir selectionner la page d'accueil. actuellement c'est en dure
-        $accueil = 'page1';
-
         //1st param is for page of course
         $page = $this->Page->find('first', ['where' => ['slug' => $params[0] ]]);
         if (!empty($page)) {
@@ -22,12 +22,10 @@ class Pages extends Controller {
             array_shift($params);
         } else {
             //on cherche la page d'accueil
-            //je sais pas comment gerer le 404 du coup :/
-            $page = $this->Page->find('first', ['where' => ['slug' => $accueil ]]);
-
-            define('URL_PAGE', $accueil);
+            $id = Data::get('main');
+            $page = $this->Page->find(intval($id->home));
+            define('URL_PAGE', $page->slug);
         }
-
         $pattern = '/<enhancer .*">.*<\/enhancer>/';
         $page->content = preg_replace_callback($pattern, function ($matches) use ($params){
             //parsing enhancer
@@ -38,17 +36,14 @@ class Pages extends Controller {
             $appname = ucfirst($params_enhancer->appname);
             $ctrl = ucfirst($params_enhancer->controller);
             $action = $params_enhancer->action;
-
             //creation des nouveaux params
             array_unshift($params, $ctrl, $action);
-
             //on dispatch dans un tampon
             ob_start();
             $boom = new \Boom\Bootstrap($this->request, $this->response);
             $boom->dispatch($appname, $params);
             $tampon = ob_get_contents();
             ob_end_clean();
-
             return $tampon;
         }, htmlspecialchars_decode($page->content));
         return $this->view('pages', ['page' => $page], true);

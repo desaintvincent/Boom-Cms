@@ -39,7 +39,6 @@ $slim->any('/app/{appname}[/{params:.*}]', function (Request $request, Response 
     $params = $request->getAttribute('params');
     $boom = new \Boom\Bootstrap($request, $response);
     $boom->dispatch($appname, explode('/', $params));
-    return $response;
 })->setName('app');
 
 //admin
@@ -49,21 +48,14 @@ $slim->any('/admin[/{params:.*}]', function (Request $request, Response $respons
         $params  = 'accueil';
     }
     $boom = new \Boom\Bootstrap($request, $response);
-    $boom->dispatch('admin', explode('/', $params));
-    return $response;
+    return $boom->dispatch('admin', explode('/', $params));
 })->setName('admin')/*->add( new \Boom\Middlewares\Auth() )*/;
 
 //pages
 $slim->any('[/{params:.*}]', function (Request $request, Response $response) {
     $params = $request->getAttribute('params');
-    if (empty($params)) {
-        ///@todo faire en sorte de pouvoir selectionner la page d'accueil. actuellement c'est en dure
-
-        $params  = 'page1';
-    }
     $boom = new \Boom\Bootstrap($request, $response);
-    $boom->dispatch('pages', explode('/', $params));
-    return $response;
+    return $boom->dispatch('pages', explode('/', $params));
 })->setName('pages');
 
 //affichage

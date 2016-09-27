@@ -1,17 +1,10 @@
 <?php
-
-
 namespace Boom\Helper;
-
-
 class Data
 {
     public static $datas;
-
     public function __construct() {
-
     }
-
     public static function load($name) {
         if (!isset(static::$datas[$name])) {
             $path = './Apps' . DS . 'Admin' . DS . 'Datas' . DS . $name . '.json';
@@ -20,19 +13,17 @@ class Data
             }
         }
     }
-
     public static function get($name) {
         self::load($name);
         if (isset(static::$datas[$name])) {
             return static::$datas[$name];
         }
     }
-
     public static function set($name, $new_datas) {
+        self::load($name);
         if (isset(static::$datas[$name])) {
             static::$datas[$name] = $new_datas;
-
-            $path = BASE_URL . DS . 'Apps' . DS . 'Admin' . DS . 'Datas' . DS . $name . '.json';
+            $path = './Apps' . DS . 'Admin' . DS . 'Datas' . DS . $name . '.json';
             $fp = fopen($path, 'w');
             if ($fp) {
                 fwrite($fp, json_encode($new_datas));

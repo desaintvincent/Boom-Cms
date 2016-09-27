@@ -3,6 +3,11 @@
   width: 100%;
   border-spacing: 0 5px;
 
+  th, td {
+    padding: 0.5em;
+    height: 50px;
+  }
+
   .admin_listing_header {
     .admin_listing_header_item {
 
@@ -27,7 +32,7 @@
         border-right: solid 2px $red;
         color: $white;
         background: $red;
-        width: 100px;
+        width: calc((2 * 0.5em) + (4 * 30px));
         text-align: center;
       }
     }
@@ -58,25 +63,43 @@
           border-right: solid 2px $darkblue;
           color: $white;
           background: $darkblue;
-          width: 100px;
           text-align: center;
 
           span {
-            width: 29%;
+            width: 25px;
             text-align: center;
             display: inline-block;
 
             &.edit {
-
             }
 
             &.see {
-
             }
 
             &.delete {
               color: $red;
             }
+          }
+        }
+      }
+
+      &.homepage {
+        .admin_listing_body_item:first-child {
+          padding-left: calc(50px + 0.5em);
+          position: relative;
+
+          &:before {
+            position: absolute;
+            text-align: center;
+            left: 0;
+            width: 50px;
+            top: 0;
+            bottom: 0;
+            content: "\f015";
+            background: $darkblue;
+            font-family: FontAwesome;
+            font-size: 2em;
+            color: $white;
           }
         }
       }
