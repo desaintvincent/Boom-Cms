@@ -29,7 +29,7 @@ return [
 
 
     'appdesk' => [
-        'product' => [
+        'products' => [
             'name' => __('Listing des produits'),
             'model' => 'Product',
             'fields' => [
