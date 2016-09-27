@@ -1,9 +1,9 @@
 <?php
-namespace Apps\Pages\Ctrl;
+namespace Apps\Menu\Ctrl;
 use Boom\Ctrl\Controller;
 use Boom\Helper\App;
 use Boom\Helper\Data;
-class Pages extends Controller {
+class Menu extends Controller {
     function __construct($appname, $request, $response, array $params, $name)
     {
         parent::__construct($appname, $request, $response, $params, $name);
@@ -13,27 +13,27 @@ class Pages extends Controller {
         $_SESSION['current_url'] = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
     }
     function action_main($params = NULL) {
-        ///@todo faire en sorte de pouvoir selectionner la page d'accueil. actuellement c'est en dure
-        //1st param is for page of course
+        ///@todo faire en sorte de pouvoir selectionner la menu d'accueil. actuellement c'est en dure
+        //1st param is for menu of course
         if (empty($params[0])) {
-            //on cherche la page d'accueil
+            //on cherche la menu d'accueil
             $id = Data::get('main');
-            $page = $this->Page->find(intval($id->home));
-            define('URL_PAGE', $page->slug);
+            $menu = $this->Menu->find(intval($id->home));
+            define('URL_MENU', $menu->slug);
         } else {
-            $page = $this->Page->find('first', ['where' => ['slug' => $params[0]]]);
-            if (empty($page)) {
+            $menu = $this->Menu->find('first', ['where' => ['slug' => $params[0]]]);
+            if (empty($menu)) {
                 //on gere la 404
                 return $this->response;
             }
 
-            //si on trouve la page, on retire le nom de la page des params
-            define('URL_PAGE', $params[0]);
+            //si on trouve la menu, on retire le nom de la menu des params
+            define('URL_MENU', $params[0]);
             array_shift($params);
         }
 
         $pattern = '/<enhancer .*">.*<\/enhancer>/';
-        $page->content = preg_replace_callback($pattern, function ($matches) use ($params){
+        $menu->content = preg_replace_callback($pattern, function ($matches) use ($params){
             //parsing enhancer
             $params_enhancer = '{'.GetBetween("data-params=\"{", "}\"", $matches[0]).'}';
             $params_enhancer = str_replace("&quot;", "\"", $params_enhancer);
@@ -51,7 +51,7 @@ class Pages extends Controller {
             $tampon = ob_get_contents();
             ob_end_clean();
             return $tampon;
-        }, htmlspecialchars_decode($page->content));
-        return $this->view('pages', ['page' => $page], true);
+        }, htmlspecialchars_decode($menu->content));
+        return $this->view('menu', ['menu' => $menu], true);
     }
 }

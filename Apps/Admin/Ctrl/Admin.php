@@ -149,7 +149,7 @@ class Admin extends Controller
         $crudFile = 'Apps' . DS . ucfirst($appname) . DS . 'Cruds' . DS . ucfirst($crudName) . '.php';
         if (file_exists($crudFile)) {
             $crud = require $crudFile;
-            $this->view('crud', ['crud' => $crud, 'config' => $config_app, 'item' => $item], true);
+            return $this->view('crud', ['crud' => $crud, 'config' => $config_app, 'item' => $item], true);
         } else {
             error('"'.$crudName . '" \'s crud configuration of "'. $appname .'" application is not found');
         }
