@@ -11,6 +11,7 @@ use Boom\Model\Model;
 
 class User extends  Model
 {
+    public $prefix = "usr_";
 
     public function authentify()
     {

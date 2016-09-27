@@ -112,12 +112,7 @@ class Model
         }
 
         $req = $this->db->query($query);
-        $entityNamespace = '\Apps\\' . ucfirst($this->appname) . '\Model\Entities\\' . ucfirst($this->name) . 'Entity';
-        if (class_exists($entityNamespace)) {
-            $results = $req->fetchAll(\PDO::FETCH_CLASS, $entityNamespace);
-        } else {
-            $results = $req->fetchAll(\PDO::FETCH_CLASS, '\Boom\Model\Entities\Entity');
-        }
+        $results = $req->fetchAll(\PDO::FETCH_CLASS, get_called_class());
 
         if (isset($conditions['hasMany'])) {
             foreach ($conditions['hasMany'] as $hm => $v) {
@@ -248,6 +243,16 @@ class Model
         }
 
         $this->db->query("DELETE FROM " . $table . " WHERE id=$id");
+    }
+
+    public function __get($property)
+    {
+        $propertyName = $this->prefix . $property;
+        if (isset($this->{$propertyName})) {
+        	return $this->{$propertyName};
+        }
+
+        return false;
     }
 
 }

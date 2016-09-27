@@ -35,29 +35,26 @@ class Admin extends Controller
         }
 
         $conf = App::getConfig($appname);
-        $listing = $conf['default_listing'];
-
-        $listingFile = 'Apps' . DS . ucfirst($appname) . DS . 'Listings' . DS . ucfirst($listing) . '.php';
-        if (file_exists($listingFile)) {
-            $listingConfig = require $listingFile;
-
-            $model = '\Apps\\' . ucfirst($appname) . '\Model\\' . ucfirst($listingConfig['model']);
+        $default_listing = $conf['default_listing'];
+        if (isset($conf['appdesk'][$default_listing])) {
+            $listing = $conf['appdesk'][$default_listing];
+            $model = '\Apps\\' . ucfirst($appname) . '\Model\\' . ucfirst($listing['model']);
             $model = new $model();
             $items = $model->find();
-            $update_url = BASE_URL . "admin/update/" . $appname . "/" . $listingConfig['model'] . "/";
-            $see_url = BASE_URL . "admin/see/" . $appname . "/" . $listingConfig['model'] . "/";
-            $delete_url = BASE_URL . "admin/delete/" . $appname . "/" . $listingConfig['model'] . "/";
+            $update_url = BASE_URL . "admin/update/" . $appname . "/" . $listing['model'] . "/";
+            $see_url = BASE_URL . "admin/see/" . $appname . "/" . $listing['model'] . "/";
+            $delete_url = BASE_URL . "admin/delete/" . $appname . "/" . $listing['model'] . "/";
             //$add_url = BASE_URL . "admin/crud/" . $appname;
 
             $params_view = [
                 'appname' => $appname,
-                'listing_title' => $listingConfig['name'],
+                'listing_title' => $listing['name'],
                 'items' => $items,
-                'fields' => $listingConfig['fields'],
+                'fields' => $listing['fields'],
                 'update_url' => $update_url,
                 'see_url' => $see_url,
                 'delete_url' => $delete_url,
-                'add_items' => $listingConfig['add_item']
+                'add_items' => $listing['add_item']
             ];
 
             if ($appname == 'Pages') {
@@ -67,7 +64,7 @@ class Admin extends Controller
             }
             $this->view('listing', $params_view, true);
         } else {
-            error("Listing configuration not found");
+            error(__('Appdesk configuration not found'));
         }
     }
 
@@ -88,7 +85,6 @@ class Admin extends Controller
             $appname = $params[0];
             $crudName = $params[0];
         }
-
 
         $config_app = App::getConfig($appname);
         if (isset($params[1]) && !empty($params[1])) {
