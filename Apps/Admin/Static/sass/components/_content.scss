@@ -1,6 +1,6 @@
 .content {
   display: inline-block;
-  width: calc(100vw - 50px);
+  width: calc(100% - 50px);
   overflow-y: scroll;
   height: calc(100vh - 50px);
   background-color: $white;
@@ -15,5 +15,5 @@
 }
 
 .leftbar_active .content {
-  width: calc(100vw - 200px);
+  width: calc(100% - 200px);
 }
