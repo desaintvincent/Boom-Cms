@@ -108,8 +108,20 @@ class Admin extends Controller
         }
     }
 
-    function update_menu($crud, $config_app, $item) {
-        return $this->view('crud_menu', ['crud' => $crud, 'config' => $config_app, 'item' => $item], true);
+    function update_menu($crud, $config_app, $item, $model = null) {
+        $params_view = [
+            'crud' => $crud,
+            'config' => $config_app,
+            'item' => $item
+        ];
+
+        if (isset($model)) {
+            //si c'est une update
+            $mitems = $model->get_mitems($item->id);
+            d($mitems);
+        }
+
+        return $this->view('crud_menu', $params_view, true);
     }
 
     function action_update($params)
@@ -148,7 +160,7 @@ class Admin extends Controller
         if (file_exists($crudFile)) {
             $crud = require $crudFile;
             if ($appname == 'Menu') {
-                return $this->update_menu($crud, $config_app, $item);
+                return $this->update_menu($crud, $config_app, $item, isset($model) ? $model : null);
             } else {
                 return $this->view('crud', ['crud' => $crud, 'config' => $config_app, 'item' => $item], true);
             }

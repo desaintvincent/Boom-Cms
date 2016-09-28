@@ -1,3 +1,4 @@
+<h1><?=__('Création du menu')?></h1>
 <form class="form-signin" enctype="multipart/form-data" action="#" method="post">
     <div class="text-field">
         <label for="title">Titre</label>
