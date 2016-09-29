@@ -11,23 +11,13 @@
             <div class="columns large-6 medium-6">
                 <h3>Menu</h3>
                 <?php
-                d($mitems);
+                //d($mitems);
                 ?>
                 <div class="dd nestable" id="nestable">
                     <?php if(isset($mitems)) : ?>
-                    <ol class="dd-list">
-                        <?php foreach ($mitems as $mitem) : ?>
-                            <li class="dd-item" data-id="<?=$mitem['id']?>" data-name="<?=$mitem['mitem_title']?>" data-slug="<?=$mitem['mitem_arg']?>" data-new="0" data-deleted="0">
-                                <div class="dd-handle"><?=$mitem['mitem_title']?></div>
-                                <span class="button-delete btn btn-default btn-xs pull-right" data-owner-id="<?=$mitem['id']?>">
-                                    <i class="fa fa-times-circle-o" aria-hidden="true"></i>
-                                </span>
-                                <span class="button-edit btn btn-default btn-xs pull-right" data-owner-id="<?=$mitem['id']?>">
-                                    <i class="fa fa-pencil" aria-hidden="true"></i>
-                                </span>
-                            </li>
-                        <?php endforeach ?>
-                    </ol>
+                        <?php
+                        \Apps\Menu\Helper\Menu::make_admin_menu($mitems);
+                        ?>
                     <?php endif ?>
                     <?php
                     /*
