@@ -1,6 +1,6 @@
 <?php
+/*
 
-?>
 <div class="content">
     <div class="row">
         <div class="columns large-12">
@@ -13,3 +13,7 @@
         </div>
     </div>
 </div>
+
+ */
+?>
+

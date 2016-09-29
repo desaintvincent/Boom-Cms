@@ -1,8 +1,8 @@
 //libs fondamentales
-@import "libs/foundation";
+//@import "libs/foundation";
 @import "libs/font-awesome.min";
 @import "libs/sweetalert";
-
+/*
 //Variables
 @import "components/variables";
 //components
@@ -15,4 +15,18 @@
 @import "components/content";
 @import "components/nestable";
 @import "components/admin_listing";
-@import "components/popup";
+@import "components/popup";*/
+
+@import "libs/bootstrap";
+
+@import "theme/animate";
+@import "theme/bootstrap-switch";
+@import "theme/dataTables.bootstrap";
+@import "theme/dataTables.jquery";
+@import "theme/select2";
+
+@import "theme/style";
+
+
+
+@import "theme/flat-blue";

@@ -26,6 +26,7 @@ $(document).ready(function () {
 //toogle leftbar
     $('.toggle_applications').click(function (e) {
         $('body').toggleClass('leftbar_active');
+
     });
 
 //menu
@@ -35,4 +36,5 @@ $(document).ready(function () {
     $('#nestable').nestable({
         maxDepth: 5
     }).on('change', updateOutput);
+
 });

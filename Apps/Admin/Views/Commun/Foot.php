@@ -1,5 +1,7 @@
-<footer>
-
+<footer class="app-footer">
+    <div class="wrapper">
+        <span class="pull-right">2.1 <a href="#"><i class="fa fa-long-arrow-up"></i></a></span> © 2015 Copyright.
+    </div>
     <script src="<?=BASE_URL?>Apps/Admin/Static/dist/js/admin.js"></script>
     <script src="<?=BASE_URL?>Apps/Admin/Static/dist/js/tinymce/tinymce.min.js"></script>
     <script>
