@@ -67,7 +67,7 @@ class Model
             $joins = [];
             foreach ($conditions['joins'] as $j) {
                 if (!isset($this->joins) || !isset($this->joins[$j])) {
-                    echo "Le model " . $this->name . " n'a pas d'association avec la table $j ! Veuillez créer un tableau public \$relations dans votre model " . $this->name;
+                    echo "Le model " . $this->name . " n'a pas d'association avec la table $j ! Veuillez créer un tableau public \$joins dans votre model " . $this->name;
                 } else {
                     $joins[] = " JOIN $j ON $j.id = {$this->table}." . $this->joins[$j];
                 }
