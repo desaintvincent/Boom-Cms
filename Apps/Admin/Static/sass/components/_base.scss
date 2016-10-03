@@ -8,7 +8,7 @@ a {
   color: inherit;
   text-decoration: none;
 
-  &:hover:not(.button) {
+  &:hover:not(.btn) {
     color: inherit;
     text-decoration: underline;
   }
@@ -64,4 +64,8 @@ h1 {
   &.height:before {
     height: 100%;
   }
+}
+
+ul {
+  padding: 0;
 }

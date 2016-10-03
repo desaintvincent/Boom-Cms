@@ -6,6 +6,6 @@
 
     </div>
     <form class="form-signin" method="post">
-        <button class="button expanded logout" type="submit" name="deconnexion">Deconnexion</button>
+        <button class="btn btn-primary expanded logout" type="submit" name="deconnexion">Deconnexion</button>
     </form>
 </div>

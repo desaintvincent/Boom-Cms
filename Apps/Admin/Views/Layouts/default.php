@@ -5,7 +5,7 @@ echo \Apps\Admin\Ctrl\Admin::view_static('Commun/Leftbar', ['apps' => $apps]);
 ?>
 <div class="content">
     <div class="row">
-        <div class="columns large-12">
+        <div class="col-lg-12">
             <?= $tampon ?>
         </div>
     </div>

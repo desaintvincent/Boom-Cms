@@ -8,7 +8,7 @@
 
 
         <div class="row">
-            <div class="columns large-6 medium-6">
+            <div class="col-lg-6 col-md-6">
                 <h3>Menu</h3>
                 <?php
                 //d($mitems);
@@ -26,10 +26,10 @@
 
                         <li class="dd-item" data-id="2" data-name="Item 2" data-slug="item-slug-2" data-new="0" data-deleted="0">
                             <div class="dd-handle">Item 2</div>
-                            <span class="button-delete btn btn-default btn-xs pull-right" data-owner-id="2">
+                            <span class="btn btn-primary-delete btn btn-default btn-xs pull-right" data-owner-id="2">
                                 <i class="fa fa-times-circle-o" aria-hidden="true"></i>
                             </span>
-                            <span class="button-edit btn btn-default btn-xs pull-right" data-owner-id="2">
+                            <span class="btn btn-primary-edit btn btn-default btn-xs pull-right" data-owner-id="2">
                                 <i class="fa fa-pencil" aria-hidden="true"></i>
                             </span>
                         </li>
@@ -39,7 +39,7 @@
                     ?>
                 </div>
             </div>
-            <div class="columns large-6 medium-6">
+            <div class="col-lg-6 col-md-6">
                 <div class="form-inline" id="menu-add">
                     <h3>Add new menu item</h3>
                     <div class="form-group">
@@ -69,7 +69,7 @@
         </div>
 
         <div class="row output-container">
-            <div class="columns large-12">
+            <div class="col-lg-12">
                 <h2 class="text-center">Output:</h2>
                 <textarea class="form-control" id="json-output" rows="5" name="output_items"></textarea>
             </div>
@@ -79,6 +79,6 @@
         <a href="http://stackoverflow.com/questions/32255773/jquery-nestable-output-into-mysql-database">GOOD HELP</a>
     </div>
     <div class="save">
-        <button class="button" type="submit">Enregistrer les informations</button>
+        <button class="btn btn-primary" type="submit">Enregistrer les informations</button>
     </div>
 </form>
