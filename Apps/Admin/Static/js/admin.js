@@ -31,8 +31,6 @@ $(document).ready(function () {
 
 //menu
 
-
-
     $('#nestable').nestable({
         maxDepth: 5
     }).on('change', updateOutput);
