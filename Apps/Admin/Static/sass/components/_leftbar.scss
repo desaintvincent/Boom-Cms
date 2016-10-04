@@ -1,8 +1,9 @@
 .leftbar {
-  position: relative;
-  display: inline-block;
-  height: calc(100vh - 50px);
+  position: absolute;
   width: 50px;
+  top: 0;
+  bottom: 0;
+  left: 0;
   background-color: $darkerblue;
   background: $darkblue;
   transition: width 0.2s linear;
@@ -11,7 +12,7 @@
     font-size: 1.5em;
     margin: 0;
     height: 55px;
-    border-bottom: 5px solid $lightblue;
+    border-bottom: 1px solid $lightblue;
     font-weight: bold;
     color: white;
     position: relative;
@@ -79,7 +80,7 @@
     }
 
     &.required {
-      border-bottom: 5px solid $lightblue;
+      border-bottom: 1px solid $lightblue;
     }
   }
 
