@@ -16,7 +16,13 @@
   .add_item, .save {
     position: fixed;
     top: 5px;
-    right: 128px;
+    right: 131px;
+
+    .btn {
+      height: 40px;
+      border-radius: 0;
+      line-height: 1.9em;
+    }
   }
 }
 
