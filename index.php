@@ -27,7 +27,7 @@ require 'vendor/autoload.php';
 $slim = new \Slim\App(["settings" => $config_site]);
 
 //création du container
-//$container = $slim->getContainer();
+$container = $slim->getContainer();
 
 
 //définition des vues:
@@ -49,7 +49,7 @@ $slim->any('/admin[/{params:.*}]', function (Request $request, Response $respons
     }
     $boom = new \Boom\Bootstrap($request, $response);
     return $boom->dispatch('admin', explode('/', $params));
-})->setName('admin')/*->add( new \Boom\Middlewares\Auth() )*/;
+})->setName('admin')->add( new \Boom\Middlewares\Auth($container) );
 
 //pages
 $slim->any('[/{params:.*}]', function (Request $request, Response $response) {

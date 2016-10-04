@@ -52,7 +52,7 @@
 <?php if (isset($add_items)) : ?>
     <div class="add_item">
         <?php foreach ($add_items as $add_item) : ?>
-            <a href="<?= BASE_URL . "admin/crud/" . $add_item['appname'] . DS . $add_item['crud'] ?>" class="button"><?= $add_item['name'] ?></a>
+            <a href="<?= BASE_URL . "admin/crud/" . $add_item['appname'] . DS . $add_item['crud'] ?>" class="btn btn-primary"><?= $add_item['name'] ?></a>
         <?php endforeach ?>
     </div>
 <?php endif ?>

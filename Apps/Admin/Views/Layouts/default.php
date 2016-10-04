@@ -6,8 +6,13 @@ echo \Apps\Admin\Ctrl\Admin::view_static('Commun/Leftbar', ['apps' => $apps]);
 ?>
 <div class="content">
     <div class="row">
+<<<<<<< HEAD
         <div class="columns large-12">
 
+=======
+        <div class="col-lg-12">
+            <?= $tampon ?>
+>>>>>>> bb394080650d4711a3579883ed518ac469e4224d
         </div>
     </div>
 </div>

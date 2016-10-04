@@ -207,10 +207,10 @@ class Model
         }
     }
 
-    public function update($id, $data =null, $table = null)
+    public function update($id, $data = null, $table = null)
     {
         $values = $tmp = [];
-
+        
         if (is_null($data)) {
             $data = $this->data;
         }
