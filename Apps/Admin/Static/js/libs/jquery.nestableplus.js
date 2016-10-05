@@ -4,12 +4,11 @@
 /*************** General ***************/
 
 var updateOutput = function (e) {
+  console.log('output');
   var list = e.length ? e : $(e.target),
       output = list.data('output');
   if (window.JSON) {
-    if (output) {
-      output.val(window.JSON.stringify(list.nestable('serialize')));
-    }
+      $('#json-output').val(window.JSON.stringify(list.nestable('serialize')));
   } else {
     alert('JSON browser support required for this page.');
   }

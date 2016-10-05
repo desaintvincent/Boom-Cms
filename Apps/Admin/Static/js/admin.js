@@ -26,15 +26,49 @@ $(document).ready(function () {
 //toogle leftbar
     $('.toggle_applications').click(function (e) {
         $('body').toggleClass('leftbar_active');
-
     });
 
+    //selects
+    $(".select-basic").select2({
+        minimumResultsForSearch: Infinity,
+    });
 //menu
-
-
-
     $('#nestable').nestable({
         maxDepth: 5
     }).on('change', updateOutput);
 
+    $(".select-basic").select2({
+        minimumResultsForSearch: Infinity,
+    });
+
+    $(".js-data-example-ajax").select2({
+        ajax: {
+            url: function (params) {
+                return '/app/Menu/Menu/ajax/' + params.term;
+            },
+            //dataType: 'json',
+            dataType: "json",
+            type: "GET",
+            delay: 250,
+            processResults: function (data) {
+                return {
+                    results: $.map(data, function (item) {
+                        return {
+                            text: item.title,
+                            id: item.id
+                        }
+                    })
+                };
+            },
+            data: function (params) {
+                return ;
+            },
+            language: "fr"
+            /*processResults: function (data) {
+                return {
+                    results: data.title
+                };
+            }*/
+        },
+    });
 });

@@ -1,19 +1,31 @@
 .content {
   display: inline-block;
-  width: calc(100% - 50px);
   overflow-y: scroll;
-  height: calc(100vh - 50px);
   background-color: $white;
-  transition: width 0.2s linear;
-  float: right;
+  transition: left 0.2s linear;
+  position: absolute;
+  left: 50px;
+  right: 0;
+  top: 0;
+  bottom: 0;
+
+  .container {
+    width: 100% !important;
+  }
 
   .add_item, .save {
     position: fixed;
     top: 5px;
-    right: 128px;
+    right: 131px;
+
+    .btn {
+      height: 40px;
+      border-radius: 0;
+      line-height: 1.9em;
+    }
   }
 }
 
 .leftbar_active .content {
-  width: calc(100% - 200px);
+  left: 200px;
 }

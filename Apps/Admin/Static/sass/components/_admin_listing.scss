@@ -6,32 +6,17 @@
   th, td {
     padding: 0.5em;
     height: 50px;
+    background: $white;
   }
 
   .admin_listing_header {
     .admin_listing_header_item {
-
-      border-top: solid 2px $red;
-      border-bottom: solid 2px $red;
-
-      &:not(.action) {
-        border-left: 1px dotted $red;
-      }
-
-      &:first-child {
-
-        border-color: $red;
-        //border-top-left-radius: 10px;
-        //border-bottom-left-radius: 10px;
-        border-left: solid 2px $red;
-      }
+      border-bottom: 1px solid $lightgrey;
+      background: $white;
 
       &.action {
-        //border-top-right-radius: 10px;
-        //border-bottom-right-radius: 10px;
-        border-right: solid 2px $red;
-        color: $white;
-        background: $red;
+        color: $black;
+        border-bottom: 1px solid $red;
         width: calc((2 * 0.5em) + (4 * 30px));
         text-align: center;
       }
@@ -40,30 +25,16 @@
 
   .admin_listing_body {
     tr {
+      background: $white;
 
       .admin_listing_body_item {
-        border-bottom: solid 2px $darkblue;
-        border-top: solid 2px $darkblue;
-
-        &:not(.action) {
-          border-left: 1px dotted $darkblue;
-        }
-
-        &:first-child {
-          border-color: $darkblue;
-          //border-top-left-radius: 10px;
-          //border-bottom-left-radius: 10px;
-          border-left: solid 2px $darkblue;
-        }
-
+        background: $white;
+        border-bottom: 1px solid $lightgrey;
 
         &.action {
-          //border-top-right-radius: 10px;
-          //border-bottom-right-radius: 10px;
-          border-right: solid 2px $darkblue;
-          color: $white;
-          background: $darkblue;
+          border-bottom: 1px solid $darkblue;
           text-align: center;
+          color: $black;
 
           span {
             width: 25px;
@@ -96,10 +67,11 @@
             top: 0;
             bottom: 0;
             content: "\f015";
-            background: $darkblue;
+            border-bottom: 1px solid $darkblue;
             font-family: FontAwesome;
-            font-size: 2em;
-            color: $white;
+            font-size: 1.5em;
+            padding-top: 9px;
+            color: $darkblue;
           }
         }
       }

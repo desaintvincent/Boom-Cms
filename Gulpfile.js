@@ -16,21 +16,7 @@ var css_admin_dest = './Apps/Admin/Static/dist/css/';
 var js_site_files = ['Static/src/js/libs/jquery.min.js','Static/src/js/libs/*.js', 'Static/src/js/site.js'];
 var js_site_dest = 'Static/dist/js';
 
-var js_admin_files = [
-    './Apps/Admin/Static/js/jquery/jquery-3.1.1.js',
-    './Apps/Admin/Static/js/libs/bootstrap.min.js',
-
-    './Apps/Admin/Static/js/theme/select2.full.js',
-    './Apps/Admin/Static/js/theme/bootstrap-switch.js',
-    './Apps/Admin/Static/js/theme/jquery.matchHeight.js',
-    './Apps/Admin/Static/js/theme/jquery.dataTables.js',
-    './Apps/Admin/Static/js/theme/dataTables.bootstrap.js',
-
-
-    './Apps/Admin/Static/js/libs/*.js',
-    './Apps/Admin/Static/js/app.js',
-    './Apps/Admin/Static/js/index.js',
-    './Apps/Admin/Static/js/admin.js'];
+var js_admin_files = ['Static/src/js/libs/jquery.min.js','Static/src/js/libs/bootstrap.min.js', './Apps/Admin/Static/js/libs/*.js', './Apps/Admin/Static/js/admin.js'];
 var js_admin_dest = 'Apps/Admin/Static/dist/js';
 
 
