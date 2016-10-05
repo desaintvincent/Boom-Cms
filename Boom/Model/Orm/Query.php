@@ -17,6 +17,7 @@ class Query
     public $orderBy = "";
     public $groupBy = "";
     public $limit   = "";
+    public $joins   = [];
 
     public function query($string)
     {
@@ -28,10 +29,10 @@ class Query
 
     public function select($fields)
     {
-        $this->fields($fields);
+        $this->fields = !empty($fields) ? $fields : '*';
 
         if (is_array($fields)) {
-        	$this->fields(implode(",", $fields));
+        	$this->fields = implode(",", $fields);
         }
 
         return $this;
@@ -88,12 +89,36 @@ class Query
 
     public function join($tableJoined, $tableJoindPrimaryKey = "id", $tableFrom, $foreignKey, $options = [])
     {
-        $this->joins[$tableJoined] = " JOIN " . $tableJoined . " ON " . $tableJoined . "." . $tableJoindPrimaryKey . "=" . $tableFrom . "." . $foreignKey;
+        $this->joins[$tableJoined]['query'] = " JOIN " . $tableJoined . " ON " . $tableJoined . "." . $tableJoindPrimaryKey . "=" . $tableFrom . "." . $foreignKey;
 
         if (isset($options['fields'])) {
             $this->joins[$tableJoined]['fields'] = $options['fields'];
         }
 
         return $this;
+    }
+
+    public function get()
+    {
+        $this->query = "SELECT " . $this->fields;
+
+        // Si on a lié une table et qu'on a spécifié les champs
+        if (!empty($this->joins)) {
+            foreach ($this->joins as $join) {
+                if (isset($join['fields']) && !empty($join['fields'])) {
+                	$this->query .= $join['fields'];
+                }
+            }
+        }
+
+        $this->query .= $this->table;
+
+        if (!empty($this->joins)) {
+            foreach ($this->joins as $join) {
+                $this->query .= $join['query'];
+        	}
+        }
+
+        $this->query .= $this->where;
     }
 }

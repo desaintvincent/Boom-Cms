@@ -1,6 +1,8 @@
 <?php
 namespace Boom\Ctrl;
 
+use Cake\ORM\TableRegistry;
+
 class Controller
 {
     public $name;
@@ -11,6 +13,7 @@ class Controller
     public $appname;
     public $layout;
     public $layoutVars = [];
+    public $hasModel = true;
 
     public function __construct($appname, $request, $response, $params = array(), $name)
     {
@@ -25,7 +28,9 @@ class Controller
 
         $this->layout = "default";
 
-        $this->loadModel();
+        if ($this->hasModel) {
+            $this->loadModel();
+        }
 
         if (method_exists($this, 'setLayoutVars')) {
         	$this->setLayoutVars();
@@ -84,8 +89,8 @@ class Controller
 
         $namespace = 'Apps\\' . ucfirst($this->appname) . '\Model\\' . $name;
         if (class_exists($namespace) && !isset($this->{$name})) {
-            $this->{$name} = new $namespace();
-            $this->{$name}->appname = $this->appname;
+            $this->{$name} = TableRegistry::get($name . "s", ['className' => $namespace]);
+            //$this->{$name}->appname = $this->appname;
         } else {
             echo 'Model ' . $namespace . ' not found </br>';
         }

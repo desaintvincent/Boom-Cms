@@ -1,14 +1,14 @@
 <?php
 namespace Apps\Catalogue\Model;
 
-use Boom\Model\Model;
+use Cake\ORM\Table;
 
-class Product extends Model {
+class Product extends Table {
 
-    public $prefix = 'prod_';
-
-    public $joins = [
-        "categories" => "prod_category_id"
-    ];
+    public function initialize(array $config)
+    {
+        $this->entityClass(MenuEntity::class);
+        $this->hasMany('categories');
+    }
 
 }

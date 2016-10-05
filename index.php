@@ -4,6 +4,9 @@ use \Psr\Http\Message\ResponseInterface as Response;
 
 session_start();
 
+//require autoload
+require 'vendor/autoload.php';
+
 //récupération de la config du site
 $config_site = require_once ("site.config.php");
 
@@ -19,8 +22,6 @@ if (ENV == 'dev') {
     error_reporting(E_ALL);
 }
 
-//require autoload
-require 'vendor/autoload.php';
 
 
 //creation of SLIM application

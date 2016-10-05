@@ -1,8 +1,14 @@
 <?php
 namespace Apps\Pages\Model;
 
-use Boom\Model\Model;
+use Apps\Pages\Model\Entities\PageEntity;
+use Cake\ORM\Table;
 
-class Page extends Model {
-    public $prefix = "page_";
+class Page extends Table {
+
+    public function initialize(array $config)
+    {
+        $this->entityClass(PageEntity::class);
+    }
+
 }

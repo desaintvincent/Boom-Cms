@@ -7,6 +7,8 @@ use Boom\Helper\Data;
 
 class Admin extends Controller
 {
+    public $hasModel = false;
+
     function __construct($appname, $request, $response, array $params, $name)
     {
         parent::__construct($appname, $request, $response, $params, $name);

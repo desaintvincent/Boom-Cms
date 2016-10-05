@@ -6,6 +6,7 @@ namespace Boom\Middlewares;
 
 use Apps\Users\Model\User;
 use Boom\Helper\Session;
+use Cake\ORM\TableRegistry;
 use Interop\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -20,20 +21,18 @@ class Auth
     {
         // On check la session s'il y a un token
         if (!Session::get("token")) {
-        	//error("You are not authorized to do this!");
-            return $response->withRedirect("/app/users/users/connect");
+            return $response->withRedirect("/app/users/users/adminConnect");
         } else {
             // On check si ça correspon bien a un user
-            $model = new User();
-            $user = $model->find('first', [
+            $model = TableRegistry::get('Users');
+            $user = $model->find('all', [
                 "where" => [
                     "token" => Session::get("token")
                 ]
-            ]);
-
+            ])->first();
+            
             if (empty($user)) {
-                //error("You are not authorized to do this!");
-                return $response->withRedirect("/app/users/users/connect");
+                return $response->withRedirect("/app/users/users/adminConnect");
             } else {
                 return $next($request, $response);
             }

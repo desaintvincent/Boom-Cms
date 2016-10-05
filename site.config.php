@@ -16,4 +16,13 @@ define('DB_NAME', 'boom_cms');
 
 define('ENV', 'dev');//or prod
 
+\Cake\Datasource\ConnectionManager::config('default', [
+    'className' => 'Cake\Database\Connection',
+    'driver'    => 'Cake\Database\Driver\Mysql',
+    'database'  => DB_NAME,
+    'username'  => DB_USER,
+    'password'  => DB_PASS,
+    'host'      => DB_HOST
+]);
+
 return $config;
