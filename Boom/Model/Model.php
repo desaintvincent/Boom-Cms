@@ -83,10 +83,18 @@ class Model
                 $query .= " WHERE ";
                 $cond = [];
                 foreach ($conditions['where'] as $k => $v) {
-                    if (!is_numeric($v)) {
-                        $v = "'" . addslashes($v) . "'";
+                    if (count($v) == 2) {
+                        if (!is_numeric($v[1])) {
+                            $v[1] = "'" . addslashes($v[1]) . "'";
+                        }
+                        $cond[] = "$k $v[0] $v[1]";
+                    } else {
+                        if (!is_numeric($v)) {
+                            $v = "'" . addslashes($v) . "'";
+                        }
+                        $cond[] = "$k=$v";
                     }
-                    $cond[] = "$k=$v";
+
                 }
                 $query .= implode(' AND ', $cond);
             }

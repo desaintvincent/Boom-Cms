@@ -46,12 +46,15 @@
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6">
-                            <div class="form-inline" id="menu-add">
+                            <div id="menu-add">
                                 <div class='sub-title'><?=__('Ajouter un nouveau item au menu')?></div>
-                                <select>
-                                    <option>Page</option>
-                                    <option>Lien</option>
-                                    <option>Texte</option>
+                                <select class="form-control select-basic" placeholder="<?=__('Selectionnez un type d\'item')?>">
+                                    <option value="page">Page</option>
+                                    <option value="link">Lien</option>
+                                    <option value="text">Texte</option>
+                                </select>
+
+                                <select class="form-control js-data-example-ajax" data-ajax--url="<?=BASE_URL?>app/Menu/Menu/ajax/">
                                 </select>
                                 <? /*<div class='sub-title'><?=__('Ajouter un nouveau item au menu')?></div>
                                 <div class="form-group">
