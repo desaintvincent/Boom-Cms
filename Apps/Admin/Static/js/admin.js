@@ -62,13 +62,7 @@ $(document).ready(function () {
             },
             data: function (params) {
                 return ;
-            },
-            language: "fr"
-            /*processResults: function (data) {
-                return {
-                    results: data.title
-                };
-            }*/
-        },
+            }
+        }
     });
 });
