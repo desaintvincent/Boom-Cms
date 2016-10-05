@@ -13,7 +13,7 @@ return [
     'appdesk' => [
         'pages' => [
             'name' => __('Listing des pages'),
-            'model' => 'Page',
+            'model' => 'Pages',
             'fields' => [
                 'title' => 'Titre de la page'
             ],

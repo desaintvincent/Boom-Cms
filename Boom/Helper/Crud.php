@@ -10,7 +10,7 @@ class Crud
 
     public static function make_form($conf, $item = null) {
         if ($item) {
-            self::$item = (array) $item;
+            self::$item = $item;
         }
 
         $html = '<form class="form-signin" enctype="multipart/form-data" action="#" method="post">';
@@ -22,7 +22,7 @@ class Crud
                 error('Type ' .$item['type']. ' doesn\'t exist! (yet)');
             }
         }
-        $html .= '<div class="save"><button type="button" class="btn btn-primary" type="submit">Enregistrer les informations</button></div>';
+        $html .= '<div class="save"><input class="btn btn-primary" type="submit" value="Enregistrer les informations"</input></div>';
         $html .= '</form>';
 
         return $html;
@@ -33,7 +33,7 @@ class Crud
     {
         $html = "<div class='{$item['type']}-field'>
             <div class='sub-title'>{$item['label']}</div>
-            <textarea class='wysiwyg' name='{$key}' id='{$key}'>".self::$item[$key]."</textarea>
+            <textarea class='wysiwyg' name='{$key}' id='{$key}'>".self::$item->$key."</textarea>
 
         </div>";
         return $html;
@@ -43,7 +43,7 @@ class Crud
     {
         $html = "<div class='{$item['type']}-field'>
                     <div class='sub-title'>{$item['label']}</div>
-                    <input type='text' class='form-control' value='" . self::$item[$key] . "' name='{$key}' id='{$key}' " . self::required($item) . ">
+                    <input type='text' class='form-control' value='" . self::$item->$key . "' name='{$key}' id='{$key}' " . self::required($item) . ">
                 </div>";
         return $html;
     }
@@ -52,7 +52,7 @@ class Crud
     {
         $html = "<div class='{$item['type']}-field'>
                     <div class='sub-title'>{$item['label']}</div>
-                    <input type='password' class='form-control' value='" . self::$item[$key] . "' name='{$key}' id='{$key}' " . self::required($item) . ">
+                    <input type='password' class='form-control' value='" . self::$item->$key . "' name='{$key}' id='{$key}' " . self::required($item) . ">
                 </div>";
         return $html;
     }
@@ -61,7 +61,7 @@ class Crud
     {
         $html = "<div class='{$item['type']}-field'>
                     <div class='sub-title'>{$item['label']}</div>
-                    <input type='email' class='form-control' value='" . self::$item[$key] . "' name='{$key}' id='{$key}' " . self::required($item) . ">
+                    <input type='email' class='form-control' value='" . self::$item->$key . "' name='{$key}' id='{$key}' " . self::required($item) . ">
                 </div>";
         return $html;
     }
@@ -71,7 +71,7 @@ class Crud
     {
         $html = "<div class='{$item['type']}-field'>
             <div class=\"sub-title\">{$item['label']}</div>
-                <textarea name='{$key}' id='{$key}'>".self::$item[$key]."</textarea>
+                <textarea name='{$key}' id='{$key}'>".self::$item->$key."</textarea>
         </div>";
         return $html;
     }
@@ -83,7 +83,7 @@ class Crud
                         <select name='{$key}' id='{$key}'>";
 
         foreach ($item['value'] as $kval => $val) {
-            if ($val == self::$item[$key]) {
+            if ($val == self::$item->$key) {
                 $html .= "<option value='{$kval}' selected>{$val}</option>";
             } else {
                 $html .= "<option value='{$kval}'>{$val}</option>";
@@ -97,7 +97,7 @@ class Crud
 
     public static function input_checkbox($key, $item) {
         $html = "<div class='checkbox3 checkbox-inline checkbox-check checkbox-light'>
-                    <input type='checkbox' name='{$key}' id='{$key}' " . (self::$item[$key] ? "checked " : " ") . self::required($item) . ">
+                    <input type='checkbox' name='{$key}' id='{$key}' " . (self::$item->$key ? "checked " : " ") . self::required($item) . ">
                     <label for='{$key}'>{$item['label']}</label>
                 </div>";
         return $html;

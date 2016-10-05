@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'cat_title' => array(
+    'title' => array(
         'label' => 'Le titre',
         'type' => 'text'
     ),

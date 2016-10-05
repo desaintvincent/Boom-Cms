@@ -4,6 +4,7 @@ namespace Apps\Admin\Ctrl;
 use Boom\Ctrl\Controller;
 use Boom\Helper\App;
 use Boom\Helper\Data;
+use Cake\ORM\TableRegistry;
 
 class Admin extends Controller
 {
@@ -38,10 +39,14 @@ class Admin extends Controller
 
         $conf = App::getConfig($appname);
         $default_listing = $conf['default_listing'];
+
+        if (isset($params[1])) {
+            $default_listing = strtolower($params[1]);
+        }
+
         if (isset($conf['appdesk'][$default_listing])) {
             $listing = $conf['appdesk'][$default_listing];
-            $model = '\Apps\\' . ucfirst($appname) . '\Model\\' . ucfirst($listing['model']);
-            $model = new $model();
+            $model = TableRegistry::get($listing['model']);
             $items = $model->find();
             $update_url = BASE_URL . "admin/update/" . $appname . "/" . $listing['model'] . "/";
             $see_url = BASE_URL . "admin/see/" . $appname . "/" . $listing['model'] . "/";
@@ -100,9 +105,12 @@ class Admin extends Controller
         if (file_exists($crudFile)) {
             $crud = require $crudFile;
             if ($this->request->isPost()) {
-                $model = '\Apps\\' . ucfirst($appname) . '\Model\\' . ucfirst($crudName);
-                $model = new $model($this->request->getParsedBody());
-                $model->save();
+                //$model = '\Apps\\' . ucfirst($appname) . '\Model\\' . ucfirst($crudName);
+                $model = TableRegistry::get(ucfirst($crudName));
+                $entity = $model->newEntity($this->request->getParsedBody());
+                $model->save($entity);
+                /*$model = new $model($this->request->getParsedBody());
+                $model->save();*/
             }
             $this->view('crud', ['crud' => $crud, 'config' => $config_app], true);
         } else {
@@ -148,12 +156,12 @@ class Admin extends Controller
             (isset($params[2]) && is_int(intval($params[2])))) {
             $item_id = is_int($params[1]) ? intval($params[1]) : intval($params[2]);
 
-            $model = '\Apps\\' . ucfirst($appname) . '\Model\\' . ucfirst($crudName);
-            $model = new $model();
+            $model = TableRegistry::get(ucfirst($crudName));
+            $item = $model->get($item_id);
             if ($this->request->isPost()) {
-            	$model->update($item_id, $this->request->getParsedBody());
+                $item = $model->patchEntity($item, $this->request->getParsedBody());
+                $model->save($item);
             }
-            $item = $model->find($item_id);
         } else {
             error("No id passed to edit");
         }

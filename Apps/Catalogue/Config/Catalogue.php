@@ -2,7 +2,7 @@
 return [
     'required' => false,
     'default_ctrl' => 'categories',
-    'default_crud' => 'product',
+    'default_crud' => 'products',
     'icon' => 'fa-book',
     'default_listing' => 'products', // Required
 
@@ -31,9 +31,28 @@ return [
     'appdesk' => [
         'products' => [
             'name' => __('Listing des produits'),
-            'model' => 'Product',
+            'model' => 'Products',
             'fields' => [
-                'prod_title' => 'Titre du produit'
+                'title' => 'Titre du produit'
+            ],
+            'add_item' => [
+                [
+                    'appname' => 'catalogue',
+                    'crud' => 'categorie',
+                    'name' => __('Ajouter une catégorie')
+                ],
+                [
+                    'appname' => 'catalogue',
+                    'crud' => 'product',
+                    'name' => __('Ajouter un produit')
+                ]
+            ]
+        ],
+        'categories' => [
+            'name' => __('Listing des catégories'),
+            'model' => 'Categories',
+            'fields' => [
+                'title' => 'Titre de la catégorie'
             ],
             'add_item' => [
                 [
