@@ -20,7 +20,7 @@ return [
             'add_item' => [
                 [
                     'appname' => 'pages',
-                    'crud' => 'page',
+                    'crud' => 'pages',
                     'name' => __('Ajouter une page')
                 ]
             ]

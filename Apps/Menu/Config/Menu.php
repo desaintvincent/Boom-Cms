@@ -3,16 +3,16 @@ return [
     'required' => true,
     'icon' => 'fa-bars',
     'default_ctrl' => 'menu',
-    'default_listing' => 'menu',
+    'default_listing' => 'menus',
 
 
     'name' => __('Menu'),
     'title' => 'title',
 
     'appdesk' => [
-        'menu' => [
+        'menus' => [
             'name' => __('Listing des menus'),
-            'model' => 'Menu',
+            'model' => 'Menus',
             'fields' => [
                 'title' => 'Titre du menu'
             ],

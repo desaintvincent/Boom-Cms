@@ -38,12 +38,12 @@ return [
             'add_item' => [
                 [
                     'appname' => 'catalogue',
-                    'crud' => 'categorie',
+                    'crud' => 'categories',
                     'name' => __('Ajouter une catégorie')
                 ],
                 [
                     'appname' => 'catalogue',
-                    'crud' => 'product',
+                    'crud' => 'products',
                     'name' => __('Ajouter un produit')
                 ]
             ]
@@ -57,12 +57,12 @@ return [
             'add_item' => [
                 [
                     'appname' => 'catalogue',
-                    'crud' => 'categorie',
+                    'crud' => 'categories',
                     'name' => __('Ajouter une catégorie')
                 ],
                 [
                     'appname' => 'catalogue',
-                    'crud' => 'product',
+                    'crud' => 'products ',
                     'name' => __('Ajouter un produit')
                 ]
             ]

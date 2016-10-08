@@ -34,9 +34,9 @@ class Admin extends Controller
     {
         $appname = 'Pages';
         if (!empty($params)) {
-        	$appname = $params[0];
+            $appname = $params[0];
         }
-
+        
         $conf = App::getConfig($appname);
         $default_listing = $conf['default_listing'];
 
@@ -46,7 +46,12 @@ class Admin extends Controller
 
         if (isset($conf['appdesk'][$default_listing])) {
             $listing = $conf['appdesk'][$default_listing];
-            $model = TableRegistry::get($listing['model']);
+            if (!TableRegistry::exists($listing['model'])) {
+                $namespace = 'Apps\\' . ucfirst($appname) . '\Model\\' . ucfirst($listing['model']) . 'Table';
+                $model = TableRegistry::get($listing['model'], ['className' => $namespace]);
+            } else {
+                $model = TableRegistry::get($listing['model']);
+            }
             $items = $model->find();
             $update_url = BASE_URL . "admin/update/" . $appname . "/" . $listing['model'] . "/";
             $see_url = BASE_URL . "admin/see/" . $appname . "/" . $listing['model'] . "/";
@@ -75,7 +80,8 @@ class Admin extends Controller
         }
     }
 
-    function action_sethome($params) {
+    function action_sethome($params)
+    { // To move in Pages Controller
         if (isset($params[0]) && !empty($params[0])) {
             Data::set('main', ['home' => $params[0]]);
             return $this->response->withRedirect($_SESSION['previous_admin_url']);
@@ -105,20 +111,23 @@ class Admin extends Controller
         if (file_exists($crudFile)) {
             $crud = require $crudFile;
             if ($this->request->isPost()) {
-                //$model = '\Apps\\' . ucfirst($appname) . '\Model\\' . ucfirst($crudName);
-                $model = TableRegistry::get(ucfirst($crudName));
+                if (!TableRegistry::exists(ucfirst($crudName))) {
+                    $namespace = 'Apps\\' . ucfirst($appname) . '\Model\\' . ucfirst(ucfirst($crudName)) . 'Table';
+                    $model = TableRegistry::get(ucfirst($crudName), ['className' => $namespace]);
+                } else {
+                    $model = TableRegistry::get(ucfirst($crudName));
+                }
                 $entity = $model->newEntity($this->request->getParsedBody());
                 $model->save($entity);
-                /*$model = new $model($this->request->getParsedBody());
-                $model->save();*/
             }
             $this->view('crud', ['crud' => $crud, 'config' => $config_app], true);
         } else {
-            error('"'.$crudName . '" \'s crud configuration of "'. $appname .'" application is not found');
+            error('"' . $crudName . '" \'s crud configuration of "' . $appname . '" application is not found');
         }
     }
 
-    function update_menu($crud, $config_app, $item, $model = null) {
+    function update_menu($crud, $config_app, $item, $model = null)
+    {
         $params_view = [
             'crud' => $crud,
             'config' => $config_app,
@@ -127,7 +136,7 @@ class Admin extends Controller
 
         if (isset($model)) {
             //si c'est une update
-            $mitems = $model->get_mitems($item->id);
+            $mitems = $model->mitems($item->id);
             $params_view['mitems'] = $mitems;
         }
 
@@ -137,7 +146,7 @@ class Admin extends Controller
     function action_update($params)
     {
         $appname = 'Pages';
-        $crudName = 'Page';
+        $crudName = 'Pages';
         if (!empty($params) && !empty($params[0])) {
             $appname = $params[0];
             $crudName = $params[0];
@@ -153,10 +162,15 @@ class Admin extends Controller
         }
 
         if ((isset($params[1]) && is_int(intval($params[1]))) ||
-            (isset($params[2]) && is_int(intval($params[2])))) {
+            (isset($params[2]) && is_int(intval($params[2])))
+        ) {
             $item_id = is_int($params[1]) ? intval($params[1]) : intval($params[2]);
-
-            $model = TableRegistry::get(ucfirst($crudName));
+            if (!TableRegistry::exists(ucfirst($crudName))) {
+                $namespace = 'Apps\\' . ucfirst($appname) . '\Model\\' . ucfirst(ucfirst($crudName)) . 'Table';
+                $model = TableRegistry::get(ucfirst($crudName), ['className' => $namespace]);
+            } else {
+                $model = TableRegistry::get(ucfirst($crudName));
+            }
             $item = $model->get($item_id);
             if ($this->request->isPost()) {
                 $item = $model->patchEntity($item, $this->request->getParsedBody());
@@ -175,7 +189,7 @@ class Admin extends Controller
                 return $this->view('crud', ['crud' => $crud, 'config' => $config_app, 'item' => $item], true);
             }
         } else {
-            error('"'.$crudName . '" \'s crud configuration of "'. $appname .'" application is not found');
+            error('"' . $crudName . '" \'s crud configuration of "' . $appname . '" application is not found');
         }
     }
 }

@@ -26,7 +26,6 @@ $(document).ready(function () {
 //toogle leftbar
     $('.toggle_applications').click(function (e) {
         $('body').toggleClass('leftbar_active');
-
     });
 
     //selects
@@ -63,13 +62,7 @@ $(document).ready(function () {
             },
             data: function (params) {
                 return ;
-            },
-            language: "fr"
-            /*processResults: function (data) {
-                return {
-                    results: data.title
-                };
-            }*/
-        },
+            }
+        }
     });
 });

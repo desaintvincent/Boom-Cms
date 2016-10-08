@@ -11,7 +11,7 @@ return [
         "users" => [
             'name' => __('Listing des utilisateurs'),
             'icon' => 'fa-user',
-            'model' => 'User',
+            'model' => 'Users',
             'fields' => [
                 'firstname' => 'Prénom',
                 'lastname' => 'Nom',
@@ -20,7 +20,7 @@ return [
             'add_item' => [
                 [
                     'appname' => 'users',
-                    'crud' => 'user',
+                    'crud' => 'users',
                     'name' => __('Ajouter un utilisateur')
                 ]
             ]

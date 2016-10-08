@@ -31,9 +31,10 @@ class Crud
     ///@todo mettre template
     public static function input_wysiwyg($key, $item)
     {
+        $val = isset(self::$item->{$key}) ? self::$item->{$key} : '';
         $html = "<div class='{$item['type']}-field'>
             <div class='sub-title'>{$item['label']}</div>
-            <textarea class='wysiwyg' name='{$key}' id='{$key}'>".self::$item->$key."</textarea>
+            <textarea class='wysiwyg' name='{$key}' id='{$key}'>".$val."</textarea>
 
         </div>";
         return $html;
@@ -41,27 +42,30 @@ class Crud
 
     public static function input_text($key, $item)
     {
+        $val = isset(self::$item->{$key}) ? self::$item->{$key} : '';
         $html = "<div class='{$item['type']}-field'>
                     <div class='sub-title'>{$item['label']}</div>
-                    <input type='text' class='form-control' value='" . self::$item->$key . "' name='{$key}' id='{$key}' " . self::required($item) . ">
+                    <input type='text' class='form-control' value='" . $val . "' name='{$key}' id='{$key}' " . self::required($item) . ">
                 </div>";
         return $html;
     }
 
     public static function input_password($key, $item)
     {
+        $val = isset(self::$item->{$key}) ? self::$item->{$key} : '';
         $html = "<div class='{$item['type']}-field'>
                     <div class='sub-title'>{$item['label']}</div>
-                    <input type='password' class='form-control' value='" . self::$item->$key . "' name='{$key}' id='{$key}' " . self::required($item) . ">
+                    <input type='password' class='form-control' value='" . $val . "' name='{$key}' id='{$key}' " . self::required($item) . ">
                 </div>";
         return $html;
     }
 
     public static function input_email($key, $item)
     {
+        $val = isset(self::$item->{$key}) ? self::$item->{$key} : '';
         $html = "<div class='{$item['type']}-field'>
                     <div class='sub-title'>{$item['label']}</div>
-                    <input type='email' class='form-control' value='" . self::$item->$key . "' name='{$key}' id='{$key}' " . self::required($item) . ">
+                    <input type='email' class='form-control' value='" . $val . "' name='{$key}' id='{$key}' " . self::required($item) . ">
                 </div>";
         return $html;
     }
@@ -69,9 +73,10 @@ class Crud
     ///@todo mettre template
     public static function input_textarea($key, $item)
     {
+        $val = isset(self::$item->{$key}) ? self::$item->{$key} : '';
         $html = "<div class='{$item['type']}-field'>
             <div class=\"sub-title\">{$item['label']}</div>
-                <textarea name='{$key}' id='{$key}'>".self::$item->$key."</textarea>
+                <textarea name='{$key}' id='{$key}'>".$val."</textarea>
         </div>";
         return $html;
     }

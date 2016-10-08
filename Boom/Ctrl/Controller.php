@@ -80,16 +80,12 @@ class Controller
     public function loadModel($name = null)
     {
         if (is_null($name)) {
-            if (substr($this->name, -1) != "s") {
-                $name = $this->name;
-            } else {
-                $name = ucfirst(substr($this->name, 0, -1));
-            }
+            $name = ucfirst($this->name);
         }
 
-        $namespace = 'Apps\\' . ucfirst($this->appname) . '\Model\\' . $name;
+        $namespace = 'Apps\\' . ucfirst($this->appname) . '\Model\\' . $name . 'Table';
         if (class_exists($namespace) && !isset($this->{$name})) {
-            $this->{$name} = TableRegistry::get($name . "s", ['className' => $namespace]);
+            $this->{$name} = TableRegistry::get($name, ['className' => $namespace]);
             //$this->{$name}->appname = $this->appname;
         } else {
             echo 'Model ' . $namespace . ' not found </br>';

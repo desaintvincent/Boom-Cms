@@ -13,11 +13,11 @@ class Users extends Controller
 
     private function _connect()
     {
-        $user = $this->User->newEntity();
+        $user = $this->Users->newEntity();
         if ($this->request->isPost()) {
-            $user = $this->User->newEntity($this->request->getParsedBody());
+            $user = $this->Users->newEntity($this->request->getParsedBody());
             $user->password = Security::crypt($user->password);
-            if ($this->User->authentify($user)) {
+            if ($this->Users->authentify($user)) {
                 return true;
             } else {
                 return false;
