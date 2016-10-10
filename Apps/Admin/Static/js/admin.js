@@ -44,7 +44,8 @@ $(document).ready(function () {
     $(".js-data-example-ajax").select2({
         ajax: {
             url: function (params) {
-                return '/app/Menu/Menu/ajax/' + params.term;
+                console.log(params);
+                return $(this).data('url') + params.term;
             },
             //dataType: 'json',
             dataType: "json",

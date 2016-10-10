@@ -54,7 +54,7 @@
                                     <option value="text">Texte</option>
                                 </select>
 
-                                <select class="form-control js-data-example-ajax" data-ajax--url="<?=BASE_URL?>app/Menu/Menu/ajax/">
+                                <select class="form-control js-data-example-ajax" data-url="<?=BASE_URL?>app/Menu/Menu/ajax/">
                                 </select>
                                 <? /*<div class='sub-title'><?=__('Ajouter un nouveau item au menu')?></div>
                                 <div class="form-group">
