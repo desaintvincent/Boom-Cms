@@ -23,34 +23,26 @@ class Categories extends Controller
 
     public function list_categories()
     {
-        $categories = $this->Categorie->find();
+        $categories = $this->Categories->find();
 
         $this->view('categories/list', compact('categories'));
     }
 
-    public function list_category_products($category)
+    public function list_category_products($category_slug)
     {
-        $this->loadModel('Product');
+        $this->loadModel('Products');
 
-        $category = $this->Categorie->find('first', [
-            "where" => [
-                "cate_slug" => $category
-            ]
-        ]);
-
+        $category = $this->Categories->find()->where(['slug' => $category_slug])->first();
         if (!empty($category)) {
-            $products = $this->Product->find('all', [
-                "joins" => [
-                    "categories"
-                ],
+            $products = $this->Products->find('all', [
+                "contain" => ['Categories'],
                 "where" => [
-                    "prod_category_id" => $category->id
+                    "Categories.slug" => $category_slug
                 ]
             ]);
-
             $this->view('categories/view', compact('products', 'category'));
         } else {
-            d('la catégorie existe pas');
+            dd('la catégorie existe pas');
         }
 
     }

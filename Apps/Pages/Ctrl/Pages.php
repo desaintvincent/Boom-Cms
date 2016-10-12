@@ -1,9 +1,11 @@
 <?php
 namespace Apps\Pages\Ctrl;
+
 use Boom\Ctrl\Controller;
-use Boom\Helper\App;
 use Boom\Helper\Data;
-class Pages extends Controller {
+
+class Pages extends Controller
+{
     function __construct($appname, $request, $response, array $params, $name)
     {
         parent::__construct($appname, $request, $response, $params, $name);
@@ -12,19 +14,21 @@ class Pages extends Controller {
         }
         $_SESSION['current_url'] = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
     }
-    function action_main($params = NULL) {
+
+    function action_main($params = NULL)
+    {
         ///@todo faire en sorte de pouvoir selectionner la page d'accueil. actuellement c'est en dure
         //1st param is for page of course
         if (empty($params[0])) {
             //on cherche la page d'accueil
             $id = Data::get('main');
-            $page = $this->Page->find(intval($id->home));
+            $page = $this->Pages->get(intval($id->home));
             define('URL_PAGE', $page->slug);
         } else {
-            $page = $this->Page->find('first', ['where' => ['slug' => $params[0]]]);
+            $page = $this->Pages->find()->where(['slug' => $params[0]])->first();
             if (empty($page)) {
                 //on gere la 404
-                return $this->response;
+                return $this->response->withStatus(404);
             }
 
             //si on trouve la page, on retire le nom de la page des params
@@ -33,9 +37,9 @@ class Pages extends Controller {
         }
 
         $pattern = '/<enhancer .*">.*<\/enhancer>/';
-        $page->content = preg_replace_callback($pattern, function ($matches) use ($params){
+        $page->content = preg_replace_callback($pattern, function ($matches) use ($params) {
             //parsing enhancer
-            $params_enhancer = '{'.GetBetween("data-params=\"{", "}\"", $matches[0]).'}';
+            $params_enhancer = '{' . GetBetween("data-params=\"{", "}\"", $matches[0]) . '}';
             $params_enhancer = str_replace("&quot;", "\"", $params_enhancer);
             $params_enhancer = str_replace("&#039;", "'", $params_enhancer);
             $params_enhancer = json_decode($params_enhancer);

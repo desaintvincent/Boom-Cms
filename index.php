@@ -39,7 +39,8 @@ $slim->any('/app/{appname}[/{params:.*}]', function (Request $request, Response 
     $appname = $request->getAttribute('appname');
     $params = $request->getAttribute('params');
     $boom = new \Boom\Bootstrap($request, $response);
-    $boom->dispatch($appname, explode('/', $params));
+    $resp = $boom->dispatch($appname, explode('/', $params));
+    return $resp;
 })->setName('app');
 
 //admin
@@ -49,14 +50,16 @@ $slim->any('/admin[/{params:.*}]', function (Request $request, Response $respons
         $params  = 'accueil';
     }
     $boom = new \Boom\Bootstrap($request, $response);
-    return $boom->dispatch('admin', explode('/', $params));
+    $resp = $boom->dispatch('admin', explode('/', $params));
+    return $resp;
 })->setName('admin')->add( new \Boom\Middlewares\Auth($container) );
 
 //pages
 $slim->any('[/{params:.*}]', function (Request $request, Response $response) {
     $params = $request->getAttribute('params');
     $boom = new \Boom\Bootstrap($request, $response);
-    return $boom->dispatch('pages', explode('/', $params));
+    $resp = $boom->dispatch('pages', explode('/', $params));
+    return $resp;
 })->setName('pages');
 
 //affichage

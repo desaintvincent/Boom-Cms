@@ -1,6 +1,8 @@
 <?php
 namespace Apps\Admin\Ctrl;
 
+use Apps\Menu\Model\MenuItemsTable;
+use Apps\Menu\Model\MenusTable;
 use Boom\Ctrl\Controller;
 use Boom\Helper\App;
 use Boom\Helper\Data;
@@ -80,8 +82,8 @@ class Admin extends Controller
         }
     }
 
-    function action_sethome($params)
-    { // To move in Pages Controller
+    function action_sethome($params) // To move in Pages Controller
+    {
         if (isset($params[0]) && !empty($params[0])) {
             Data::set('main', ['home' => $params[0]]);
             return $this->response->withRedirect($_SESSION['previous_admin_url']);
@@ -135,9 +137,8 @@ class Admin extends Controller
         ];
 
         if (isset($model)) {
-            //si c'est une update
-            $mitems = $model->mitems($item->id);
-            $params_view['mitems'] = $mitems;
+            //si c'est une update;
+            $params_view['mitems'] = $model->get_mitems($item->id);
         }
 
         return $this->view('crud_menu', $params_view, true);

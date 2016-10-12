@@ -21,7 +21,7 @@ class Auth
     {
         // On check la session s'il y a un token
         if (!Session::get("token")) {
-            return $response->withRedirect("/app/users/users/adminConnect");
+            return $response = $response->withRedirect("/app/users/users/adminConnect");
         } else {
             // On check si ça correspon bien a un user
             $model = TableRegistry::get('Users');
@@ -32,7 +32,7 @@ class Auth
             ])->first();
             
             if (empty($user)) {
-                return $response->withRedirect("/app/users/users/adminConnect");
+                return $response = $response->withRedirect("/app/users/users/adminConnect");
             } else {
                 return $next($request, $response);
             }

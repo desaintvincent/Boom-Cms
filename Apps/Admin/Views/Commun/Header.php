@@ -6,6 +6,6 @@
 
     </div>
     <form class="form-signin" method="post">
-        <button class="btn btn-primary expanded logout" type="submit" name="deconnexion">Deconnexion</button>
+        <a href="<?=BASE_URL?>app/users/users/logout" class="btn btn-primary expanded logout"><?= __('Déconnexion') ?></a>
     </form>
 </nav>

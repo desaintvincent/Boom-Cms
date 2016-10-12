@@ -30,20 +30,21 @@ class Users extends Controller
     public function action_adminConnect()
     {
         if ($this->_connect()) {
-        	return $this->response->withRedirect("/admin");
+        	return $this->redirect("admin");
         }
     }
 
     public function action_userConnect()
     {
         if ($this->_connect()) {
-            return $this->response->withRedirect('/accueil');
+            return $this->redirect('accueil');
         }
     }
 
     public function action_logout()
     {
         Session::delete('token');
+        return $this->redirect('');
     }
 
 }

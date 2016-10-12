@@ -86,7 +86,7 @@
                     <div class="row output-container">
                         <div class="col-lg-12">
                             <h2 class="text-center">Output:</h2>
-                            <textarea class="form-control" id="json-output" rows="5" name="output_items"></textarea>
+                            <textarea class="form-control" id="json-output" rows="5" name="mitems"></textarea>
                         </div>
                     </div>
 

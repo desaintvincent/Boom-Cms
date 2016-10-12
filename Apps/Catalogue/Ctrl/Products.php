@@ -9,7 +9,9 @@ class Products extends Controller {
 
     }
 
-    function action_main($params) {
-        echo 'action main : product = ' .$params[0];
+    function action_main($params = null) {
+        if ($params) {
+            return $this->response->write('action main : product = ' .$params[0]);
+        }
     }
 }

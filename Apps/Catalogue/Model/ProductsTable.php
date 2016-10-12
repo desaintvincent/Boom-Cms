@@ -13,7 +13,7 @@ class ProductsTable extends Table {
     public function initialize(array $config)
     {
         $this->entityClass(ProductEntity::class);
-        $this->hasMany('categories');
+        $this->belongsTo('Categories');
     }
 
 }

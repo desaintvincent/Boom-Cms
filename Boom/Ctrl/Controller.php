@@ -47,6 +47,11 @@ class Controller
 
     }
 
+    public function redirect($to)
+    {
+        return $this->response->withRedirect(BASE_URL . $to);
+    }
+
     public function view($view, $params = array(), $layout = false)
     {
         $path = 'Apps/' . $this->appname . '/Views/' . ucfirst($view) . '.php';
@@ -56,8 +61,6 @@ class Controller
         $tampon = ob_get_contents();
         ob_end_clean();
         if($layout) {
-
-
             extract($this->layoutVars);
             $layout = 'Apps/' . $this->appname . '/Views/Layouts/' . $this->layout . '.php';
             include($layout);
@@ -82,7 +85,7 @@ class Controller
         if (is_null($name)) {
             $name = ucfirst($this->name);
         }
-
+        
         $namespace = 'Apps\\' . ucfirst($this->appname) . '\Model\\' . $name . 'Table';
         if (class_exists($namespace) && !isset($this->{$name})) {
             $this->{$name} = TableRegistry::get($name, ['className' => $namespace]);
