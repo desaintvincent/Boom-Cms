@@ -46,25 +46,25 @@ class MenusTable extends Table
                 $stmt->execute();
             } else if ($item['new'] == 1) {
                 //nouveau item
-                $query = "INSERT INTO `menu_items` (`id`, `mitem_parent_id`, `mitem_display_order`, `mitem_menu_id`, `mitem_title`, `mitem_arg`, `mitem_type`) VALUES (NULL, :mitem_parent, :mitem_order, :mitem_parent_id, :mitem_name, NULL, 1);";
+                $query = "INSERT INTO `menu_items` (`id`, `mitem_parent_id`, `mitem_display_order`, `mitem_menu_id`, `mitem_title`, `mitem_arg`, `mitem_type`) VALUES (NULL, :mitem_parent, :mitem_order, :mitem_parent_id, :mitem_title, NULL, 1);";
 
                 $stmt = $this->db->prepare($query);
 
                 $stmt->bindParam(':mitem_parent', $parent);
                 $stmt->bindParam(':mitem_order', $order);
                 $stmt->bindParam(':mitem_parent_id', $id);
-                $stmt->bindParam(':mitem_name', $item['name']);
+                $stmt->bindParam(':mitem_title', $item['title']);
                 $stmt->execute();
                 $item['id'] = $this->db->lastInsertId();
 
 
             } else {
-                $query = "UPDATE menu_items SET mitem_parent_id=:mitem_parent, mitem_display_order=:mitem_order, mitem_title=:mitem_name, mitem_arg=:mitem_arg, mitem_type=:mitem_type WHERE id=:mitem_id";
+                $query = "UPDATE menu_items SET mitem_parent_id=:mitem_parent, mitem_display_order=:mitem_order, mitem_title=:mitem_title, mitem_arg=:mitem_arg, mitem_type=:mitem_type WHERE id=:mitem_id";
                 $stmt = $this->db->prepare($query);
 
                 $stmt->bindParam(':mitem_parent', $parent);
                 $stmt->bindParam(':mitem_order', $order);
-                $stmt->bindParam(':mitem_name', $item['name']);
+                $stmt->bindParam(':mitem_title', $item['title']);
 
 
                 $mitem_arg = NULL;
@@ -80,10 +80,6 @@ class MenusTable extends Table
 
                 $stmt->execute();
                 //update item
-            }
-            //on est un gosse
-            if (!empty($parent)) {
-
             }
 
             //récursive

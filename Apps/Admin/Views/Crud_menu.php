@@ -29,7 +29,7 @@
                                      <!--- Initial Menu Items --->
 
 
-                                        <li class="dd-item" data-id="2" data-name="Item 2" data-slug="item-slug-2" data-new="0" data-deleted="0">
+                                        <li class="dd-item" data-id="2" data-name="Item 2" data-arg="item-arg-2" data-new="0" data-deleted="0">
                                             <div class="dd-handle">Item 2</div>
                                             <span class="btn btn-primary-delete btn btn-default btn-xs pull-right" data-owner-id="2">
                                                 <i class="fa fa-times-circle-o" aria-hidden="true"></i>
@@ -46,37 +46,55 @@
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6">
-                            <div id="menu-add">
-                                <div class='sub-title'><?=__('Ajouter un nouveau item au menu')?></div>
-                                <select class="form-control select-basic" placeholder="<?=__('Selectionnez un type d\'item')?>">
-                                    <option value="page">Page</option>
-                                    <option value="link">Lien</option>
-                                    <option value="text">Texte</option>
+                            <div id="menu-add form-inline">
+                                <div class="sub-title">
+                                <span class=''><?=__('Ajouter un nouveau item au menu')?>:</span>
+                                <select class="form-control select-type-mitem select-inline required" id="addInputType">
+                                    <option></option>
+                                    <option value="0">Page</option>
+                                    <option value="1">Lien</option>
+                                    <option value="2">Texte</option>
                                 </select>
+                                </div>
+                                <div class="form-item" id="add-mitem">
+                                    <?php
+                                    /*
+                                    ?>
+                                    <div class="select-field">
+                                        <div class='sub-title'><?=__('Page')?> :</div>
+                                        <select class="form-control js-data-example-ajax required" data-url="<?=BASE_URL?>app/Menu/Menu/ajax/" id="addInputArg"></select>
+                                    </div>
+                                    <div class="text-field">
+                                        <div class='sub-title'><?=__('Titre')?> :</div>
+                                        <input type="text" class="form-control required" id="addInputTitle">
+                                    </div>
+                                    <button class="btn btn-info" id="addButton">Add</button>
+                                    <?php
+                                    */
+                                    ?>
+                                </div>
 
-                                <select class="form-control js-data-example-ajax" data-ajax--url="<?=BASE_URL?>app/Menu/Menu/ajax/">
-                                </select>
-                                <? /*<div class='sub-title'><?=__('Ajouter un nouveau item au menu')?></div>
+                                    <? /*<div class='sub-title'><?=__('Ajouter un nouveau item au menu')?></div>
                                 <div class="form-group">
-                                    <label for="addInputName">Name</label>
-                                    <input type="text" class="form-control" id="addInputName" placeholder="Item name">
+                                    <label for="addInputTitle">Title</label>
+                                    <input type="text" class="form-control" id="addInputTitle" placeholder="Item title">
                                 </div>
                                 <div class="form-group">
-                                    <label for="addInputSlug">Slug</label>
-                                    <input type="text" class="form-control" id="addInputSlug" placeholder="item-slug">
+                                    <label for="addInputArg">Argument</label>
+                                    <input type="text" class="form-control" id="addInputArg" placeholder="item-arg">
                                 </div>
                                 <button class="btn btn-info" id="addButton">Add</button>*/ ?>
                             </div>
 
                             <div class="" id="menu-editor" style="display: none;">
-                                <h3>Editing <span id="currentEditName"></span></h3>
+                                <h3>Editing <span id="currentEditTitle"></span></h3>
                                 <div class="form-group">
-                                    <label for="addInputName">Name</label>
-                                    <input type="text" class="form-control" id="editInputName" placeholder="Item name">
+                                    <label for="addInputTitle">Title</label>
+                                    <input type="text" class="form-control" id="editInputTitle" placeholder="Item title">
                                 </div>
                                 <div class="form-group">
-                                    <label for="addInputSlug">Slug</label>
-                                    <input type="text" class="form-control" id="editInputSlug" placeholder="item-slug">
+                                    <label for="addInputArg">Argument</label>
+                                    <input type="text" class="form-control" id="editInputArg" placeholder="item-arg">
                                 </div>
                                 <button class="btn btn-info" id="editButton">Edit</button>
                             </div>

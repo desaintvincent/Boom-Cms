@@ -10759,7 +10759,7 @@ var deleteFromMenu = function (e) {
   var targetId = $(this).data('owner-id');
   var target = $('[data-id="' + targetId + '"]');
 
-  var result = confirm("Delete " + target.data('name') + " and all its subitems ?");
+  var result = confirm("Delete " + target.data('title') + " and all its subitems ?");
   if (!result) {
     return;
   }
@@ -10783,9 +10783,10 @@ var deleteFromMenu = function (e) {
 
 var menuEditor = $("#menu-editor");
 var editButton = $("#editButton");
-var editInputName = $("#editInputName");
-var editInputSlug = $("#editInputSlug");
-var currentEditName = $("#currentEditName");
+var editInputTitle = $("#editInputTitle");
+var editInputArg = $("#editInputArg");
+var editInputType = $("#editInputType");
+var currentEditTitle = $("#currentEditTitle");
 
 // Prepares and shows the Edit Form
 var prepareEdit = function (e) {
@@ -10793,9 +10794,9 @@ var prepareEdit = function (e) {
   var targetId = $(this).data('owner-id');
   var target = $('[data-id="' + targetId + '"]');
 
-  editInputName.val(target.data("name"));
-  editInputSlug.val(target.data("slug"));
-  currentEditName.html(target.data("name"));
+  editInputTitle.val(target.data("title"));
+  editInputArg.val(target.data("arg"));
+  currentEditTitle.html(target.data("title"));
   editButton.data("owner-id", target.data("id"));
 
   console.log("[INFO] Editing Menu Item " + editButton.data("owner-id"));
@@ -10808,13 +10809,13 @@ var editMenuItem = function () {
   var targetId = $(this).data('owner-id');
   var target = $('[data-id="' + targetId + '"]');
 
-  var newName = editInputName.val();
-  var newSlug = editInputSlug.val();
+  var newTitle = editInputTitle.val();
+  var newArg = editInputArg.val();
 
-  target.data("name", newName);
-  target.data("slug", newSlug);
+  target.data("title", newTitle);
+  target.data("arg", newArg);
 
-  target.find("> .dd-handle").html(newName);
+  target.find("> .dd-handle").html(newTitle);
 
   menuEditor.fadeOut();
 
@@ -10830,18 +10831,20 @@ var editMenuItem = function () {
 var newIdCount = 1;
 
 var addToMenu = function () {
-  var newName = $("#addInputName").val();
-  var newSlug = $("#addInputSlug").val();
+  var newTitle = $("#addInputTitle").val();
+  var newArg = $("#addInputArg").val();
+  var newType = $("#addInputType").val();
   var newId = newIdCount;
 
   nestableList.append(
       '<li class="dd-item" ' +
       'data-id="' + newId + '" ' +
-      'data-name="' + newName + '" ' +
-      'data-slug="' + newSlug + '" ' +
+      'data-title="' + newTitle + '" ' +
+      'data-arg="' + newArg + '" ' +
+      'data-type="' + newType + '" ' +
       'data-new="1" ' +
       'data-deleted="0">' +
-      '<div class="dd-handle">' + newName + '</div> ' +
+      '<div class="dd-handle">' + newTitle + '</div> ' +
       '<span class="button-delete btn btn-default btn-xs pull-right" ' +
       'data-owner-id="' + newId + '"> ' +
       '<i class="fa fa-times-circle-o" aria-hidden="true"></i> ' +
@@ -10862,36 +10865,6 @@ var addToMenu = function () {
   $("#nestable .button-delete").on("click", deleteFromMenu);
   $("#nestable .button-edit").on("click", prepareEdit);
 };
-
-
-
-/***************************************/
-
-
-
-$(function () {
-
-  // output initial serialised data
-  //updateOutput($('#nestable').data('output', $('#json-output')));
-
-  // set onclick events
-  editButton.on("click", editMenuItem);
-
-  $("#nestable .button-delete").on("click", deleteFromMenu);
-
-  $("#nestable .button-edit").on("click", prepareEdit);
-
-  $("#menu-editor").click(function (e) {
-    e.preventDefault();
-  });
-
-  $("#addButton").click(function (e) {
-    e.preventDefault();
-    addToMenu();
-  });
-
-});
-
 /*!
  * Select2 4.0.3
  * https://select2.github.io
@@ -17364,19 +17337,47 @@ $(document).ready(function () {
     $(".select-basic").select2({
         minimumResultsForSearch: Infinity,
     });
-//menu
+
+    //menu
     $('#nestable').nestable({
         maxDepth: 5
     }).on('change', updateOutput);
 
-    $(".select-basic").select2({
+    $("#addInputType").select2({
         minimumResultsForSearch: Infinity,
+        placeholder: "Type",
+        allowClear: true
+    }).on("select2:select", function (e) {
+        var selected_element = $(e.currentTarget);
+        var select_val = selected_element.val();
+        console.log(select_val);
+        $.ajax({
+            url: '/app/Menu/Menu/view/' + select_val,
+
+        }).done(function( data ) {
+            $('#add-mitem').html(data);
+            enable_menu_ajax();
+        });
+    }).on("select2:unselecting", function (e) {
+        clear_add_mitem();
     });
 
+    enable_menu_ajax();
+
+});
+
+function clear_add_mitem() {
+    $('#add-mitem').empty();
+    $('#addInputType').select2("val", "");
+    $('#addInputType').select2('val', 'All');
+}
+
+function enable_menu_ajax() {
+    //le select
     $(".js-data-example-ajax").select2({
         ajax: {
             url: function (params) {
-                return '/app/Menu/Menu/ajax/' + params.term;
+                return $(this).data('url') + params.term;
             },
             //dataType: 'json',
             dataType: "json",
@@ -17397,4 +17398,27 @@ $(document).ready(function () {
             }
         }
     });
-});
+
+    //l'ajout et anulation d'item
+
+    editButton.on("click", editMenuItem);
+
+    $("#nestable .button-delete").on("click", deleteFromMenu);
+
+    $("#nestable .button-edit").on("click", prepareEdit);
+
+    $("#menu-editor").on("click", function (e) {
+        e.preventDefault();
+    });
+
+    $("#addButton").on("click", function (e) {
+        e.preventDefault();
+        addToMenu();
+        clear_add_mitem();
+    });
+
+    $("#cancelButton").on("click", function (e) {
+        e.preventDefault();
+        clear_add_mitem();
+    });
+}

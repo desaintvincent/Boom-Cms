@@ -1,8 +1,6 @@
 <?php
 namespace Apps\Admin\Ctrl;
 
-use Apps\Menu\Model\MenuItemsTable;
-use Apps\Menu\Model\MenusTable;
 use Boom\Ctrl\Controller;
 use Boom\Helper\App;
 use Boom\Helper\Data;
@@ -29,7 +27,7 @@ class Admin extends Controller
 
     function action_main($params = null)
     {
-        $this->view('content', [], true);
+        return $this->view('content', [], true);
     }
 
     function action_listing($params = null)
@@ -38,7 +36,7 @@ class Admin extends Controller
         if (!empty($params)) {
             $appname = $params[0];
         }
-        
+
         $conf = App::getConfig($appname);
         $default_listing = $conf['default_listing'];
 
@@ -76,7 +74,7 @@ class Admin extends Controller
                 $params_view['home'] = $datas->home;
                 $params_view['sethome_url'] = BASE_URL . "admin/sethome/";
             }
-            $this->view('listing', $params_view, true);
+            return $this->view('listing', $params_view, true);
         } else {
             error(__('Appdesk configuration not found'));
         }
@@ -122,7 +120,7 @@ class Admin extends Controller
                 $entity = $model->newEntity($this->request->getParsedBody());
                 $model->save($entity);
             }
-            $this->view('crud', ['crud' => $crud, 'config' => $config_app], true);
+            return $this->view('crud', ['crud' => $crud, 'config' => $config_app], true);
         } else {
             error('"' . $crudName . '" \'s crud configuration of "' . $appname . '" application is not found');
         }
