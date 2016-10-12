@@ -132,6 +132,14 @@ label {
   }
 }
 
-.select2-container {
-  width: 100% !important;
+:not(.select-inline) + .select2-container {
+    width: 100% !important;
+}
+
+.select-inline + .select2-container{
+  width: auto !important;
+  min-width: 100px;
+  float: right;
+  margin-top: -4px;
+  position: relative;
 }

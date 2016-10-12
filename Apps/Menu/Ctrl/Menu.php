@@ -17,4 +17,16 @@ class Menu extends Controller {
         ]);
         echo json_encode($pages);
     }
+
+    function action_view($params = null)
+    {
+        if (!isset ($params[0])) return;
+        $type = $params[0];
+        $drivers = require 'Apps/Menu/Drivers/Drivers.php';
+        foreach ($drivers as $driver) {
+            if ($driver['type'] == $type) {
+                return $this->view($driver['view']);
+            }
+        }
+    }
 }
