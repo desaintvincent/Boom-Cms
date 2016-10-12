@@ -33,7 +33,7 @@ class Controller
         }
 
         if (method_exists($this, 'setLayoutVars')) {
-        	$this->setLayoutVars();
+            $this->setLayoutVars();
         }
     }
 
@@ -60,12 +60,12 @@ class Controller
         require($path);
         $tampon = ob_get_contents();
         ob_end_clean();
-        if($layout) {
+        if ($layout) {
             extract($this->layoutVars);
             $layout = 'Apps/' . $this->appname . '/Views/Layouts/' . $this->layout . '.php';
             include($layout);
         } else {
-            echo $tampon;
+            return $this->response->write($tampon);
         }
     }
 
@@ -85,7 +85,7 @@ class Controller
         if (is_null($name)) {
             $name = ucfirst($this->name);
         }
-        
+
         $namespace = 'Apps\\' . ucfirst($this->appname) . '\Model\\' . $name . 'Table';
         if (class_exists($namespace) && !isset($this->{$name})) {
             $this->{$name} = TableRegistry::get($name, ['className' => $namespace]);

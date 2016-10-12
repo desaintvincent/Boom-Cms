@@ -5,10 +5,6 @@ use Boom\Ctrl\Controller;
 
 class Categories extends Controller
 {
-    function exist($name)
-    {
-        //c'est du statique c'est moche
-    }
 
     public function action_main($params = NULL)
     {
@@ -25,7 +21,7 @@ class Categories extends Controller
     {
         $categories = $this->Categories->find();
 
-        $this->view('categories/list', compact('categories'));
+        return $this->view('categories/list', compact('categories'));
     }
 
     public function list_category_products($category_slug)
@@ -40,7 +36,7 @@ class Categories extends Controller
                     "Categories.slug" => $category_slug
                 ]
             ]);
-            $this->view('categories/view', compact('products', 'category'));
+            return $this->view('categories/view', compact('products', 'category'));
         } else {
             dd('la catégorie existe pas');
         }
