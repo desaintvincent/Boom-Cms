@@ -2,7 +2,7 @@
 return [
     'required' => true,
     'icon' => 'fa-bars',
-    'default_ctrl' => 'menu',
+    'default_ctrl' => 'menus',
     'default_listing' => 'menus',
 
 
@@ -19,7 +19,7 @@ return [
             'add_item' => [
                 [
                     'appname' => 'menu',
-                    'crud' => 'menu',
+                    'crud' => 'menus',
                     'name' => __('Ajouter un menu')
                 ]
             ]

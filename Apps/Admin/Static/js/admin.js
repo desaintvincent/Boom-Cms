@@ -47,7 +47,7 @@ $(document).ready(function () {
         var select_val = selected_element.val();
         console.log(select_val);
         $.ajax({
-            url: '/app/Menu/Menu/view/' + select_val,
+            url: '/app/Menu/Menus/view/' + select_val,
 
         }).done(function( data ) {
             $('#add-mitem').html(data);
@@ -74,11 +74,11 @@ function enable_menu_ajax() {
             url: function (params) {
                 return $(this).data('url') + params.term;
             },
-            //dataType: 'json',
             dataType: "json",
             type: "GET",
             delay: 250,
             processResults: function (data) {
+                console.log(data);
                 return {
                     results: $.map(data, function (item) {
                         return {

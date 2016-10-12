@@ -19,18 +19,80 @@ class MenusTable extends Table
 
     public function save(EntityInterface $entity, $options = [])
     {
+        /**
+         * @var MenuEntity $entity
+         */
+        $menu_id = $entity->id;
+        
         if (isset($entity->mitems)) {
-            dd($entity);
-        	$mitems = json_decode($entity->mitems);
+            $mitems = json_decode($entity->mitems);
+
+            $this->saveMenuItems($mitems, $menu_id);
+            unset($entity->mitems);
         }
+
+        parent::save($entity);
+
     }
 
     public function get_mitems($id)
     {
         $menuItemsTable = TableRegistry::get('MenuItems', ['className' => MenuItemsTable::class]);
         $items = $menuItemsTable->find()->where("menu_id = $id AND parent_id is NULL")->order('display_order')->contain(['Children']);
-
         return $items->all();
+    }
+
+    public function saveMenuItems($items, $menu_id, $parent_id = null)
+    {
+        $menuItemTable = TableRegistry::get('MenuItems', ['className' => MenuItemsTable::class]);
+
+        foreach ($items as $position => $mitem) {
+            // Suppression
+            if ($mitem->deleted) {
+                $mitem = $menuItemTable->get($mitem->id);
+                if ($mitem) {
+                    $menuItemTable->delete($mitem);
+                }
+            }
+
+            // Update
+            if (!!$mitem->new && !!$mitem->deleted) {
+                unset($mitem->new);
+                unset($mitem->deleted);
+                if (isset($mitem->children)) {
+                    $this->saveMenuItems($mitem->children, $menu_id, $mitem->id);
+                    unset($mitem->children);
+                }
+                if ($parent_id) {
+                	$mitem->parent_id = $parent_id;
+                }
+                $mitem->display_order = $position;
+                $updated = $menuItemTable->get($mitem->id);
+                if ($mitem) {
+                    $menuItemTable->patchEntities($updated, (array) $mitem);
+                    $menuItemTable->save($updated);
+                }
+            }
+
+            // New
+            $children = false;
+            if ($mitem->new) {
+                unset($mitem->new);
+                unset($mitem->deleted);
+                unset($mitem->id);
+                if (isset($mitem->children)) {
+                    $children = $mitem->children;
+                    unset($mitem->children);
+                }
+                $mitem->display_order = $position;
+                $mitem->menu_id = $menu_id;
+                $new = new MenuEntity((array) $mitem);
+                $menuItemTable->save($new);
+                if ($children) {
+                    $this->saveMenuItems($mitem->children, $menu_id, $new->id);
+                }
+            }
+        }
     }
 
     /*function save_items($id, $data, $parent = NULL)

@@ -3,20 +3,22 @@ namespace Apps\Menu\Ctrl;
 
 use Apps\Pages\Model\Page;
 use Boom\Ctrl\Controller;
+use Cake\ORM\TableRegistry;
 
-class Menu extends Controller
+class Menus extends Controller
 {
     function action_ajax($params = null)
     {
         if (!isset ($params[0]) || empty($params[0])) return;
-        $modelPage = New \Apps\Pages\Model\Page();
+       
+        $modelPage =TableRegistry::get('Pages');
         $pages = $modelPage->find('all', [
             'where' => [
                 'title' => ['like', '%' . $params[0] . '%']
             ],
             'limit' => 10,
         ]);
-        echo json_encode($pages);
+        echo json_encode($pages->all());
     }
 
     function action_view($params = null)
