@@ -12,13 +12,8 @@ class Menus extends Controller
         if (!isset ($params[0]) || empty($params[0])) return;
        
         $modelPage =TableRegistry::get('Pages');
-        $pages = $modelPage->find('all', [
-            'where' => [
-                'title' => ['like', '%' . $params[0] . '%']
-            ],
-            'limit' => 10,
-        ]);
-        echo json_encode($pages->all());
+        $pages = $modelPage->find()->where(['title LIKE' => '%' . $params[0] . '%'])->limit(10);
+        return $this->response->write(json_encode($pages->all()));
     }
 
     function action_view($params = null)
