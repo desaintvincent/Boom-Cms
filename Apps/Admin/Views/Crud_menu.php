@@ -49,12 +49,7 @@
                             <div id="menu-add form-inline">
                                 <div class="sub-title">
                                 <span class=''><?=__('Ajouter un nouveau item au menu')?>:</span>
-                                <select class="form-control select-type-mitem select-inline required" id="addInputType">
-                                    <option></option>
-                                    <option value="0">Page</option>
-                                    <option value="1">Lien</option>
-                                    <option value="2">Texte</option>
-                                </select>
+                                <?= Apps\Menu\Helper\Menu::make_select_drivers() ?>
                                 </div>
                                 <div class="form-item" id="add-mitem">
                                     <?php
