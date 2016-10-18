@@ -16,11 +16,11 @@ class Menu {
                 $html .= '<span class="button-edit btn btn-default btn-xs pull-right" data-owner-id="'.$mitem->id.'">';
                 $html .= '<i class="fa fa-pencil" aria-hidden="true"></i>';
                 $html .= '</span>';
-                $html .= '</li>';
                 echo $html;
                 if (isset($mitem->children)) {
                     self::make_admin_menu($mitem->children);
                 }
+                echo '</li>';
             }
             echo '</ol>';
         }
