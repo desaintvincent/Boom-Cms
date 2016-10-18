@@ -48,14 +48,20 @@ class Menu extends Model {
                 $stmt->execute();
             } else if ($item['new'] == 1) {
                 //nouveau item
-                $query = "INSERT INTO `menu_items` (`id`, `mitem_parent_id`, `mitem_display_order`, `mitem_menu_id`, `mitem_title`, `mitem_arg`, `mitem_type`) VALUES (NULL, :mitem_parent, :mitem_order, :mitem_parent_id, :mitem_title, NULL, 1);";
+                $query = "INSERT INTO `menu_items` (`id`, `mitem_parent_id`, `mitem_display_order`, `mitem_menu_id`, `mitem_title`, `mitem_arg`, `mitem_type`) VALUES (NULL, :mitem_parent, :mitem_order, :mitem_parent_id, :mitem_title, :mitem_arg, :mitem_type);";
 
                 $stmt = $this->db->prepare($query);
-
+                //dd($item['type']);
                 $stmt->bindParam(':mitem_parent', $parent);
                 $stmt->bindParam(':mitem_order', $order);
                 $stmt->bindParam(':mitem_parent_id', $id);
                 $stmt->bindParam(':mitem_title', $item['title']);
+                $stmt->bindParam(':mitem_type', intval($item['type']));
+                if (empty($item['arg'])) {
+                    $stmt->bindParam(':mitem_arg', $item['arg'], \PDO::PARAM_NULL);
+                } else {
+                    $stmt->bindParam(':mitem_arg', $item['arg'], \PDO::PARAM_STR);
+                }
                 $stmt->execute();
                 $item['id'] = $this->db->lastInsertId();
 
@@ -67,19 +73,14 @@ class Menu extends Model {
                 $stmt->bindParam(':mitem_parent', $parent);
                 $stmt->bindParam(':mitem_order', $order);
                 $stmt->bindParam(':mitem_title', $item['title']);
-
-
-                $mitem_arg = NULL;
-                $mitem_type = 1;
-                if (empty($mitem_arg)) {
-                    $stmt->bindParam(':mitem_arg', $mitem_arg, \PDO::PARAM_NULL);
-                } else {
-                    $stmt->bindParam(':mitem_arg', $mitem_arg, \PDO::PARAM_STR);
-                }
-
+                $stmt->bindParam(':mitem_type', intval($item['type']));
                 $stmt->bindParam(':mitem_type', $mitem_type);
                 $stmt->bindParam(':mitem_id', $item['id']);
-
+                if (empty($item['arg'])) {
+                    $stmt->bindParam(':mitem_arg', $item['arg'], \PDO::PARAM_NULL);
+                } else {
+                    $stmt->bindParam(':mitem_arg', $item['arg'], \PDO::PARAM_STR);
+                }
                 $stmt->execute();
                 //update item
             }

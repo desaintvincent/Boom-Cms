@@ -10722,7 +10722,7 @@ return jQuery;
 /*************** General ***************/
 
 var updateOutput = function (e) {
-    console.log("output");
+    //console.log("output");
     var list = e.length ? e : $(e.target),
         output = list.data('output');
     if (window.JSON) {
@@ -10781,12 +10781,6 @@ var deleteFromMenu = function (e) {
 
 /*************** Edit ***************/
 
-var menuEditor = $("#menu-editor");
-var editButton = $("#editButton");
-var editInputTitle = $("#editInputTitle");
-var editInputArg = $("#editInputArg");
-var editInputType = $("#editInputType");
-var currentEditTitle = $("#currentEditTitle");
 
 // Prepares and shows the Edit Form
 var prepareEdit = function (e) {
@@ -10794,30 +10788,48 @@ var prepareEdit = function (e) {
     var targetId = $(this).data('owner-id');
     var target = $('[data-id="' + targetId + '"]');
 
-    editInputTitle.val(target.data("title"));
+    var type = target.data('type');
+    $.ajax({
+        url: '/app/Menu/Menu/view/' + type + '/edit'
+
+    }).done(function(data) {
+        $('#menu-editor').html(data);
+        $('#editInputTitle').val(target.data('title'));
+        $('#editInputArg').val(target.data('arg'));
+        $("#editButton").attr("data-owner-id", target.data('id'));
+        enable_menu_ajax();
+    });
+
+
+
+    /*editInputTitle.val(target.data("title"));
     editInputArg.val(target.data("arg"));
     currentEditTitle.html(target.data("title"));
-    editButton.data("owner-id", target.data("id"));
+
 
     console.log("[INFO] Editing Menu Item " + editButton.data("owner-id"));
 
     menuEditor.fadeIn();
+    */
 };
 
 // Edits the Menu item and hides the Edit Form
-var editMenuItem = function () {
-    var targetId = $(this).data('owner-id');
+var editMenuItem = function ($this) {
+    console.log('edit');
+    console.log($this);
+    var targetId = $this.data('owner-id');
+    console.log(targetId);
     var target = $('[data-id="' + targetId + '"]');
-
-    var newTitle = editInputTitle.val();
-    var newArg = editInputArg.val();
+    console.log(target);
+    var newTitle = $('#editInputTitle').val();
+    var newArg = $('#editInputArg').val();
 
     target.data("title", newTitle);
     target.data("arg", newArg);
 
     target.find("> .dd-handle").html(newTitle);
 
-    menuEditor.fadeOut();
+    //menuEditor.fadeOut();
 
     // update JSON
     updateOutput($('#nestable').data('output', $('#json-output')));
@@ -17363,7 +17375,11 @@ function enable_menu_ajax() {
 
     //l'ajout et anulation d'item
 
-    editButton.on("click", editMenuItem);
+    $("#editButton").on("click", function (e) {
+        e.preventDefault();
+        editMenuItem($(this));
+        clear_add_mitem();
+    });
 
     $("#nestable .button-delete").on("click", deleteFromMenu);
 
