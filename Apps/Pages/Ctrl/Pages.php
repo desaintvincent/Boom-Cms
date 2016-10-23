@@ -15,6 +15,16 @@ class Pages extends Controller
         $_SESSION['current_url'] = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
     }
 
+    function action_sethome($params) // To move in Pages Controller
+    {
+        if (isset($params[0]) && !empty($params[0])) {
+            Data::set('main', ['home' => $params[0]]);
+            return $this->response->withRedirect(BASE_URL . "admin/listing/Pages");
+        } else {
+            error(__('il faut impérativement un id de page ici!'));
+        }
+    }
+
     function action_main($params = NULL)
     {
         ///@todo faire en sorte de pouvoir selectionner la page d'accueil. actuellement c'est en dure

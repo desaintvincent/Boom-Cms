@@ -72,21 +72,11 @@ class Admin extends Controller
             if ($appname == 'Pages') {
                 $datas = Data::get('main');
                 $params_view['home'] = $datas->home;
-                $params_view['sethome_url'] = BASE_URL . "admin/sethome/";
+                $params_view['sethome_url'] = BASE_URL . "app/pages/pages/sethome/";
             }
             return $this->view('listing', $params_view, true);
         } else {
             error(__('Appdesk configuration not found'));
-        }
-    }
-
-    function action_sethome($params) // To move in Pages Controller
-    {
-        if (isset($params[0]) && !empty($params[0])) {
-            Data::set('main', ['home' => $params[0]]);
-            return $this->response->withRedirect($_SESSION['previous_admin_url']);
-        } else {
-            error(__('il faut impérativement un id de page ici!'));
         }
     }
 
