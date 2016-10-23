@@ -102,13 +102,14 @@ class Admin extends Controller
             $crud = require $crudFile;
             if ($this->request->isPost()) {
                 if (!TableRegistry::exists(ucfirst($crudName))) {
-                    $namespace = 'Apps\\' . ucfirst($appname) . '\Model\\' . ucfirst(ucfirst($crudName)) . 'Table';
+                    $namespace = 'Apps\\' . ucfirst($appname) . '\Model\\' . ucfirst($crudName) . 'Table';
                     $model = TableRegistry::get(ucfirst($crudName), ['className' => $namespace]);
                 } else {
                     $model = TableRegistry::get(ucfirst($crudName));
                 }
                 $entity = $model->newEntity($this->request->getParsedBody());
                 $model->save($entity);
+                $this->redirect("admin/update/$appname/" . ucfirst($crudName) . "/{$entity->id}");
             }
             return $this->view('crud', ['crud' => $crud, 'config' => $config_app], true);
         } else {
@@ -180,5 +181,10 @@ class Admin extends Controller
         } else {
             error('"' . $crudName . '" \'s crud configuration of "' . $appname . '" application is not found');
         }
+    }
+
+    public function action_delete($params)
+    {
+        // @TODO
     }
 }
