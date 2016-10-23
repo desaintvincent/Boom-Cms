@@ -15,11 +15,11 @@ class Pages extends Controller
         $_SESSION['current_url'] = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
     }
 
-    function action_sethome($params) // To move in Pages Controller
+    function action_sethome($params)
     {
         if (isset($params[0]) && !empty($params[0])) {
             Data::set('main', ['home' => $params[0]]);
-            return $this->response->withRedirect(BASE_URL . "admin/listing/Pages");
+            return $this->redirect("admin/listing/Pages");
         } else {
             error(__('il faut impérativement un id de page ici!'));
         }
