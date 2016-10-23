@@ -129,7 +129,6 @@ class Admin extends Controller
             //si c'est une update;
             $params_view['mitems'] = $model->get_mitems($item->id);
         }
-
         return $this->view('crud_menu', $params_view, true);
     }
 

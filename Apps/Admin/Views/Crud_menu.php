@@ -10,7 +10,7 @@
             <form class="form-signin" enctype="multipart/form-data" action="#" method="post">
                 <div class="text-field">
                     <div class='sub-title'><?=__('Titre')?></div>
-                    <input type="text" class='form-control' value="<?= !empty($item) ? $item->title : '' ?>" name="menu_title" id="menu_title">
+                    <input type="text" class='form-control' value="<?= !empty($item) ? $item->title : '' ?>" name="title" id="menu_title">
                 </div>
 
                     <div class="row">
