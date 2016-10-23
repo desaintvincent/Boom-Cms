@@ -81,7 +81,10 @@
                                 <button class="btn btn-info" id="addButton">Add</button>*/ ?>
                             </div>
 
-                            <div class="" id="menu-editor" style="display: none;">
+                            <div class="" id="menu-editor">
+                                <?php
+                                /*
+                                ?>
                                 <h3>Editing <span id="currentEditTitle"></span></h3>
                                 <div class="form-group">
                                     <label for="addInputTitle">Title</label>
@@ -92,6 +95,9 @@
                                     <input type="text" class="form-control" id="editInputArg" placeholder="item-arg">
                                 </div>
                                 <button class="btn btn-info" id="editButton">Edit</button>
+                                <?php
+                                */
+                                ?>
                             </div>
                         </div>
                     </div>

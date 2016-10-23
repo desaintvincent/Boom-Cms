@@ -23,7 +23,7 @@ class Menus extends Controller
         $drivers = require 'Apps/Menu/Drivers/Drivers.php';
         foreach ($drivers as $driver) {
             if ($driver['type'] == $type) {
-                return $this->view($driver['view']);
+                return $this->view($driver['view'], ['edit' => isset($params[1])]);
             }
         }
     }
