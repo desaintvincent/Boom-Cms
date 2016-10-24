@@ -3,7 +3,6 @@
 <?php endif ?>
 <div class="select-field">
     <div class='sub-title'><?=__('Page')?> :</div>
-    <select class="form-control js-data-example-ajax required" data-url="<?=BASE_URL?>app/Menu/Menus/ajax/" id="addInputArg"></select>
     <select class="form-control js-data-example-ajax required" data-url="<?=BASE_URL?>app/Menu/Menus/ajax/" id="<?= $edit ? 'editInputArg' : 'addInputArg' ?>"></select>
 </div>
 <div class="text-field">

@@ -10790,7 +10790,7 @@ var prepareEdit = function (e) {
 
     var type = target.data('type');
     $.ajax({
-        url: '/app/Menu/Menu/view/' + type + '/edit'
+        url: '/app/Menu/Menus/view/' + type + '/edit'
 
     }).done(function(data) {
         $('#menu-editor').html(data);
@@ -17352,11 +17352,11 @@ function enable_menu_ajax() {
             url: function (params) {
                 return $(this).data('url') + params.term;
             },
+            //dataType: 'json',
             dataType: "json",
             type: "GET",
             delay: 250,
             processResults: function (data) {
-                console.log(data);
                 return {
                     results: $.map(data, function (item) {
                         return {
