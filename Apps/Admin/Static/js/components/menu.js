@@ -8,7 +8,7 @@ $(document).ready(function () {
         var select_val = selected_element.val();
         console.log(select_val);
         $.ajax({
-            url: '/app/Menu/Menu/view/' + select_val,
+            url: '/app/Menu/Menus/view/' + select_val,
 
         }).done(function( data ) {
             $('#add-mitem').html(data);

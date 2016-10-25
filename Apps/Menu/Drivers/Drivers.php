@@ -1,15 +1,15 @@
 <?php return [
     'page' => [
         'title' => __('Page'),
-        'type' => 0,
+        'type' => 'pages',
         'view' => 'Page'
     ],
     'text' => [
         'title' => __('Texte'),
-        'type' => 1,
+        'type' => 'text',
     ],
     'link' => [
         'title' => __('Lien'),
-        'type' => 2,
+        'type' => 'link',
     ]
 ];

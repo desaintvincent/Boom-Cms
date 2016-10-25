@@ -3,7 +3,7 @@ use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 
 session_start();
-
+date_default_timezone_set('UTC');
 //require autoload
 require 'vendor/autoload.php';
 

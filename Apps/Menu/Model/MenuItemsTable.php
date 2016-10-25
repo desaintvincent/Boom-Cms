@@ -15,7 +15,7 @@ class MenuItemsTable extends Table
         $this->belongsTo('Menus');
         $this->hasMany('Children', [
             'className' => 'MenuItems',
-            'foreignKey' => 'parent_id'
+            'foreignKey' => 'parent_id',
         ]);
     }
 }

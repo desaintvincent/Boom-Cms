@@ -10790,7 +10790,7 @@ var prepareEdit = function (e) {
 
     var type = target.data('type');
     $.ajax({
-        url: '/app/Menu/Menu/view/' + type + '/edit'
+        url: '/app/Menu/Menus/view/' + type + '/edit'
 
     }).done(function(data) {
         $('#menu-editor').html(data);

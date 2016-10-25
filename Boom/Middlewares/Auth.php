@@ -20,7 +20,7 @@ class Auth
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, $next)
     {
         // On check la session s'il y a un token
-        if (!Session::get("token")) {
+        if (!\Boom\Helper\Auth::connected()) {
             return $response = $response->withRedirect("/app/users/users/adminConnect");
         } else {
             // On check si ça correspon bien a un user

@@ -1,7 +1,7 @@
 body {
   //overflow: hidden;
 
-  //padding-top: 50px;
+  //padding-top: $h_classic;
 }
 
 a {
@@ -20,32 +20,6 @@ h1 {
   margin-left: 3px;
   margin-bottom: 40px;
   color: $black;
-/*
-  &:before, &:after {
-    content: "";
-    position: absolute;
-    bottom: -3px;
-    left: -3px;
-
-  }
-
-  &:before {
-    top: -3px;
-    width: 3px;
-    background-image: -webkit-gradient(linear, 0 100%, 0 0, from($red), to(transparent));
-    background-image: -webkit-linear-gradient(transparent, $red);
-    background-image: -moz-linear-gradient(transparent, $red);
-    background-image: -o-linear-gradient(transparent, $red);
-  }
-
-  &:after {
-    right: -3px;
-    height: 3px;
-    background-image: -webkit-gradient(linear, 0 0, 100% 0, from($red), to(transparent));
-    background-image: -webkit-linear-gradient(left, $red, transparent);
-    background-image: -moz-linear-gradient(left, $red, transparent);
-    background-image: -o-linear-gradient(left, $red, transparent);
-  }*/
 }
 
 .center-vertically {
@@ -68,4 +42,9 @@ h1 {
 
 ul {
   padding: 0;
+}
+
+.btn {
+  border-radius: 0;
+  transition: background 0.2s linear;
 }

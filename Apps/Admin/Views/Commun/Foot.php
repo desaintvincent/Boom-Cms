@@ -1,6 +1,7 @@
-<footer class="app-footer">
+<footer class="footer <?!\Boom\Helper\Auth::connected() ? 'full' : '' ?>">
     <div class="wrapper">
-        <span class="pull-right">2.1 <a href="#"><i class="fa fa-long-arrow-up"></i></a></span> © 2015 Copyright.
+        <span class="pull-right">2.1 <a href="#"><i class="fa fa-long-arrow-up"></i></a></span>
+        <span>BoomCms made by <a href="http://www.swith.fr/" target="_blank">Jeremy SMITH</a> & <a href="http://www.desaintvincent.com/" target="_blank">Thomas ROBERT de SAINT VINCENT</a>. © 2016 Copyright.</span>
     </div>
     <script src="<?=BASE_URL?>Apps/Admin/Static/dist/js/admin.js"></script>
     <script src="<?=BASE_URL?>Apps/Admin/Static/dist/js/tinymce/tinymce.min.js"></script>

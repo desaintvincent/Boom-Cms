@@ -4,10 +4,14 @@
   background-color: $white;
   transition: left 0.2s linear;
   position: absolute;
-  left: 50px;
+  left: $h_classic;
   right: 0;
   top: 0;
   bottom: 0;
+
+  &.full {
+    left: 0;
+  }
 
   .container {
     width: 100% !important;
