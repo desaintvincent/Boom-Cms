@@ -16,5 +16,5 @@ echo \Apps\Admin\Ctrl\Admin::view_static('Commun/Head', $params);
             </div>
         </div>
     </div>
-    <?= \Apps\Admin\Ctrl\Admin::view_static('Commun/Foot', array_merge($params, ['enhancers' => $enhancers])); ?>
+    <?= \Apps\Admin\Ctrl\Admin::view_static('Commun/Foot', $params); ?>
 </div>

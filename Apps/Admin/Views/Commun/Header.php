@@ -6,9 +6,6 @@
 
     </div>
     <?php if(\Boom\Helper\Auth::connected()) : ?>
-        <form class="form-signin" method="post">
-            <a href="<?= BASE_URL ?>app/users/users/logout"
-               class="btn btn-primary"><?= __('Déconnexion') ?></a>
-        </form>
+        <a href="<?= BASE_URL ?>app/users/users/logout" class="btn btn-primary logout"><?= __('Déconnexion') ?></a>
     <?php endif ?>
 </nav>
