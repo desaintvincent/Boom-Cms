@@ -58,7 +58,11 @@ function enable_menu_ajax() {
 
     //l'ajout et anulation d'item
 
-    editButton.on("click", editMenuItem);
+    $("#editButton").on("click", function (e) {
+        e.preventDefault();
+        editMenuItem($(this));
+        clear_add_mitem();
+    });
 
     $("#nestable .button-delete").on("click", deleteFromMenu);
 
