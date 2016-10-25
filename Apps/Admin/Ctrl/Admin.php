@@ -82,39 +82,12 @@ class Admin extends Controller
 
     function action_crud($params)
     {
-        $appname = 'Pages';
-        $crudName = 'Page';
-        if (!empty($params) && !empty($params[0])) {
-            $appname = $params[0];
-            $crudName = $params[0];
-        }
+        $this->crudAndUpdate($params, "crud");
+    }
 
-        $config_app = App::getConfig($appname);
-        if (isset($params[1]) && !empty($params[1])) {
-            $crudName = $params[1];
-        } else {
-            if (isset($config_app['default_crud'])) {
-                $crudName = $config_app['default_crud'];
-            }
-        }
-        $crudFile = 'Apps' . DS . ucfirst($appname) . DS . 'Cruds' . DS . ucfirst($crudName) . '.php';
-        if (file_exists($crudFile)) {
-            $crud = require $crudFile;
-            if ($this->request->isPost()) {
-                if (!TableRegistry::exists(ucfirst($crudName))) {
-                    $namespace = 'Apps\\' . ucfirst($appname) . '\Model\\' . ucfirst($crudName) . 'Table';
-                    $model = TableRegistry::get(ucfirst($crudName), ['className' => $namespace]);
-                } else {
-                    $model = TableRegistry::get(ucfirst($crudName));
-                }
-                $entity = $model->newEntity($this->request->getParsedBody());
-                $model->save($entity);
-                $this->redirect("admin/update/$appname/" . ucfirst($crudName) . "/{$entity->id}");
-            }
-            return $this->view('crud', ['crud' => $crud, 'config' => $config_app], true);
-        } else {
-            error('"' . $crudName . '" \'s crud configuration of "' . $appname . '" application is not found');
-        }
+    function action_update($params)
+    {
+        $this->crudAndUpdate($params, "update");
     }
 
     function update_menu($crud, $config_app, $item, $model = null)
@@ -132,10 +105,10 @@ class Admin extends Controller
         return $this->view('crud_menu', $params_view, true);
     }
 
-    function action_update($params)
+    private function crudAndUpdate($params, $action = "crud")
     {
         $appname = 'Pages';
-        $crudName = 'Pages';
+        $crudName = 'Page';
         if (!empty($params) && !empty($params[0])) {
             $appname = $params[0];
             $crudName = $params[0];
@@ -150,8 +123,9 @@ class Admin extends Controller
             }
         }
 
-        if ((isset($params[1]) && is_int(intval($params[1]))) ||
-            (isset($params[2]) && is_int(intval($params[2])))
+        if ($action == "update" && (
+            (isset($params[1]) && is_int(intval($params[1]))) ||
+            (isset($params[2]) && is_int(intval($params[2]))) )
         ) {
             $item_id = is_int($params[1]) ? intval($params[1]) : intval($params[2]);
             if (!TableRegistry::exists(ucfirst($crudName))) {
@@ -165,17 +139,34 @@ class Admin extends Controller
                 $item = $model->patchEntity($item, $this->request->getParsedBody());
                 $model->save($item);
             }
-        } else {
+
+        } elseif( $action == "update" ) {
             error("No id passed to edit");
         }
 
         $crudFile = 'Apps' . DS . ucfirst($appname) . DS . 'Cruds' . DS . ucfirst($crudName) . '.php';
         if (file_exists($crudFile)) {
             $crud = require $crudFile;
-            if ($appname == 'Menu') {
-                return $this->update_menu($crud, $config_app, $item, isset($model) ? $model : null);
+            
+            if ($action == "curd") {
+                if ($this->request->isPost()) {
+                    if (!TableRegistry::exists(ucfirst($crudName))) {
+                        $namespace = 'Apps\\' . ucfirst($appname) . '\Model\\' . ucfirst($crudName) . 'Table';
+                        $model = TableRegistry::get(ucfirst($crudName), ['className' => $namespace]);
+                    } else {
+                        $model = TableRegistry::get(ucfirst($crudName));
+                    }
+                    $entity = $model->newEntity($this->request->getParsedBody());
+                    $model->save($entity);
+                    $this->redirect("admin/update/$appname/" . ucfirst($crudName) . "/{$entity->id}");
+                }
+                return $this->view('crud', ['crud' => $crud, 'config' => $config_app], true);
             } else {
-                return $this->view('crud', ['crud' => $crud, 'config' => $config_app, 'item' => $item], true);
+                if ($appname == 'Menu') {
+                    return $this->update_menu($crud, $config_app, $item, isset($model) ? $model : null);
+                } else {
+                    return $this->view('crud', ['crud' => $crud, 'config' => $config_app, 'item' => $item], true);
+                }
             }
         } else {
             error('"' . $crudName . '" \'s crud configuration of "' . $appname . '" application is not found');
