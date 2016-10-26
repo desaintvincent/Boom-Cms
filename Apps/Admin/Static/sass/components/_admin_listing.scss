@@ -56,7 +56,7 @@
 
       &.homepage {
         .admin_listing_body_item:first-child {
-          padding-left: calc($h_classic + 0.5em);
+          padding-left: calc(#{$h_classic} + 0.5em);
           position: relative;
 
           &:before {

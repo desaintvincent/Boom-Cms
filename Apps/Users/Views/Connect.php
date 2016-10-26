@@ -1,7 +1,7 @@
 <?php
 echo \Apps\Admin\Ctrl\Admin::view_static('Commun/Head', $params);
 ?>
-<div class="content full">
+<div class="content full signin">
     <?= \Apps\Admin\Ctrl\Admin::view_static('Commun/Header', $params) ?>
     <div class="container">
         <form class="form-signin" action="" method="post">

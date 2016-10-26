@@ -9,10 +9,12 @@ class Menus extends Controller
 {
     function action_ajax($params = null)
     {
-        if (!isset ($params[0]) || empty($params[0])) return;
+        if (!(isset($_GET['type']) && !empty($_GET['type']) && isset($_GET['arg']) && !empty($_GET['arg']))) return;
 
-        $modelPage =TableRegistry::get('Pages');
-        $pages = $modelPage->find()->where(['title LIKE' => '%' . $params[0] . '%'])->limit(10);
+        $type = $_GET['type'];
+        $arg = $_GET['arg'];
+        $modelPage = TableRegistry::get($type);
+        $pages = $modelPage->find()->where(['title LIKE' => '%' . $arg . '%'])->limit(10);
         return $this->response->write(json_encode($pages->all()));
     }
 
@@ -23,7 +25,10 @@ class Menus extends Controller
         $drivers = require 'Apps/Menu/Drivers/Drivers.php';
         foreach ($drivers as $driver) {
             if ($driver['type'] == $type) {
-                return $this->view($driver['view'], ['edit' => isset($params[1])]);
+                return $this->view($driver['view'], [
+                    'edit' => isset($params[1]),
+                    'driver' => $driver,
+                ]);
             }
         }
     }
