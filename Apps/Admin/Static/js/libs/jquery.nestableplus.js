@@ -128,6 +128,7 @@ var addToMenu = function () {
     var newTitle = $("#addInputTitle").val();
     var newArg = $("#addInputArg").val();
     var newType = $("#addInputType").val();
+    alert(newType);
     var newId = newIdCount;
 
     nestableList.append(

@@ -10846,6 +10846,7 @@ var addToMenu = function () {
     var newTitle = $("#addInputTitle").val();
     var newArg = $("#addInputArg").val();
     var newType = $("#addInputType").val();
+    alert(newType);
     var newId = newIdCount;
 
     nestableList.append(
@@ -17350,9 +17351,8 @@ function enable_menu_ajax() {
     $(".js-data-example-ajax").select2({
         ajax: {
             url: function (params) {
-                return $(this).data('url') + params.term;
+                return $(this).data('url') + "?type=" + $(this).data('type') + "&arg=" + params.term;
             },
-            //dataType: 'json',
             dataType: "json",
             type: "GET",
             delay: 250,
