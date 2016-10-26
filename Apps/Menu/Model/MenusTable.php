@@ -26,7 +26,6 @@ class MenusTable extends Table
 
         if (isset($entity->mitems)) {
             $mitems = json_decode($entity->mitems);
-
             $this->saveMenuItems($mitems, $menu_id);
             unset($entity->mitems);
         }
@@ -77,15 +76,15 @@ class MenusTable extends Table
                     $children_update = $mitem->children;
                     unset($mitem->children);
                 }
-                $updated = $menuItemTable->get($mitem->id);
-                if ($updated) {
+                $toUpdate = $menuItemTable->get($mitem->id);
+                if ($toUpdate) {
                     if ($parent_id) {
-                        $updated->parent_id = $parent_id;
+                        $mitem->parent_id = $parent_id;
                     } else {
-                        $updated->parent_id = null;
+                        $mitem->parent_id = null;
                     }
-                    $updated->display_order = $position;
-                    $menuItemTable->patchEntities($updated, (array)$mitem);
+                    $mitem->display_order = $position;
+                    $updated = $menuItemTable->patchEntity($toUpdate, (array)$mitem);
                     $menuItemTable->save($updated);
                 }
                 if ($children_update) {
