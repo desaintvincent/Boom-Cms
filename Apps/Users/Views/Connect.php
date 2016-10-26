@@ -4,17 +4,25 @@ echo \Apps\Admin\Ctrl\Admin::view_static('Commun/Head', $params);
 <div class="content full">
     <?= \Apps\Admin\Ctrl\Admin::view_static('Commun/Header', $params) ?>
     <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <form action="" method="post">
-                    <label for="login"><?= __('Login') ?></label>
-                    <input type="text" name="login" id="login">
-                    <label for="password"><?= __('Mot de passe') ?></label>
-                    <input type="password" name="password" id="password">
-                    <input type="submit" value="<?= __('Me connecter') ?>">
-                </form>
+        <form class="form-signin" action="" method="post">
+            <h2 class="form-signin-heading"><?=__('Administration du site')?></h2>
+            <label for="login" class="sr-only"><?= __('Identifiant') ?></label>
+            <input type="text" id="login" name="login" class="form-control" placeholder="<?= __('Identifiant') ?>" required="" autofocus="">
+            <label for="password" class="sr-only"><?= __('Mot de passe') ?></label>
+            <input type="password" id="password" name="password" class="form-control" placeholder="<?= __('Mot de passe') ?>" required="">
+            <?php
+            /*
+            ?>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="remember-me"> Remember me
+                </label>
             </div>
-        </div>
+            <?php
+            */
+            ?>
+            <button class="btn btn-lg btn-primary btn-block" type="submit"><?= __('Me connecter') ?></button>
+        </form>
     </div>
     <?= \Apps\Admin\Ctrl\Admin::view_static('Commun/Foot', $params); ?>
 </div>
