@@ -99,13 +99,12 @@ class Admin extends Controller
         ];
 
         if (isset($model)) {
-            //si c'est une update;
             $params_view['mitems'] = $model->get_mitems($item->id);
         }
         return $this->view('crud_menu', $params_view, true);
     }
 
-    private function crudAndUpdate($params, $action = "crud")
+    protected function crudAndUpdate($params, $action = "crud")
     {
         $appname = 'Pages';
         $crudName = 'Page';
@@ -125,7 +124,7 @@ class Admin extends Controller
 
         if ($action == "update" && (
             (isset($params[1]) && is_int(intval($params[1]))) ||
-            (isset($params[2]) && is_int(intval($params[2]))) )
+            (isset($params[2]) && is_int(intval($params[2]))))
         ) {
             $item_id = is_int($params[1]) ? intval($params[1]) : intval($params[2]);
             if (!TableRegistry::exists(ucfirst($crudName))) {
@@ -140,14 +139,14 @@ class Admin extends Controller
                 $model->save($item);
             }
 
-        } elseif( $action == "update" ) {
+        } elseif ($action == "update") {
             error("No id passed to edit");
         }
 
         $crudFile = 'Apps' . DS . ucfirst($appname) . DS . 'Cruds' . DS . ucfirst($crudName) . '.php';
         if (file_exists($crudFile)) {
             $crud = require $crudFile;
-            
+
             if ($action == "curd") {
                 if ($this->request->isPost()) {
                     if (!TableRegistry::exists(ucfirst($crudName))) {
