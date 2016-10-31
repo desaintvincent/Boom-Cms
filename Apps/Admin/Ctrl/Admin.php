@@ -176,5 +176,13 @@ class Admin extends Controller
     public function action_delete($params)
     {
         // @TODO
+        if (!empty($params) && !empty($params[0])) {
+            $appname = $params[0];
+            $crudName = $params[0];
+        } else {
+            return;
+        }
+
+        echo 'Item supprimé';
     }
 }
