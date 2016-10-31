@@ -25,6 +25,11 @@ $(document).ready(function () {
 //toogle leftbar
     $('.toggle_applications').click(function (e) {
         $('body').toggleClass('leftbar_active');
+        if (!Cookies.get('admin_leftbar')) {
+            Cookies.set('admin_leftbar', 'active', { expires: 7, path: '/' });
+        } else {
+            Cookies.set('admin_leftbar', Cookies.get('admin_leftbar') == 'active' ? 'unactive' : 'active', { expires: 7, path: '/' });
+        }
     });
 
     //selects
