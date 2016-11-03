@@ -7,6 +7,7 @@ use Cake\ORM\TableRegistry;
 
 class Menus extends Controller
 {
+
     function action_ajax($params = null)
     {
         if (!(isset($_GET['type']) && !empty($_GET['type']) && isset($_GET['arg']) && !empty($_GET['arg']))) return;

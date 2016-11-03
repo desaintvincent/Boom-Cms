@@ -1,6 +1,6 @@
 <?php
-use \Psr\Http\Message\ServerRequestInterface as Request;
-use \Psr\Http\Message\ResponseInterface as Response;
+use Psr\Http\Message\ResponseInterface as Response;
+use Psr\Http\Message\ServerRequestInterface as Request;
 
 session_start();
 date_default_timezone_set('UTC');
@@ -8,10 +8,10 @@ date_default_timezone_set('UTC');
 require 'vendor/autoload.php';
 
 //récupération de la config du site
-$config_site = require_once ("site.config.php");
+$config_site = require_once("site.config.php");
 
 //récupération des tools en tout genre
-require_once ('Boom/Tools/Tools.php');
+require_once('Boom/Tools/Tools.php');
 
 
 if (ENV == 'dev') {
@@ -22,14 +22,11 @@ if (ENV == 'dev') {
     error_reporting(E_ALL);
 }
 
-
-
 //creation of SLIM application
 $slim = new \Slim\App(["settings" => $config_site]);
 
 //création du container
 $container = $slim->getContainer();
-
 
 //définition des vues:
 //$container['view'] = new \Slim\Views\PhpRenderer("./views/");
@@ -47,12 +44,12 @@ $slim->any('/app/{appname}[/{params:.*}]', function (Request $request, Response 
 $slim->any('/admin[/{params:.*}]', function (Request $request, Response $response) {
     $params = $request->getAttribute('params');
     if (empty($params)) {
-        $params  = 'accueil';
+        $params = 'accueil';
     }
     $boom = new \Boom\Bootstrap($request, $response);
     $resp = $boom->dispatch('admin', explode('/', $params));
     return $resp;
-})->setName('admin')->add( new \Boom\Middlewares\Auth($container) );
+})->setName('admin')->add(new \Boom\Middlewares\Auth($container));
 
 //pages
 $slim->any('[/{params:.*}]', function (Request $request, Response $response) {

@@ -52,7 +52,7 @@ class Controller
         return $this->response->withRedirect(BASE_URL . $to);
     }
 
-    public function view($view, $params = array(), $layout = false)
+    public function view($view, $params = array(), $layout = false) // Inverser plutot non ? On aura plus souvent besoind du layout que non
     {
         $path = 'Apps/' . $this->appname . '/Views/' . ucfirst($view) . '.php';
         extract($params);
@@ -62,7 +62,9 @@ class Controller
         ob_end_clean();
         if ($layout) {
             extract($this->layoutVars);
-            $layout = 'Apps/' . $this->appname . '/Views/Layouts/' . $this->layout . '.php';
+            if (!is_string($layout)) {
+                $layout = 'Apps/' . $this->appname . '/Views/Layouts/' . $this->layout . '.php';
+            }
             include($layout);
         } else {
             if (isset($_SERVER['enhancer']) && !empty($_SERVER['enhancer'])) {
