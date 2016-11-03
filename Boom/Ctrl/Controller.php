@@ -67,7 +67,12 @@ class Controller
             }
             include($layout);
         } else {
-            return $this->response->write($tampon);
+            if (isset($_SERVER['enhancer']) && !empty($_SERVER['enhancer'])) {
+                return $tampon;
+            } else {
+
+                return $this->response->write($tampon);
+            }
         }
     }
 
