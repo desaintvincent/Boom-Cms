@@ -146,8 +146,7 @@ class Admin extends Controller
         $crudFile = 'Apps' . DS . ucfirst($appname) . DS . 'Cruds' . DS . ucfirst($crudName) . '.php';
         if (file_exists($crudFile)) {
             $crud = require $crudFile;
-
-            if ($action == "curd") {
+            if ($action == "crud") {
                 if ($this->request->isPost()) {
                     if (!TableRegistry::exists(ucfirst($crudName))) {
                         $namespace = 'Apps\\' . ucfirst($appname) . '\Model\\' . ucfirst($crudName) . 'Table';
