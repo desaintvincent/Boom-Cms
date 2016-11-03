@@ -9,7 +9,7 @@
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="<?=BASE_URL?>Apps/Admin/Static/dist/css/admin.css">
 </head>
-<body class="flat-blue">
+<body class="flat-blue <?= isset($_COOKIE['admin_leftbar']) && $_COOKIE['admin_leftbar'] == 'active' ? 'leftbar_active' : ''?>">
 <?php if (isset($error)) : ?>
     <div class="error"><?=$error?></div>
 <?php endif ?>

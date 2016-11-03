@@ -43,11 +43,11 @@
                                    title="<?= __('Set this page as homepage') ?>"><span class="home"><i
                                             class="fa fa-home" aria-hidden="true"></i></span></a>
                                 <a href="<?= $delete_url . $item->id ?>" class="popup_confirm"
-                                   data-what="<?= $item->id ?>" title="<?= __('Delete the item') ?>"><span
+                                   data-what="<?= $item->title ?>" title="<?= __('Delete the item') ?>"><span
                                         class="delete"><i class="fa fa-trash-o" aria-hidden="true"></i></span></a>
                             <?php endif ?>
                         <?php else: ?>
-                            <a href="<?= $delete_url . $item->id ?>" class="popup_confirm" data-what="<?= $item->id ?>"
+                            <a href="<?= $delete_url . $item->id ?>" class="popup_confirm" data-what="<?= $item->title ?>"
                                title="<?= __('Delete the item') ?>"><span class="delete"><i class="fa fa-trash-o"
                                                                                             aria-hidden="true"></i></span></a>
                         <?php endif; ?>
