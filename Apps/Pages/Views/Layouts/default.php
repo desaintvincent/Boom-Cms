@@ -2,6 +2,7 @@
 echo \Apps\Pages\Ctrl\Pages::view_static('Commun/Head', $params);
 echo \Apps\Pages\Ctrl\Pages::view_static('Commun/Header', $params);
 ?>
+<h1>template de base front</h1>
 <div class="content">
     <div class="row">
         <div class="columns large-12">

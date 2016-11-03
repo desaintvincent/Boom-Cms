@@ -27,7 +27,6 @@ class Pages extends Controller
 
     function action_main($params = NULL)
     {
-        ///@todo faire en sorte de pouvoir selectionner la page d'accueil. actuellement c'est en dure
         //1st param is for page of course
         if (empty($params[0])) {
             //on cherche la page d'accueil
@@ -58,12 +57,11 @@ class Pages extends Controller
             $action = $params_enhancer->action;
             //creation des nouveaux params
             array_unshift($params, $ctrl, $action);
+            $_SERVER['enhancer'] = true;
             //on dispatch dans un tampon
-            ob_start();
             $boom = new \Boom\Bootstrap($this->request, $this->response);
-            $boom->dispatch($appname, $params);
-            $tampon = ob_get_contents();
-            ob_end_clean();
+            $tampon = $boom->dispatch($appname, $params);
+            $_SERVER['enhancer'] = false;
             return $tampon;
         }, htmlspecialchars_decode($page->content));
         return $this->view('pages', ['page' => $page], true);
