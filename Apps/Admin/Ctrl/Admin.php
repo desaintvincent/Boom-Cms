@@ -173,10 +173,24 @@ class Admin extends Controller
 
     public function action_delete($params)
     {
-        // @TODO
         if (!empty($params) && !empty($params[0])) {
             $appname = $params[0];
-            $crudName = $params[0];
+            $crudName = $params[1];
+
+            // TODO gerer autrement ces putain de params à la con !
+
+            if (!TableRegistry::exists(ucfirst($crudName))) {
+                $namespace = 'Apps\\' . ucfirst($appname) . '\Model\\' . ucfirst(ucfirst($crudName)) . 'Table';
+                $model = TableRegistry::get(ucfirst($crudName), ['className' => $namespace]);
+            } else {
+                $model = TableRegistry::get(ucfirst($crudName));
+            }
+            
+            $id = end($params);
+            $item = $model->get($id);
+            if ($item) {
+                $model->delete($item);
+            }
         } else {
             return;
         }
