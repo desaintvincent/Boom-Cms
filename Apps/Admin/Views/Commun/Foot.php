@@ -37,7 +37,7 @@
                         {
                             text: "<?=addslashes($enhancer['name'])?>",
                             onclick: function() {
-                                editor.insertContent('<enhancer class="noneditable <?=$key?>" data-params="' + '<?= str_replace("\"", "'", str_replace("'", "&apos;", addslashes(json_encode($enhancer))))?>' + '"><?=addslashes($enhancer['name'])?></enhancer>');
+                                editor.insertContent('<enhancer class="noneditable <?=$key?>" data-params="' + '<?= str_replace("\"", "'", str_replace("'", "&appostroph;", addslashes(json_encode($enhancer))))?>' + '"><?=addslashes($enhancer['name'])?></enhancer>');
                             }
                         },
                         <?php endforeach; ?>
