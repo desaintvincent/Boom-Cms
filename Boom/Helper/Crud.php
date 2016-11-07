@@ -108,6 +108,15 @@ class Crud
         return $html;
     }
 
+    public static function input_image($key, $item) {
+        $val = isset(self::$item->{$key}) ? self::$item->{$key} : '';
+        $html = "<div class=\"{$item['type']}-field\">
+                    <div class=\"sub-title\">{$item['label']}</div>
+                    <input name=\"{$key}\" type=\"file\" id=\"{$key}\"/>";
+        $html .= "</div>";
+        return $html;
+    }
+
     public static function required($item) {
         if (isset($item['option']['required'])) {
             return "required";

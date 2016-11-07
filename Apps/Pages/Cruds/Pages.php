@@ -7,5 +7,9 @@ return [
     'content' => array(
         'label' => 'Contenu',
         'type' => 'wysiwyg'
+    ),
+    'image' => array(
+        'label' => 'Petite image qui fait plaiz',
+        'type' => 'image'
     )
 ];
