@@ -5,8 +5,11 @@ echo \Apps\Pages\Ctrl\Pages::view_static('Commun/Header', $params);
 <h1>template de base front</h1>
 <div class="content">
     <div class="row">
-        <div class="columns large-12">
+        <div class="col-lg-12">
             <?= $tampon ?>
+        </div>
+        <div class="col-lg-12">
+            <?= \Apps\Pages\Ctrl\Pages::view_static('Useless/Boules', $params); ?>
         </div>
     </div>
 </div>

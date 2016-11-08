@@ -1,1 +1,191 @@
 @import "libs/foundation";
+
+
+
+//perso
+.notice {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1001;
+  color: white;
+  a {
+    color: inherit;
+  }
+}
+
+//variables
+$startColor: 46, 204, 113;
+$endColor: 41, 128, 185;
+$dotsNumber: 15;
+$dotsRadius: 10;
+$verticalSpacing: 30;
+$speed: 0.03;
+$PI:    3.141592653589793;
+//functions
+@function makeChannel($a, $b, $percent) {
+  $value: $a + round(( $b - $a) * ( $percent / 100));
+  @return $value;
+}
+
+@function makeGradientColor($percent) {
+  $r: makeChannel(nth($startColor, 1), nth($endColor, 1), $percent);
+  $g: makeChannel(nth($startColor, 2), nth($endColor, 2), $percent);
+  $b: makeChannel(nth($startColor, 3), nth($endColor, 3), $percent);
+  @return rgb($r, $g, $b);
+}
+
+@function pow($number, $exp) {
+  $value: 1;
+  @if $exp > 0 {
+    @for $i from 1 through $exp {
+      $value: $value * $number;
+    }
+  }
+  @else if $exp < 0 {
+    @for $i from 1 through -$exp {
+      $value: $value / $number;
+    }
+  }
+  @return $value;
+}
+
+@function sqrt($r) {
+  $x0: 1;
+  $x1: $x0;
+
+  @for $i from 1 through 10 {
+    $x1: $x0 - ($x0 * $x0 - abs($r)) / (2 * $x0);
+    $x0: $x1;
+  }
+
+  @return $x1;
+}
+
+@function atan ($x) {
+  $ret: 0;
+
+  @for $n from 0 to 25 {
+    $ret: $ret + pow(-1, $n) * pow($x, 2 * $n + 1) / (2 * $n + 1);
+  }
+
+  @return $ret;
+}
+
+@function atan ($x) {
+  $i:  24;
+  $sgn: 0;
+  $a:   0;
+  @if $x > 1 {
+    $sgn:  1;
+    $x:    1 / $x;
+  } @else if $x < -1 {
+    $sgn: -1;
+    $x:    1 / $x;
+  }
+  @while $i > 0 {
+    $a: ($i * $i * $x * $x) / (2 * $i + 1 + $a);
+    $i: $i - 1;
+  }
+  @if $sgn > 0 {
+    @return  $PI / 2 - $x / (1 + $a);
+  } @else if $sgn < 0 {
+    @return -$PI / 2 - $x / (1 + $a);
+  } @else {
+    @return            $x / (1 + $a);
+  }
+}
+
+@function asin ($x) {
+  @if $x > 1 or $x < -1 {
+    @warn "Argument for `asin()` must be a number between -1 and 1";
+    @return null;
+  }
+  @return atan($x / sqrt(1 - $x * $x));
+}
+
+@function acos ($x) {
+  @if $x > 1 or $x < -1 {
+    @warn "Argument for `acos()` must be a number between -1 and 1";
+    @return null;
+  }
+  @return $PI / 2 - asin($x);
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  background: #292929;
+  position: relative;
+
+  .dot {
+    width: calc(#{$dotsRadius} * 2px);
+    height: calc(#{$dotsRadius} * 2px);
+    border-radius: 50%;
+    position: absolute;
+  }
+
+  .line {
+    position: absolute;
+    width: 1px;
+    left: 50%;
+    top: #{$dotsRadius}px;
+    transform-origin: 50% top;
+  }
+
+  @for $i from 0 through $dotsNumber {
+    $j: $i - 1;
+    $time: calc(1000ms + #{$j} * #{$dotsNumber}ms);
+    $background: makeGradientColor($j / $dotsNumber * 100);
+
+
+    .dot_#{$i} {
+      top: calc(#{$i} * #{$verticalSpacing}px);
+      left: calc(50% - #{$dotsRadius}px + (#{$j} * #{$dotsNumber}px));
+      background: $background;
+      animation: move_balls_#{$i} $time ease-in-out alternate infinite;
+    }
+
+    .line_#{$i} {
+      height: calc(#{$i} * #{$verticalSpacing}px);
+      animation: move_string_#{$i} $time ease-in-out alternate infinite;
+      background: $background;
+    }
+  }
+}
+
+//animations
+@for $i from 0 through $dotsNumber {
+  @keyframes move_balls_#{$i} {
+    0% {
+      left: calc(50% - #{$dotsRadius}px + (#{$i} * #{$dotsNumber}px));
+    }
+    100% {
+      left: calc(50% - #{$dotsRadius}px - (#{$i} * #{$dotsNumber}px));
+    }
+  }
+
+  @keyframes move_string_#{$i} {
+    $height: $i * $verticalSpacing - $dotsNumber / 2;
+    $left: $i * $dotsNumber;
+    $diago: sqrt(pow($height, 2) + pow($left, 2));
+    $ratio: $left / $height;
+    $angle: 0;
+    @if $i != 0 {
+      $angle: atan($ratio);//atan(0.46429);//26.75deg;//28.17859011deg;
+    }
+
+    0% {
+      transform: rotate(-#{$angle}rad);
+      height: #{$diago}px;
+    }
+    50% {
+      height: #{$height}px;
+    }
+    100% {
+      transform: rotate(#{$angle}rad);
+      height: #{$diago}px;
+    }
+  }
+}
