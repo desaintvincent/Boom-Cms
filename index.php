@@ -24,7 +24,6 @@ if (ENV == 'dev') {
 
 //creation of SLIM application
 $slim = new \Slim\App(["settings" => $config_site]);
-$slim->add(new \Boom\Middlewares\BeforeSave());
 //création du container
 $container = $slim->getContainer();
 
