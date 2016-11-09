@@ -8,7 +8,7 @@ use Cake\ORM\Table;
 
 class Model extends Table
 {
-    public function afterSave(Event $event, EntityInterface $entity, \ArrayObject $options) {
-        dd($entity);
+    public function beforeMarshal(Event $event, \ArrayObject $data, \ArrayObject $options) {
+        d($_FILES);
     }
 }

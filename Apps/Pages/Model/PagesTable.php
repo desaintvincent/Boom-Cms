@@ -2,13 +2,12 @@
 namespace Apps\Pages\Model;
 
 use Apps\Pages\Model\Entities\PageEntity;
-use Cake\ORM\Table;
+use Boom\Model\Model;
 
-class PagesTable extends Table {
+class PagesTable extends Model  {
 
     public function initialize(array $config)
     {
         $this->entityClass(PageEntity::class);
     }
-
 }
