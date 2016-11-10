@@ -3,7 +3,6 @@ namespace Apps\Pages\Model;
 
 use Apps\Pages\Model\Entities\PageEntity;
 use Boom\Model\Model;
-use Cake\ORM\Table;
 
 class PagesTable extends Model {
 
@@ -11,5 +10,4 @@ class PagesTable extends Model {
     {
         $this->entityClass(PageEntity::class);
     }
-
 }
