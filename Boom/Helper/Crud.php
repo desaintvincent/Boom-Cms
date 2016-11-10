@@ -111,8 +111,18 @@ class Crud
     public static function input_image($key, $item) {
         $val = isset(self::$item->{$key}) ? self::$item->{$key} : '';
         $html = "<div class=\"{$item['type']}-field\">
-                    <div class=\"sub-title\">{$item['label']}</div>
-                    <input name=\"{$key}\" type=\"file\" id=\"{$key}\"/>";
+                    <div class=\"sub-title\">{$item['label']}</div>";
+        if (!empty($val)) {
+            $text_preview = __('Image actuelle');
+            $html .= "<div class=\"preview\">
+                        <span class='text'>{$text_preview}:</span>
+                        <span class='img'><img src=\"{$val}\"></span>
+                      </div>";
+            $fake_item = $item;
+            $fake_item['label'] = __('Supprimer l\'image');
+            $html .= self::input_checkbox($key.'_delete', $fake_item);
+        }
+        $html .= "<input name=\"{$key}\" type=\"file\" id=\"{$key}\"/>";
         $html .= "</div>";
         return $html;
     }
