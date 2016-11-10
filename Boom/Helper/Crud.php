@@ -122,7 +122,12 @@ class Crud
             $fake_item['label'] = __('Supprimer l\'image');
             $html .= self::input_checkbox($key.'_delete', $fake_item);
         }
-        $html .= "<input name=\"{$key}\" type=\"file\" id=\"{$key}\"/>";
+        $text_pick = __('Selectionner un fichier');
+        $html .= "<input name=\"{$key}\" type=\"file\" id=\"{$key}\" class=\"input-file\"/>";
+        $html .= "<label for=\"{$key}\" class=\"btn btn-tertiary js-labelFile\">
+                    <i class=\"icon fa fa-check\"></i>
+                    <span class=\"js-fileName\">{$text_pick}</span>
+                </label>";
         $html .= "</div>";
         return $html;
     }
