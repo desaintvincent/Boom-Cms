@@ -2,9 +2,9 @@
 namespace Apps\Catalogue\Model;
 
 use Apps\Catalogue\Model\Entities\ProductEntity;
-use Cake\ORM\Table;
+use Boom\Model\Model;
 
-class ProductsTable extends Table
+class ProductsTable extends Model
 {
 
     public function initialize(array $config)

@@ -5,9 +5,9 @@ namespace Apps\Menu\Model;
 
 
 use Apps\Menu\Model\Entities\MenuItemEntity;
-use Cake\ORM\Table;
+use Boom\Model\Model;
 
-class MenuItemsTable extends Table
+class MenuItemsTable extends Model
 {
     public function initialize(array $config)
     {

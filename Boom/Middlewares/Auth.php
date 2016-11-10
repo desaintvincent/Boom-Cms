@@ -24,7 +24,8 @@ class Auth
             return $response = $response->withRedirect("/app/users/users/adminConnect");
         } else {
             // On check si ça correspon bien a un user
-            $model = TableRegistry::get('Users');
+
+            $model = TableRegistry::get('Users', ['className' => 'Apps\Users\Model\UsersTable']);
             $user = $model->find('all', [
                 "where" => [
                     "token" => Session::get("token")

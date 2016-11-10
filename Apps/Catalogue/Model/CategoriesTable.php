@@ -3,9 +3,9 @@ namespace Apps\Catalogue\Model;
 
 
 use Apps\Catalogue\Model\Entities\CategoryEntity;
-use Cake\ORM\Table;
+use Boom\Model\Model;
 
-class CategoriesTable extends Table
+class CategoriesTable extends Model
 {
 
     public function initialize(array $config)

@@ -7,9 +7,9 @@ namespace Apps\Users\Model;
 use Apps\Users\Model\Entities\UserEntity;
 use Boom\Helper\Session;
 use Boom\Helper\Token;
-use Cake\ORM\Table;
+use Boom\Model\Model;
 
-class UsersTable extends  Table
+class UsersTable extends  Model
 {
     public function initialize(array $config)
     {

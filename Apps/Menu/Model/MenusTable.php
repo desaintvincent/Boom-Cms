@@ -2,11 +2,11 @@
 namespace Apps\Menu\Model;
 
 use Apps\Menu\Model\Entities\MenuEntity;
+use Boom\Model\Model;
 use Cake\Datasource\EntityInterface;
-use Cake\ORM\Table;
 use Cake\ORM\TableRegistry;
 
-class MenusTable extends Table
+class MenusTable extends Model
 {
 
     public function initialize(array $config)
