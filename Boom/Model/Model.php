@@ -14,7 +14,7 @@ define('HEIGHT_MAX', 800);    // Hauteur max de l'image en pixels
 class Model extends Table
 {
     public function beforeMarshal(Event $event, \ArrayObject $data, \ArrayObject $options) {
-        $tabExt = array('jpg','gif','png','jpeg');
+        /*$tabExt = array('jpg','gif','png','jpeg');
         foreach ($_FILES as $key => $file) {
             if (empty($file['name'])) {
                 //$data->{$key} = null; yoloooo
@@ -24,7 +24,7 @@ class Model extends Table
                 move_uploaded_file($_FILES[$key]['tmp_name'], TARGET.$nomImage);
                 $_POST[$key] = TARGET.$nomImage;
             }
-        }
+        }*/
     }
 
     public function beforeSave(Event $event, EntityInterface $entity, $options)
