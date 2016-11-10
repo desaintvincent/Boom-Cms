@@ -143,3 +143,39 @@ label {
   margin-top: -4px;
   position: relative;
 }
+
+.image-field {
+  .preview {
+    display: inline-block;
+    margin-right: 5em;
+
+    .text {
+      display: block;
+    }
+
+    .img {
+      display: block;
+      height: 50px;
+
+      img {
+        height: 100%;
+      }
+    }
+  }
+
+  .checkbox-inline {
+
+    margin-right: 5em;
+
+    label {
+      margin: 0;
+      font-size: 1em;
+      font-weight: normal;
+    }
+  }
+
+  input[type="file"] {
+    display: inline-block;
+    //float: right;
+  }
+}
