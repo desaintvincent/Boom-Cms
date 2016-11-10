@@ -8,6 +8,9 @@ use Cake\ORM\Table;
 
 class Model extends Table
 {
+    public function beforeMarshal(Event $event, \ArrayObject $data, \ArrayObject $options) {
+        d($_FILES);
+    }
 
     public function beforeSave(Event $event, EntityInterface $entity, $options)
     {
