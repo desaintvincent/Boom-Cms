@@ -50,6 +50,18 @@ class Crud
         return $html;
     }
 
+    public static function input_slug($key, $item)
+    {
+        $val = isset(self::$item->{$key}) ? self::$item->{$key} : '';
+        $html = "<div class='{$item['type']}-field'>
+                    <div class='sub-title'>{$item['label']}</div>";
+        $data_slug = empty($val) ? "data-slug='{$item['options']['linked']}'" : '';
+        $class_slug = empty($val) ? 'link-slug' : '';
+        $html .= "<input type='text' class='form-control {$class_slug}' value='{$val}' name='{$key}' id='{$key}' {$data_slug}>";
+        $html .= "</div>";
+        return $html;
+    }
+
     public static function input_password($key, $item)
     {
         $val = isset(self::$item->{$key}) ? self::$item->{$key} : '';
@@ -133,7 +145,7 @@ class Crud
     }
 
     public static function required($item) {
-        if (isset($item['option']['required'])) {
+        if (isset($item['options']['required'])) {
             return "required";
         } else {
             return '';
