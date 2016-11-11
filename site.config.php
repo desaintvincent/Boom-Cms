@@ -9,10 +9,19 @@ if (__DIR__ == '/var/www/html/Boom-Cms') {
     define('BASE_URL', '/');
 }
 
-define('DB_HOST', '0.0.0.0');
-define('DB_USER', 'boom_cms');
-define('DB_PASS', 'boom_cms');
-define('DB_NAME', 'boom_cms');
+if ($_SERVER['HTTP_HOST'] == "boom.desaintvincent.com") {
+
+    define('DB_HOST', '0.0.0.0');
+    define('DB_USER', 'kisaaaco_boom');
+    define('DB_PASS', 'supermdpde0uF');
+    define('DB_NAME', 'kisaaaco_boom_cms');
+} else {
+    define('DB_HOST', '0.0.0.0');
+    define('DB_USER', 'boom_cms');
+    define('DB_PASS', 'boom_cms');
+    define('DB_NAME', 'boom_cms');
+}
+
 
 define('ENV', 'dev');//or prod
 
