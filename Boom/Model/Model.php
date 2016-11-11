@@ -46,8 +46,8 @@ class Model extends Table
     }
     public function beforeSave(Event $event, EntityInterface $entity, $options)
     {
-        if (isset($entity->password)) {
+        /*if (isset($entity->password)) {
             $entity->password = Security::crypt($entity->password);
-        }
+        }*/
     }
 }
