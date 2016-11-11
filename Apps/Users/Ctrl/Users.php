@@ -11,6 +11,13 @@ use Boom\Helper\Session;
 class Users extends Controller
 {
 
+    public function action_adminConnect()
+    {
+        if ($this->_connect()) {
+            return $this->redirect("admin");
+        }
+    }
+
     private function _connect()
     {
         $user = $this->Users->newEntity();
@@ -25,13 +32,6 @@ class Users extends Controller
         }
 
         $this->view('Connect', compact('user'));
-    }
-
-    public function action_adminConnect()
-    {
-        if ($this->_connect()) {
-        	return $this->redirect("admin");
-        }
     }
 
     public function action_userConnect()

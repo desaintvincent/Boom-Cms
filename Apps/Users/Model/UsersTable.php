@@ -5,16 +5,15 @@ namespace Apps\Users\Model;
 
 
 use Apps\Users\Model\Entities\UserEntity;
-use Boom\Helper\Security;
 use Boom\Helper\Session;
 use Boom\Helper\Token;
 use Boom\Model\Model;
 
-class UsersTable extends  Model
+class UsersTable extends Model
 {
     public function initialize(array $config)
     {
-       $this->entityClass(UserEntity::class);
+        $this->entityClass(UserEntity::class);
     }
 
     public function authentify($user)
@@ -23,7 +22,7 @@ class UsersTable extends  Model
             "login" => $user->login
         ])->first();
 
-        if ($db_user && $db_user->password ===$user->password) {
+        if ($db_user && $db_user->password === $user->password) {
             $token = Token::generate($user);
             Session::set("token", $token);
             $db_user->token = $token;
