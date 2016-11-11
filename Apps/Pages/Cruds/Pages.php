@@ -2,7 +2,17 @@
 return [
     'title' => array(
         'label' => 'Titre',
-        'type' => 'text'
+        'type' => 'text',
+        'options' => array(
+            'required' => true,
+        ),
+    ),
+    'slug' => array (
+        'label' => 'Slug',
+        'type' => 'slug',
+        'options' => array(
+            'linked' => 'title',
+        ),
     ),
     'content' => array(
         'label' => 'Contenu',

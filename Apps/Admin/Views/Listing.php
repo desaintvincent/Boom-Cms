@@ -32,9 +32,9 @@
                         <a href="<?= $update_url . $item->id ?>"><span class="edit"
                                                                        title="<?= __('Edit the item') ?>"><i
                                     class="fa fa-pencil-square-o" aria-hidden="true"></i></span></a>
-                        <a href="<?= $see_url . $item->id ?>" title="<?= __('See the item') ?>"><span class="see"><i
-                                    class="fa fa-eye" aria-hidden="true"></i></span></a>
                         <?php if ($appname == 'Pages'): ?>
+                            <a href="<?= BASE_URL . $item->slug ?>" title="<?= __('See the item') ?>" target="_blank"><span class="see"><i
+                                        class="fa fa-eye" aria-hidden="true"></i></span></a>
                             <?php if ($item->id == $home) : ?>
                                 <span class="delete" title="<?= __('You cannot delete the home page') ?>"><i
                                         class="fa fa-ban" aria-hidden="true"></i></span>

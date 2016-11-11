@@ -143,3 +143,83 @@ label {
   margin-top: -4px;
   position: relative;
 }
+
+.image-field {
+  .preview {
+    display: inline-block;
+    margin-right: 5em;
+
+    .text {
+      display: block;
+    }
+
+    .img {
+      display: block;
+      height: 50px;
+
+      img {
+        height: 100%;
+      }
+    }
+  }
+
+  .checkbox-inline {
+
+    margin-right: 5em;
+
+    label {
+      margin: 0;
+      font-size: 1em;
+      font-weight: normal;
+    }
+  }
+
+  input[type="file"] {
+    display: inline-block;
+    //float: right;
+  }
+
+  .btn-tertiary {
+    color: #555;
+    padding: 0;
+    line-height: 40px;
+    width: 300px;
+    margin: auto;
+    border: 2px solid #555;
+    display: inline-block;
+    &:hover,
+    &:focus {
+      color: lighten(#555, 20%);
+      border-color: lighten(#555, 20%);
+    }
+  }
+
+  /* input file style */
+
+  .input-file {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+    + .js-labelFile {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      padding: 0 10px;
+      cursor: pointer;
+      .icon:before {
+        //font-awesome
+        content: "\f093";
+      }
+      &.has-file {
+        .icon:before {
+          //font-awesome
+          content: "\f00c";
+          color: #5AAC7B;
+        }
+      }
+    }
+  }
+}

@@ -50,6 +50,18 @@ class Crud
         return $html;
     }
 
+    public static function input_slug($key, $item)
+    {
+        $val = isset(self::$item->{$key}) ? self::$item->{$key} : '';
+        $html = "<div class='{$item['type']}-field'>
+                    <div class='sub-title'>{$item['label']}</div>";
+        $data_slug = empty($val) ? "data-slug='{$item['options']['linked']}'" : '';
+        $class_slug = empty($val) ? 'link-slug' : '';
+        $html .= "<input type='text' class='form-control {$class_slug}' value='{$val}' name='{$key}' id='{$key}' {$data_slug}>";
+        $html .= "</div>";
+        return $html;
+    }
+
     public static function input_password($key, $item)
     {
         $val = isset(self::$item->{$key}) ? self::$item->{$key} : '';
@@ -111,14 +123,29 @@ class Crud
     public static function input_image($key, $item) {
         $val = isset(self::$item->{$key}) ? self::$item->{$key} : '';
         $html = "<div class=\"{$item['type']}-field\">
-                    <div class=\"sub-title\">{$item['label']}</div>
-                    <input name=\"{$key}\" type=\"file\" id=\"{$key}\"/>";
+                    <div class=\"sub-title\">{$item['label']}</div>";
+        if (!empty($val)) {
+            $text_preview = __('Image actuelle');
+            $html .= "<div class=\"preview\">
+                        <span class='text'>{$text_preview}:</span>
+                        <span class='img'><img src=\"{$val}\"></span>
+                      </div>";
+            $fake_item = $item;
+            $fake_item['label'] = __('Supprimer l\'image');
+            $html .= self::input_checkbox($key.'_delete', $fake_item);
+        }
+        $text_pick = __('Selectionner un fichier');
+        $html .= "<input name=\"{$key}\" type=\"file\" id=\"{$key}\" class=\"input-file\"/>";
+        $html .= "<label for=\"{$key}\" class=\"btn btn-tertiary js-labelFile\">
+                    <i class=\"icon fa fa-check\"></i>
+                    <span class=\"js-fileName\">{$text_pick}</span>
+                </label>";
         $html .= "</div>";
         return $html;
     }
 
     public static function required($item) {
-        if (isset($item['option']['required'])) {
+        if (isset($item['options']['required'])) {
             return "required";
         } else {
             return '';
