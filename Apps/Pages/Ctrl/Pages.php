@@ -49,7 +49,6 @@ class Pages extends Controller
         $page->content = preg_replace_callback($pattern, function ($matches) use ($params) {
             //parsing enhancer
             $params_enhancer = '{' . GetBetween("data-params=\"{", "}\"", $matches[0]) . '}';
-            d($params_enhancer);
             $params_enhancer = str_replace("'", "\"", $params_enhancer);
             $params_enhancer = str_replace("&appostroph;", "'", $params_enhancer);
             $params_enhancer = json_decode($params_enhancer);
