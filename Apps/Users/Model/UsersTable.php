@@ -9,11 +9,11 @@ use Boom\Helper\Session;
 use Boom\Helper\Token;
 use Boom\Model\Model;
 
-class UsersTable extends  Model
+class UsersTable extends Model
 {
     public function initialize(array $config)
     {
-       $this->entityClass(UserEntity::class);
+        $this->entityClass(UserEntity::class);
     }
 
     public function authentify($user)
@@ -26,8 +26,8 @@ class UsersTable extends  Model
             $token = Token::generate($user);
             Session::set("token", $token);
             $db_user->token = $token;
+            $db_user->isConnecting = true;
             $this->save($db_user);
-
             return true;
         }
 
