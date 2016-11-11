@@ -44,7 +44,7 @@ class Users extends Controller
     public function action_logout()
     {
         Session::delete('token');
-        return $this->redirect('');
+        return $this->redirect('admin');
     }
 
 }
