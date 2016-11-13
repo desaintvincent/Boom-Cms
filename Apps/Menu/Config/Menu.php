@@ -1,8 +1,8 @@
 <?php
 return [
     'required' => true,
-    'icon' => 'fa-bars',
     'default_ctrl' => 'menus',
+    'icon' => 'fa-bars',
     'default_listing' => 'menus',
 
 
@@ -11,7 +11,9 @@ return [
 
     'appdesk' => [
         'menus' => [
-            'name' => __('Listing des menus'),
+            'name' => __('Menus'),
+            'icon' => 'fa-bars',
+            'type' => 'listing',
             'model' => 'Menus',
             'fields' => [
                 'title' => 'Titre du menu'

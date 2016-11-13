@@ -179,6 +179,50 @@ class App
         }
     }
 
+    public static function getAllAppdesk() {
+        $appList = array();
+        if ($handle = opendir('Apps')) {
+            while (false !== ($entry = readdir($handle))) {
+                if ($entry[0] != '.' && $entry != 'Admin') {
+                    $appList[] = $entry;
+                }
+            }
+            closedir($handle);
+            $apps = array(
+                'required' => array(),
+                'not_required' => array(),
+            );
+
+            foreach ($appList as $i => $app) {
+                $conf = App::getConfig($app);
+                foreach ($conf['appdesk'] as $appdesk) {
+                    $newapp = array(
+                        'name' => $appdesk['name'],
+                        'icon' => $appdesk['icon'],
+                        'type' => $appdesk['type'],
+                    );
+
+                    if (isset($appdesk['crud'])) {
+                        $newapp['crud'] = $appdesk['crud'];
+                    } else if (isset($conf['default_crud'])) {
+                        $newapp['crud'] = $conf['default_crud'];
+                    } else {
+                        $newapp['crud'] = $app;
+                    }
+
+                    if (!isset($conf['required']) || (isset($conf['required']) && !$conf['required'])) {
+                        $apps['not_required'][] = $newapp;
+                    } else {
+                        $apps['required'][] = $newapp;
+                    }
+                }
+            }
+            return $apps;
+        } else {
+            die('impossible d\'ouvrir le dossier des applications');
+        }
+    }
+
     public static function getAllApps()
     {
         return [

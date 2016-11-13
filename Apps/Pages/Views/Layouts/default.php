@@ -8,9 +8,6 @@ echo \Apps\Pages\Ctrl\Pages::view_static('Commun/Header', $params);
         <div class="col-lg-12">
             <?= $tampon ?>
         </div>
-        <div class="col-lg-12">
-            <?= \Apps\Pages\Ctrl\Pages::view_static('Useless/Boules', $params); ?>
-        </div>
     </div>
 </div>
 <?php

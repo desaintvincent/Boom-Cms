@@ -21,7 +21,7 @@ class Admin extends Controller
 
     function setLayoutVars()
     {
-        $this->layoutVars['apps'] = App::getAllApps();
+        $this->layoutVars['appdesk'] = App::getAllAppdesk();
         $this->layoutVars['enhancers'] = App::getAllEnhancers();
     }
 
@@ -114,7 +114,7 @@ class Admin extends Controller
         }
 
         $config_app = App::getConfig($appname);
-        if (isset($params[1]) && !empty($params[1]) || is_int(intval($params[1]))) {
+        if (isset($params[1]) && !empty($params[1]) && !is_int(intval($params[1]))) {
             $crudName = $params[1];
         } else {
             if (isset($config_app['default_crud'])) {
@@ -167,6 +167,7 @@ class Admin extends Controller
                 }
             }
         } else {
+            d($crudFile);
             error('"' . $crudName . '" \'s crud configuration of "' . $appname . '" application is not found');
         }
     }

@@ -1,6 +1,6 @@
 <?php
 echo \Apps\Admin\Ctrl\Admin::view_static('Commun/Head', $params);
-echo \Apps\Admin\Ctrl\Admin::view_static('Commun/Leftbar', ['apps' => $apps]);
+echo \Apps\Admin\Ctrl\Admin::view_static('Commun/Leftbar', ['appdesk' => $appdesk]);
 ?>
 <div class="content">
     <?= \Apps\Admin\Ctrl\Admin::view_static('Commun/Header', $params) ?>

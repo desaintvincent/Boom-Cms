@@ -10,11 +10,14 @@
         </div>
         <span class="name"><?=__('Applications')?></span>
     </h2>
-    <?php if (!empty($apps['required'])) : ?>
+    <?php
+    //dd($appdesk);
+    ?>
+    <?php if (!empty($appdesk['required'])) : ?>
         <ul class="required">
-            <?php foreach($apps['required'] as $app): ?>
+            <?php foreach($appdesk['required'] as $app): ?>
                 <li>
-                    <a href="<?=BASE_URL?>admin/listing/<?= $app['name'] ?>">
+                    <a href="<?=BASE_URL?>admin/<?= $app['type'] ?>/<?= $app['crud'] ?>">
                         <span class="icon"><i class="fa <?= $app['icon'] ?> fa-2x" aria-hidden="true"></i></span>
                         <span class="name"><?= $app['name'] ?></span>
                     </a>
@@ -22,11 +25,11 @@
             <?php endforeach; ?>
         </ul>
     <?php endif ?>
-    <?php if (!empty($apps['not_required'])) : ?>
+    <?php if (!empty($appdesk['not_required'])) : ?>
         <ul class="not_required">
-            <?php foreach($apps['not_required'] as $app): ?>
+            <?php foreach($appdesk['not_required'] as $app): ?>
                 <li>
-                    <a href="<?=BASE_URL?>admin/listing/<?= $app['name'] ?>">
+                    <a href="<?=BASE_URL?>admin/<?= $app['type'] ?>/<?= $app['crud'] ?>">
                         <span class="icon"><i class="fa <?= $app['icon'] ?> fa-2x" aria-hidden="true"></i></span>
                         <span class="name"><?= $app['name'] ?></span>
                     </a>

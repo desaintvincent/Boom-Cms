@@ -9,7 +9,8 @@ return [
 
     "appdesk" => [
         "users" => [
-            'name' => __('Listing des utilisateurs'),
+            'name' => __('Utilisateurs'),
+            'type' => 'listing',
             'icon' => 'fa-user',
             'model' => 'Users',
             'fields' => [

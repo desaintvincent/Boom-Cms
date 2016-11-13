@@ -14,6 +14,10 @@ return [
             'linked' => 'title',
         ),
     ),
+    'test' => [
+        'label' => 'test de checkox',
+        'type' => 'checkbox'
+    ],
     'content' => array(
         'label' => 'Contenu',
         'type' => 'wysiwyg'

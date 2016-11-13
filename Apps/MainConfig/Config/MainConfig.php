@@ -10,6 +10,8 @@ return [
     'appdesk' => [
         'mainconfig' => [
             'name' => __('Configuration du site'),
+            'type' => 'crud',
+            'icon' => 'fa-cog',
             'model' => 'MainConfig',
             'fields' => [
                 'title' => __('Configuration du site')

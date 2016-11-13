@@ -113,9 +113,10 @@ class Crud
     }
 
     public static function input_checkbox($key, $item) {
-        $html = "<div class='checkbox3 checkbox-inline checkbox-check checkbox-light'>
-                    <input type='checkbox' name='{$key}' id='{$key}' " . (self::$item->$key ? "checked " : " ") . self::required($item) . ">
-                    <label for='{$key}'>{$item['label']}</label>
+        $html = "<div class='checkbox-custom'>
+                    <div class='sub-title'>{$item['label']}</div>
+                    <input type='checkbox' class='cbx hidden' name='{$key}' id='{$key}' " . (isset(self::$item) && self::$item->{$key} ? "checked " : " ") . self::required($item) . ">
+                    <label for='{$key}' class='lbl'></label>
                 </div>";
         return $html;
     }

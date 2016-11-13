@@ -30,7 +30,10 @@ return [
 
     'appdesk' => [
         'products' => [
-            'name' => __('Listing des produits'),
+            'name' => __('Produits'),
+            'type' => 'listing',
+            'icon' => 'fa-book',
+            'crud' => 'Products',
             'model' => 'Products',
             'fields' => [
                 'title' => 'Titre du produit'
@@ -49,8 +52,11 @@ return [
             ]
         ],
         'categories' => [
-            'name' => __('Listing des catégories'),
+            'name' => __('Catégories'),
             'model' => 'Categories',
+            'type' => 'listing',
+            'crud' => 'Catalogue',
+            'icon' => 'fa-book',
             'fields' => [
                 'title' => 'Titre de la catégorie'
             ],

@@ -12,7 +12,9 @@ return [
 
     'appdesk' => [
         'pages' => [
-            'name' => __('Listing des pages'),
+            'name' => __('Pages'),
+            'type' => 'listing',
+            'icon' => 'fa-file-text-o',
             'model' => 'Pages',
             'fields' => [
                 'title' => 'Titre de la page'
