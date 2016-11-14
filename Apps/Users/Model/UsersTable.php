@@ -25,6 +25,7 @@ class UsersTable extends Model
         if ($db_user && $db_user->password === $user->password) {
             $token = Token::generate($user);
             Session::set("token", $token);
+            Session::set("right", $db_user->right);
             $db_user->token = $token;
             $db_user->isConnecting = true;
             $this->save($db_user);

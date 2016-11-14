@@ -32,6 +32,7 @@ class Admin extends Controller
 
     function action_listing($params = null)
     {
+        //dd($_SESSION);
         $appname = 'Pages';
         if (!empty($params)) {
             $appname = $params[0];
