@@ -29,9 +29,21 @@
                         <td class="admin_listing_body_item"><?= $item->{$field} ?></td>
                     <?php endforeach; ?>
                     <td class="admin_listing_body_item action">
-                        <a href="<?= $update_url . $item->id ?>"><span class="edit"
-                                                                       title="<?= __('Edit the item') ?>"><i
+                        <?php if ($appname == 'Users'): ?>
+                            <?php if (\Boom\Helper\Session::get('right') <= $item->right) : ?>
+                                <a href="<?= $update_url . $item->id ?>"><span class="edit"
+                                                                               title="<?= __('Edit the item') ?>"><i
+                                            class="fa fa-pencil-square-o" aria-hidden="true"></i></span></a>
+                            <?php else : ?>
+                                <span class="delete" title="<?= __('Forbiden to touch this') ?>"><i
+                                        class="fa fa-ban" aria-hidden="true"></i></span>
+                            <?php endif ?>
+                        <?php else : ?>
+                            <a href="<?= $update_url . $item->id ?>"><span class="edit"
+                                                                                      title="<?= __('Edit the item') ?>"><i
                                     class="fa fa-pencil-square-o" aria-hidden="true"></i></span></a>
+                        <?php endif ?>
+
                         <?php if ($appname == 'Pages'): ?>
                             <a href="<?= BASE_URL . $item->slug ?>" title="<?= __('See the item') ?>" target="_blank"><span class="see"><i
                                         class="fa fa-eye" aria-hidden="true"></i></span></a>
@@ -46,10 +58,16 @@
                                    data-what="<?= $item->title ?>" title="<?= __('Delete the item') ?>"><span
                                         class="delete"><i class="fa fa-trash-o" aria-hidden="true"></i></span></a>
                             <?php endif ?>
-                        <?php else: ?>
+                        <?php elseif ($appname == 'Users'): ?>
+                            <?php if (\Boom\Helper\Session::get('right') <= $item->right) : ?>
                             <a href="<?= $delete_url . $item->id ?>" class="popup_confirm" data-what="<?= $item->title ?>"
                                title="<?= __('Delete the item') ?>"><span class="delete"><i class="fa fa-trash-o"
                                                                                             aria-hidden="true"></i></span></a>
+                            <?php endif ?>
+                        <?php else: ?>
+                        <a href="<?= $delete_url . $item->id ?>" class="popup_confirm" data-what="<?= $item->title ?>"
+                           title="<?= __('Delete the item') ?>"><span class="delete"><i class="fa fa-trash-o"
+                                                                                        aria-hidden="true"></i></span></a>
                         <?php endif; ?>
                     </td>
                 </tr>
