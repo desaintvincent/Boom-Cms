@@ -38,7 +38,9 @@ class Model extends Table
 
                 if (in_array($extension, $tabExt)) {
                     $nomImage = $this->table() . '_' . $key . '.' . $extension;
-                    move_uploaded_file($_FILES[$key]['tmp_name'], TARGET . $nomImage);
+                    if (!move_uploaded_file($_FILES[$key]['tmp_name'], TARGET . $nomImage)) {
+                        error(__('Impossible d\'upload le fichier sur le serveur'));
+                    }
                     $data[$key] = BASE_URL . TARGET . $nomImage;
                 } else {
                     error(__('Le fichier ne correspond pas a une extention autorisée : ') . $extension);

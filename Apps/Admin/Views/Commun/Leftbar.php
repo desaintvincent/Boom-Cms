@@ -17,7 +17,7 @@
         <ul class="required">
             <?php foreach($appdesk['required'] as $app): ?>
                 <li>
-                    <a href="<?=BASE_URL?>admin/<?= $app['type'] ?>/<?= $app['crud'] ?>">
+                    <a href="<?=BASE_URL?>admin/<?= $app['type'] ?>/<?= $app['crud'] ?><?= $app['type'] == 'update' ? '/1' : ''?>">
                         <span class="icon"><i class="fa <?= $app['icon'] ?> fa-2x" aria-hidden="true"></i></span>
                         <span class="name"><?= $app['name'] ?></span>
                     </a>

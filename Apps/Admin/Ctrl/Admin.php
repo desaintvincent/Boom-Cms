@@ -122,12 +122,11 @@ class Admin extends Controller
                 $crudName = $config_app['default_crud'];
             }
         }
-
         if ($action == "update" && (
             (isset($params[1]) && is_int(intval($params[1]))) ||
             (isset($params[2]) && is_int(intval($params[2]))))
         ) {
-            $item_id = is_int($params[1]) ? intval($params[1]) : intval($params[2]);
+            $item_id = is_int(intval($params[1])) && !empty(intval($params[1])) ? intval($params[1]) : intval($params[2]);
             if (!TableRegistry::exists(ucfirst($crudName))) {
                 $namespace = 'Apps\\' . ucfirst($appname) . '\Model\\' . ucfirst(ucfirst($crudName)) . 'Table';
                 $model = TableRegistry::get(ucfirst($crudName), ['className' => $namespace]);
@@ -135,11 +134,11 @@ class Admin extends Controller
                 $model = TableRegistry::get(ucfirst($crudName));
             }
             $item = $model->get($item_id);
+            //dd($item);
             if ($this->request->isPost()) {
                 $item = $model->patchEntity($item, $this->request->getParsedBody());
                 $model->save($item);
             }
-
         } elseif ($action == "update") {
             error("No id passed to edit");
         }
