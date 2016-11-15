@@ -19,10 +19,17 @@ class Admin extends Controller
         $_SESSION['current_admin_url'] = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
     }
 
-    function setLayoutVars()
+    function setLayoutVars(&$ctrl = null)
     {
-        $this->layoutVars['appdesk'] = App::getAllAppdesk();
-        $this->layoutVars['enhancers'] = App::getAllEnhancers();
+        if (empty($ctrl)) {
+            $this->layoutVars['appdesk'] = App::getAllAppdesk();
+            $this->layoutVars['enhancers'] = App::getAllEnhancers();
+        } else {
+            $ctrl->layoutVars['appdesk'] = App::getAllAppdesk();
+            $ctrl->layoutVars['enhancers'] = App::getAllEnhancers();
+        }
+
+
     }
 
     function action_main($params = null)
@@ -32,52 +39,67 @@ class Admin extends Controller
 
     function action_listing($params = null)
     {
-        //dd($_SESSION);
         $appname = 'Pages';
         if (!empty($params)) {
             $appname = $params[0];
         }
-
-        $conf = App::getConfig($appname);
-        $default_listing = $conf['default_listing'];
-
-        if (isset($params[1])) {
-            $default_listing = strtolower($params[1]);
-        }
-
-        if (isset($conf['appdesk'][$default_listing])) {
-            $listing = $conf['appdesk'][$default_listing];
-            if (!TableRegistry::exists($listing['model'])) {
-                $namespace = 'Apps\\' . ucfirst($appname) . '\Model\\' . ucfirst($listing['model']) . 'Table';
-                $model = TableRegistry::get($listing['model'], ['className' => $namespace]);
+        if ($appname == 'Menu' || $appname == 'Pages') {
+            $conf = App::getConfig($appname);
+            $default_listing = $conf['default_listing'];
+            if (isset($conf['appdesk'][$default_listing])) {
+                $listing = $conf['appdesk'][$default_listing];
+                $namespace = 'Apps\\' . ucfirst($appname) . '\Ctrl\\' . ucfirst($default_listing) . 'Admin';
+                $ctrl = new $namespace(ucfirst($appname), $this->request, $this->response, $params, ucfirst($listing['model']));
+                $this->setLayoutVars($ctrl);
+                return $ctrl->action_listing($params);
             } else {
-                $model = TableRegistry::get($listing['model']);
+                error(__('Appdesk configuration not found'));
             }
-            $items = $model->find();
-            $update_url = BASE_URL . "admin/update/" . $appname . "/" . $listing['model'] . "/";
-            $see_url = BASE_URL . "admin/see/" . $appname . "/" . $listing['model'] . "/";
-            $delete_url = BASE_URL . "admin/delete/" . $appname . "/" . $listing['model'] . "/";
-            //$add_url = BASE_URL . "admin/crud/" . $appname;
 
-            $params_view = [
-                'appname' => $appname,
-                'listing_title' => $listing['name'],
-                'items' => $items,
-                'fields' => $listing['fields'],
-                'update_url' => $update_url,
-                'see_url' => $see_url,
-                'delete_url' => $delete_url,
-                'add_items' => $listing['add_item']
-            ];
-
-            if ($appname == 'Pages') {
-                $datas = Data::get('main');
-                $params_view['home'] = $datas->home;
-                $params_view['sethome_url'] = BASE_URL . "app/pages/pages/sethome/";
-            }
-            return $this->view('listing', $params_view, true);
         } else {
-            error(__('Appdesk configuration not found'));
+
+            $conf = App::getConfig($appname);
+            $default_listing = $conf['default_listing'];
+
+            if (isset($params[1])) {
+                $default_listing = strtolower($params[1]);
+            }
+
+            if (isset($conf['appdesk'][$default_listing])) {
+                $listing = $conf['appdesk'][$default_listing];
+                if (!TableRegistry::exists($listing['model'])) {
+                    $namespace = 'Apps\\' . ucfirst($appname) . '\Model\\' . ucfirst($listing['model']) . 'Table';
+                    $model = TableRegistry::get($listing['model'], ['className' => $namespace]);
+                } else {
+                    $model = TableRegistry::get($listing['model']);
+                }
+                $items = $model->find();
+                $update_url = BASE_URL . "admin/update/" . $appname . "/" . $listing['model'] . "/";
+                $see_url = BASE_URL . "admin/see/" . $appname . "/" . $listing['model'] . "/";
+                $delete_url = BASE_URL . "admin/delete/" . $appname . "/" . $listing['model'] . "/";
+                //$add_url = BASE_URL . "admin/crud/" . $appname;
+
+                $params_view = [
+                    'appname' => $appname,
+                    'listing_title' => $listing['name'],
+                    'items' => $items,
+                    'fields' => $listing['fields'],
+                    'update_url' => $update_url,
+                    'see_url' => $see_url,
+                    'delete_url' => $delete_url,
+                    'add_items' => $listing['add_item']
+                ];
+
+                if ($appname == 'Pages') {
+                    $datas = Data::get('main');
+                    $params_view['home'] = $datas->home;
+                    $params_view['sethome_url'] = BASE_URL . "app/pages/pages/sethome/";
+                }
+                return $this->view('listing', $params_view, true);
+            } else {
+                error(__('Appdesk configuration not found'));
+            }
+
         }
     }
 
