@@ -16,7 +16,6 @@ class App
         if (file_exists($config_path)) {
             $config = require $config_path;
         } else {
-            error($appname . '\'s config doesn\'t exist');
             $config = null;
         }
 		return $config;

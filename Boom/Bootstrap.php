@@ -25,7 +25,7 @@ class Bootstrap {
             $app = new $appnamespace(ucfirst($appname), $this->request, $this->response, $params, $ctrl);
             return $app->$action($params);
         } else {
-            echo 'Error: Application ' .$appname . ' doesn\'t exist!';
+            error('Application ' .$appname . ' doesn\'t exist!');
         }
     }
 }

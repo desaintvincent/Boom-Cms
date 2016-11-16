@@ -1,5 +1,5 @@
 <?php
-namespace Apps\Menu\Helper;
+namespace Apps\Menus\Helper;
 
 
 class Menu {
@@ -27,7 +27,7 @@ class Menu {
     }
 
     static function make_select_drivers() {
-        $drivers = require 'Apps/Menu/Drivers/Drivers.php';
+        $drivers = require 'Apps/Menus/Drivers/Drivers.php';
         $html = "<select class='form-control select-type-mitem select-inline required' id='addInputType'>";
         $html .= "<option></option>";
         foreach ($drivers as $driver) {

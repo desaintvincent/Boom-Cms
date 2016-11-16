@@ -1,10 +1,10 @@
 <?php
 
 
-namespace Apps\Menu\Model;
+namespace Apps\Menus\Model;
 
 
-use Apps\Menu\Model\Entities\MenuItemEntity;
+use Apps\Menus\Model\Entities\MenuItemEntity;
 use Boom\Model\Model;
 
 class MenuItemsTable extends Model

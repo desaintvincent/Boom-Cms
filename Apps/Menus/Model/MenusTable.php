@@ -1,7 +1,7 @@
 <?php
-namespace Apps\Menu\Model;
+namespace Apps\Menus\Model;
 
-use Apps\Menu\Model\Entities\MenuEntity;
+use Apps\Menus\Model\Entities\MenuEntity;
 use Boom\Model\Model;
 use Cake\Datasource\EntityInterface;
 use Cake\ORM\TableRegistry;

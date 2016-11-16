@@ -1,7 +1,6 @@
 <?php
-namespace Apps\Menu\Ctrl;
+namespace Apps\Menus\Ctrl;
 
-use Apps\Pages\Model\Page;
 use Boom\Ctrl\Controller;
 use Cake\ORM\TableRegistry;
 
@@ -23,7 +22,7 @@ class Menus extends Controller
     {
         if (!isset ($params[0])) return;
         $type = $params[0];
-        $drivers = require 'Apps/Menu/Drivers/Drivers.php';
+        $drivers = require 'Apps/Menus/Drivers/Drivers.php';
         foreach ($drivers as $driver) {
             if ($driver['type'] == $type) {
                 return $this->view($driver['view'], [

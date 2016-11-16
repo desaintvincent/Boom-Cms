@@ -1,4 +1,3 @@
-<div class="col-xs-12">
     <div class="card">
         <div class="card-header">
             <div class="card-title">
@@ -78,4 +77,3 @@
             <div class="empty_listing"><?= __('Aucun item n\'a été créé') ?></div>
         <?php endif ?>
     </div>
-</div>

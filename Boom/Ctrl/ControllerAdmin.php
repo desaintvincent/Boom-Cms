@@ -52,7 +52,72 @@ class ControllerAdmin extends Controller {
             }
             return $this->view('listing', $params_view, true);
         } else {
-            error(__('Appdesk configuration not found'));
+            return $this->view('Commun/Error', ['error' => __('Appdesk configuration not found')], true);
+        }
+    }
+
+    function crudAndUpdate($params, $action = "crud")
+    {
+        if (!empty($params) && !empty($params[0])) {
+            $appname = $params[0];
+            $crudName = $params[0];
+        }
+
+        $config_app = App::getConfig($appname);
+        if (isset($params[1]) && !empty($params[1]) && !is_int(intval($params[1]))) {
+            $crudName = $params[1];
+        } else {
+            if (isset($config_app['default_crud'])) {
+                $crudName = $config_app['default_crud'];
+            }
+        }
+        if ($action == "update" && (
+                (isset($params[1]) && is_int(intval($params[1]))) ||
+                (isset($params[2]) && is_int(intval($params[2]))))
+        ) {
+            $item_id = is_int(intval($params[1])) && !empty(intval($params[1])) ? intval($params[1]) : intval($params[2]);
+            if (!TableRegistry::exists(ucfirst($crudName))) {
+                $namespace = 'Apps\\' . ucfirst($appname) . '\Model\\' . ucfirst(ucfirst($crudName)) . 'Table';
+                $model = TableRegistry::get(ucfirst($crudName), ['className' => $namespace]);
+            } else {
+                $model = TableRegistry::get(ucfirst($crudName));
+            }
+            $item = $model->get($item_id);
+            //dd($item);
+            if ($this->request->isPost()) {
+                $item = $model->patchEntity($item, $this->request->getParsedBody());
+                $model->save($item);
+            }
+        } elseif ($action == "update") {
+            error("No id passed to edit");
+        }
+
+        $crudFile = 'Apps' . DS . ucfirst($appname) . DS . 'Cruds' . DS . ucfirst($crudName) . '.php';
+        if (file_exists($crudFile)) {
+            $crud = require $crudFile;
+            if ($action == "crud") {
+                if ($this->request->isPost()) {
+                    if (!TableRegistry::exists(ucfirst($crudName))) {
+                        $namespace = 'Apps\\' . ucfirst($appname) . '\Model\\' . ucfirst($crudName) . 'Table';
+                        $model = TableRegistry::get(ucfirst($crudName), ['className' => $namespace]);
+                    } else {
+                        $model = TableRegistry::get(ucfirst($crudName));
+                    }
+                    $entity = $model->newEntity($this->request->getParsedBody());
+                    $model->save($entity);
+                    $this->redirect("admin/update/$appname/" . ucfirst($crudName) . "/{$entity->id}");
+                }
+                return $this->view('crud', ['crud' => $crud, 'config' => $config_app], true);
+            } else {
+                if ($appname == 'Menu') {
+                    return $this->update_menu($crud, $config_app, $item, isset($model) ? $model : null);
+                } else {
+                    return $this->view('crud', ['crud' => $crud, 'config' => $config_app, 'item' => $item], true);
+                }
+            }
+        } else {
+            error('"' . $crudName . '" \'s crud configuration of "' . $appname . '" application is not found');
+
         }
     }
 
@@ -81,5 +146,32 @@ class ControllerAdmin extends Controller {
                 return $this->response->write($tampon);
             }
         }
+    }
+
+    public function action_delete($params)
+    {
+        if (!empty($params) && !empty($params[0])) {
+            $appname = $params[0];
+            $crudName = $params[1];
+
+            // TODO gerer autrement ces putain de params à la con !
+
+            if (!TableRegistry::exists(ucfirst($crudName))) {
+                $namespace = 'Apps\\' . ucfirst($appname) . '\Model\\' . ucfirst(ucfirst($crudName)) . 'Table';
+                $model = TableRegistry::get(ucfirst($crudName), ['className' => $namespace]);
+            } else {
+                $model = TableRegistry::get(ucfirst($crudName));
+            }
+
+            $id = end($params);
+            $item = $model->get($id);
+            if ($item) {
+                $model->delete($item);
+            }
+        } else {
+            return;
+        }
+
+        echo 'Item supprimé';
     }
 }
