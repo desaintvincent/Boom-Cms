@@ -2,12 +2,12 @@
 return [
     'required' => true,
     'icon' => 'fa-cog',
-    'default_ctrl' => 'formcontact',
-    'default_listing' => 'formcontact',
+    'default_ctrl' => 'FormContact',
+    'default_listing' => 'FormContact',
     'name' => __('Formulaire de contact'),
 
     'appdesk' => [
-        'formcontact' => [
+        'FormContact' => [
             'name' => __('Formulaire de contact'),
             'type' => 'update',
             'icon' => 'fa-envelope-o',
@@ -18,11 +18,11 @@ return [
         ]
     ],
     'enhancers' => [
-    'form_contact' => [
-        'appname' => 'FormContact',
-        'name' => 'Formulaire de contact' ,
-        'controller' => 'FormContact',
-        'action' => 'main'
-    ]
-],
+        'form_contact' => [
+            'appname' => 'FormContact',
+            'name' => 'Formulaire de contact' ,
+            'controller' => 'FormContact',
+            'action' => 'main'
+        ]
+    ],
 ];
