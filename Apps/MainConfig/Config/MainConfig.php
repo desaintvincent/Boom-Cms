@@ -5,7 +5,6 @@ return [
     'default_ctrl' => 'mainconfig',
     'default_listing' => 'mainconfig',
     'name' => __('Configuration du site'),
-    'title' => 'title',
 
     'appdesk' => [
         'mainconfig' => [

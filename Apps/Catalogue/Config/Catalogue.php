@@ -12,7 +12,7 @@ return [
 
 
 	'enhancers' => [
-		'list_categories' => [
+		/*'list_categories' => [
 		    'appname' => 'catalogue',
 			'name' => 'Liste les catégories',
             'controller' => 'categories',
@@ -23,7 +23,7 @@ return [
 			'name' => 'Liste les produits d\'une catégorie' ,
             'controller' => 'categories',
 			'action' => 'main'
-		]
+		]*/
 	],
 
 
