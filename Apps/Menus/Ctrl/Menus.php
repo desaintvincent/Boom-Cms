@@ -13,9 +13,9 @@ class Menus extends Controller
 
         $type = $_GET['type'];
         $arg = $_GET['arg'];
-        $modelPage = TableRegistry::get($type);
-        $pages = $modelPage->find()->where(['title LIKE' => '%' . $arg . '%'])->limit(10);
-        return $this->response->write(json_encode($pages->all()));
+        $model = TableRegistry::get($type);
+        $result = $model->find()->where(['title LIKE' => '%' . $arg . '%'])->limit(10);
+        return $this->response->write(json_encode($result->all()));
     }
 
     function action_view($params = null)
@@ -25,10 +25,23 @@ class Menus extends Controller
         $drivers = require 'Apps/Menus/Drivers/Drivers.php';
         foreach ($drivers as $driver) {
             if ($driver['type'] == $type) {
-                return $this->view($driver['view'], [
+                $tab = [
                     'edit' => isset($params[1]),
                     'driver' => $driver,
-                ]);
+                    'data' => null,
+                ];
+                if (isset($params[2]) && !empty($params[2]) && is_int(intval($params[2]))) {
+                    $id = intval($params[2]);
+                    $model = TableRegistry::get($type);
+                    $result = $model->find()->where(['id' => $id])->first();
+                    if (!empty($result)) {
+                        $tab['data'] = [
+                            'id' => $result->$id,
+                            'title' => $result->title
+                        ];
+                    }
+                }
+                return $this->view($driver['view'], $tab);
             }
         }
     }

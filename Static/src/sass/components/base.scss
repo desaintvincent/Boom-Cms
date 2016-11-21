@@ -1,0 +1,27 @@
+body {
+  width: 100vw;
+  height: 100vh;
+  display: block;
+  overflow: hidden;
+
+  .content {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: $header_height;
+    display: block;
+    background: lightblue;
+    //transition: left,right 0.5s;
+
+    &.content-new {
+      left: 100vw;
+      right: -100vw;
+    }
+
+    &.content-old {
+      //left: -100vw;
+      //right: 100vw;
+    }
+  }
+}

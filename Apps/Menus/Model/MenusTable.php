@@ -57,58 +57,60 @@ class MenusTable extends Model
     {
         $menuItemTable = TableRegistry::get('MenuItems', ['className' => MenuItemsTable::class]);
 
-        foreach ($items as $position => $mitem) {
-            // Suppression
-            if ($mitem->deleted == 1) {
-                $mitem = $menuItemTable->get($mitem->id);
-                if ($mitem) {
-                    $menuItemTable->delete($mitem);
+        if (!empty($items)) {
+            foreach ($items as $position => $mitem) {
+                // Suppression
+                if ($mitem->deleted == 1) {
+                    $mitem = $menuItemTable->get($mitem->id);
+                    if ($mitem) {
+                        $menuItemTable->delete($mitem);
+                    }
+                    continue;
                 }
-                continue;
-            }
 
-            // Update
-            $children_update = false;
-            if ($mitem->new == 0 && $mitem->deleted == 0) {
-                unset($mitem->new);
-                unset($mitem->deleted);
-                if (isset($mitem->children)) {
-                    $children_update = $mitem->children;
-                    unset($mitem->children);
+                // Update
+                $children_update = false;
+                if ($mitem->new == 0 && $mitem->deleted == 0) {
+                    unset($mitem->new);
+                    unset($mitem->deleted);
+                    if (isset($mitem->children)) {
+                        $children_update = $mitem->children;
+                        unset($mitem->children);
+                    }
+                    $toUpdate = $menuItemTable->get($mitem->id);
+                    if ($toUpdate) {
+                        if ($parent_id) {
+                            $mitem->parent_id = $parent_id;
+                        } else {
+                            $mitem->parent_id = null;
+                        }
+                        $mitem->display_order = $position;
+                        $updated = $menuItemTable->patchEntity($toUpdate, (array)$mitem);
+                        $menuItemTable->save($updated);
+                    }
+                    if ($children_update) {
+                        $this->saveMenuItems($children_update, $menu_id, $mitem->id);
+                    }
+                    continue;
                 }
-                $toUpdate = $menuItemTable->get($mitem->id);
-                if ($toUpdate) {
-                    if ($parent_id) {
-                        $mitem->parent_id = $parent_id;
-                    } else {
-                        $mitem->parent_id = null;
+
+                // New
+                $children = false;
+                if ($mitem->new) {
+                    unset($mitem->new);
+                    unset($mitem->deleted);
+                    unset($mitem->id);
+                    if (isset($mitem->children)) {
+                        $children = $mitem->children;
+                        unset($mitem->children);
                     }
                     $mitem->display_order = $position;
-                    $updated = $menuItemTable->patchEntity($toUpdate, (array)$mitem);
-                    $menuItemTable->save($updated);
-                }
-                if ($children_update) {
-                    $this->saveMenuItems($children_update, $menu_id, $mitem->id);
-                }
-                continue;
-            }
-
-            // New
-            $children = false;
-            if ($mitem->new) {
-                unset($mitem->new);
-                unset($mitem->deleted);
-                unset($mitem->id);
-                if (isset($mitem->children)) {
-                    $children = $mitem->children;
-                    unset($mitem->children);
-                }
-                $mitem->display_order = $position;
-                $mitem->menu_id = $menu_id;
-                $new = new MenuEntity((array)$mitem);
-                $menuItemTable->save($new);
-                if ($children) {
-                    $this->saveMenuItems($children, $menu_id, $new->id);
+                    $mitem->menu_id = $menu_id;
+                    $new = new MenuEntity((array)$mitem);
+                    $menuItemTable->save($new);
+                    if ($children) {
+                        $this->saveMenuItems($children, $menu_id, $new->id);
+                    }
                 }
             }
         }

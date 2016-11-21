@@ -2,6 +2,9 @@
 namespace Apps\Menus\Helper;
 
 
+use Apps\Menus\Model\MenusTable;
+use Cake\ORM\TableRegistry;
+
 class Menu {
 
     static function make_admin_menu($mitems = null) {
@@ -35,5 +38,30 @@ class Menu {
         }
         $html .= "</select>";
         return $html;
+    }
+
+    static function display_main_menu() {
+        $config = TableRegistry::get('MainConfig');
+        $menu_id = $config->find()->first();
+        $menu_id = $menu_id->menu;
+        if (!empty($menu_id)) {
+            $model = TableRegistry::get('MenuItems');
+            $model_page = TableRegistry::get('Pages');
+            $mitems = $model->find()->where(['menu_id' => $menu_id], ['parent_id' => null])->order('display_order');
+            $html = "<ul class='main_menu'>";
+            foreach ($mitems as $mitem) {
+                $href = '#';
+                if ($mitem->type == 'pages') {
+                    $page = $model_page->get($mitem->arg);
+                    if (!empty($page)) {
+                        $href = $page->slug;
+                    }
+                }
+                $html .= "<li><a href='{$href}'>{$mitem->title}</a></li>";
+            }
+            $html .= "</ul>";
+            return $html;
+        }
+        return null;
     }
 }

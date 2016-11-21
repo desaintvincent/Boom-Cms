@@ -44,9 +44,9 @@ class Pages extends Controller
             define('URL_PAGE', $params[0]);
             array_shift($params);
         }
-
+        //enhancers
         $pattern = '/<enhancer .*">.*<\/enhancer>/';
-        $page->content = preg_replace_callback($pattern, function ($matches) use ($params) {
+        $page->content_gauche = preg_replace_callback($pattern, function ($matches) use ($params) {
             //parsing enhancer
             $params_enhancer = '{' . GetBetween("data-params=\"{", "}\"", $matches[0]) . '}';
             $params_enhancer = str_replace("'", "\"", $params_enhancer);
@@ -63,7 +63,12 @@ class Pages extends Controller
             $tampon = $boom->dispatch($appname, $params);
             $_SERVER['enhancer'] = false;
             return $tampon;
-        }, htmlspecialchars_decode($page->content));
-        return $this->view('pages', ['page' => $page], true);
+        }, htmlspecialchars_decode($page->content_gauche));
+
+        if (isset($_GET['ajax'])) {
+            return $this->view('pages', ['page' => $page], false);
+        } else {
+            return $this->view('pages', ['page' => $page], $page->layout);
+        }
     }
 }

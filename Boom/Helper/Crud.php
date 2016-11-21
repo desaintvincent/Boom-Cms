@@ -97,10 +97,10 @@ class Crud
     public static function input_select($key, $item) {
         $html = "<div class='{$item['type']}-field'>
                     <div class='sub-title'>{$item['label']}</div>
-                        <select name='{$key}' id='{$key}'>";
+                        <select class='form-control' name='{$key}' id='{$key}'>";
 
         foreach ($item['value'] as $kval => $val) {
-            if ($val == self::$item->$key) {
+            if ($kval == self::$item->$key) {
                 $html .= "<option value='{$kval}' selected>{$val}</option>";
             } else {
                 $html .= "<option value='{$kval}'>{$val}</option>";

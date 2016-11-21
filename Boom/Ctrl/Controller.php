@@ -60,12 +60,13 @@ class Controller
         require($path);
         $tampon = ob_get_contents();
         ob_end_clean();
-        if ($layout) {
+        if (!empty($layout)) {
             extract($this->layoutVars);
-            if (!is_string($layout)) {
-                $layout = 'Apps/' . $this->appname . '/Views/Layouts/' . $this->layout . '.php';
+            $layout_file = 'Apps/' . $this->appname . '/Views/Layouts/' . (is_string($layout) ? $layout : $this->layout) . '.php';
+            if (file_exists($layout_file)) {
+
+                include($layout_file);
             }
-            include($layout);
         } else {
             if (isset($_SERVER['enhancer']) && !empty($_SERVER['enhancer'])) {
                 return $tampon;

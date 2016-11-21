@@ -8,7 +8,7 @@ $(document).ready(function () {
         var select_val = selected_element.val();
         console.log(select_val);
         $.ajax({
-            url: '/app/Menu/Menus/view/' + select_val,
+            url: '/app/Menus/Menus/view/' + select_val,
 
         }).done(function( data ) {
             $('#add-mitem').html(data);
@@ -24,6 +24,7 @@ $(document).ready(function () {
 
 function clear_add_mitem() {
     $('#add-mitem').empty();
+    $('#menu-editor').empty();
     $('#addInputType').select2("val", "");
     $('#addInputType').select2('val', 'All');
 }
