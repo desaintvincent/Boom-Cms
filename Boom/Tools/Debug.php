@@ -113,6 +113,25 @@ function dd()
     exit;
 }
 
+function generateCallTrace()
+{
+    $e = new Exception();
+    $trace = explode("\n", $e->getTraceAsString());
+    // reverse array to make steps line up chronologically
+    $trace = array_reverse($trace);
+    array_shift($trace); // remove {main}
+    array_pop($trace); // remove call to this method
+    $length = count($trace);
+    $result = array();
+
+    for ($i = 0; $i < $length; $i++)
+    {
+        $result[] = '<div class="elem" style="margin-bottom: 0.5em;">' .($i + 1)  . ')' . substr($trace[$i], strpos($trace[$i], ' ')) . '</div>'; // replace '#someNum' with '$i)', set the right ordering
+    }
+
+    return "\t" . implode("\n\t", $result);
+}
+
 function error($string) {
     if (ENV != 'dev') {
         return;

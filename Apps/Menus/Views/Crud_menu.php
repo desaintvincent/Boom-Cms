@@ -21,7 +21,7 @@
                                 <div class="dd nestable" id="nestable">
                                     <?php if(isset($mitems)) : ?>
                                         <?php
-                                        \Apps\Menu\Helper\Menu::make_admin_menu($mitems);
+                                        \Apps\Menus\Helper\Menu::make_admin_menu($mitems);
                                         ?>
                                     <?php endif ?>
                                 </div>
@@ -31,7 +31,7 @@
                             <div id="menu-add form-inline">
                                 <div class="sub-title">
                                 <span class=''><?=__('Ajouter un nouveau item au menu')?>:</span>
-                                <?= Apps\Menu\Helper\Menu::make_select_drivers() ?>
+                                <?= Apps\Menus\Helper\Menu::make_select_drivers() ?>
                                 </div>
                                 <div class="form-item" id="add-mitem">
                                 </div>

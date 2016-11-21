@@ -1,4 +1,6 @@
 <?php
+$layout = \Boom\Helper\App::getConfig('Pages');
+$layout = $layout['layouts'];
 return [
     'title' => array(
         'label' => 'Titre',
@@ -14,16 +16,25 @@ return [
             'linked' => 'title',
         ),
     ),
-    'test' => [
-        'label' => 'test de checkox',
-        'type' => 'checkbox'
+    'layout' => [
+        'label' => 'Template',
+        'type' => 'select',
+        'value' => $layout,
     ],
-    'content' => array(
-        'label' => 'Contenu',
+    'content_gauche' => array(
+        'label' => 'Contenu de gauche',
         'type' => 'wysiwyg'
     ),
-    'image' => array(
-        'label' => 'Petite image qui fait plaiz',
+    'image_gauche' => array(
+        'label' => 'Image de gauche',
         'type' => 'image'
+    ),
+    'content_droit' => array(
+    'label' => 'Contenu de droite',
+    'type' => 'wysiwyg'
+    ),
+    'image_droit' => array(
+    'label' => 'Image de droite',
+    'type' => 'image'
     )
 ];

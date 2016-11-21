@@ -27,7 +27,7 @@ return [
 	],
 
 
-
+/*
     'appdesk' => [
         'products' => [
             'name' => __('Produits'),
@@ -73,5 +73,5 @@ return [
                 ]
             ]
         ]
-    ]
+    ]*/
 ];

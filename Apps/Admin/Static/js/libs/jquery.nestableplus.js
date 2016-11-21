@@ -69,17 +69,24 @@ var prepareEdit = function (e) {
     e.preventDefault();
     var targetId = $(this).data('owner-id');
     var target = $('[data-id="' + targetId + '"]');
-
     var type = target.data('type');
+    var url = '/app/Menus/Menus/view/' + type + '/edit';
+    if (target.data('new') != 1) {
+        url = '/app/Menus/Menus/view/' + type + '/edit/' + target.data('arg');
+    }
     $.ajax({
-        url: '/app/Menu/Menus/view/' + type + '/edit'
-
+        url: url
     }).done(function(data) {
         $('#menu-editor').html(data);
         $('#editInputTitle').val(target.data('title'));
-        $('#editInputArg').val(target.data('arg'));
+        /*$('#editInputArg').val(target.data('arg'));
+        if($('#editInputArg').is("select")) {
+            $("#editInputArg").append('<option value='+target.data('arg')+'>test</option>');
+            $('#editInputArg').val(target.data('arg'));
+        }*/
         $("#editButton").attr("data-owner-id", target.data('id'));
         enable_menu_ajax();
+
     });
 
 

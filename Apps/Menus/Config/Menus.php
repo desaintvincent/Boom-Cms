@@ -4,6 +4,7 @@ return [
     'default_ctrl' => 'menus',
     'icon' => 'fa-bars',
     'default_listing' => 'menus',
+    'default_crud' => 'Menus',
 
 
     'name' => __('Menu'),

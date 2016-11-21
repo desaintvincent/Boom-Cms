@@ -2,12 +2,12 @@
 return [
     'required' => true,
     'icon' => 'fa-cog',
-    'default_ctrl' => 'mainconfig',
-    'default_listing' => 'mainconfig',
+    'default_ctrl' => 'MainConfig',
+    'default_listing' => 'MainConfig',
     'name' => __('Configuration du site'),
 
     'appdesk' => [
-        'mainconfig' => [
+        'MainConfig' => [
             'name' => __('Configuration du site'),
             'type' => 'update',
             'icon' => 'fa-cog',

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Apps\Menu\Model\Entities;
+namespace Apps\Menus\Model\Entities;
 
 
 use Cake\ORM\Entity;

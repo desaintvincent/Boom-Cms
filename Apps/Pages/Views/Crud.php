@@ -5,6 +5,6 @@
         </div>
     </div>
     <div class="card-body">
-        <?= \Boom\Helper\Crud::make_form($crud, isset($item) ? $item : null) ?>
+        <?=  \Apps\Pages\Helper\Crud::make_form($crud, isset($item) ? $item : null) ?>
     </div>
 </div>

@@ -16,7 +16,6 @@ class App
         if (file_exists($config_path)) {
             $config = require $config_path;
         } else {
-            error($appname . '\'s config doesn\'t exist');
             $config = null;
         }
 		return $config;
@@ -195,25 +194,27 @@ class App
 
             foreach ($appList as $i => $app) {
                 $conf = App::getConfig($app);
-                foreach ($conf['appdesk'] as $appdesk) {
-                    $newapp = array(
-                        'name' => $appdesk['name'],
-                        'icon' => $appdesk['icon'],
-                        'type' => $appdesk['type'],
-                    );
+                if (isset($conf['appdesk'])) {
+                    foreach ($conf['appdesk'] as $appdesk) {
+                        $newapp = array(
+                            'name' => $appdesk['name'],
+                            'icon' => $appdesk['icon'],
+                            'type' => $appdesk['type'],
+                        );
 
-                    if (isset($appdesk['crud'])) {
-                        $newapp['crud'] = $appdesk['crud'];
-                    } else if (isset($conf['default_crud'])) {
-                        $newapp['crud'] = $conf['default_crud'];
-                    } else {
-                        $newapp['crud'] = $app;
-                    }
+                        if (isset($appdesk['crud'])) {
+                            $newapp['crud'] = $appdesk['crud'];
+                        } else if (isset($conf['default_crud'])) {
+                            $newapp['crud'] = $conf['default_crud'];
+                        } else {
+                            $newapp['crud'] = $app;
+                        }
 
-                    if (!isset($conf['required']) || (isset($conf['required']) && !$conf['required'])) {
-                        $apps['not_required'][] = $newapp;
-                    } else {
-                        $apps['required'][] = $newapp;
+                        if (!isset($conf['required']) || (isset($conf['required']) && !$conf['required'])) {
+                            $apps['not_required'][] = $newapp;
+                        } else {
+                            $apps['required'][] = $newapp;
+                        }
                     }
                 }
             }
