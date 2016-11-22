@@ -59,12 +59,12 @@ class Admin extends Controller
 
     function action_crud($params)
     {
-        $this->crudAndUpdate($params, "crud");
+        return $this->crudAndUpdate($params, "crud");
     }
 
     function action_update($params)
     {
-        $this->crudAndUpdate($params, "update");
+        return $this->crudAndUpdate($params, "update");
     }
 
     protected function crudAndUpdate($params, $action = "crud")

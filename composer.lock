@@ -9,7 +9,7 @@
     "packages": [
         {
             "name": "cakephp/collection",
-            "version": "3.3.8",
+            "version": "3.3.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/collection.git",
@@ -45,7 +45,7 @@
         },
         {
             "name": "cakephp/core",
-            "version": "3.3.8",
+            "version": "3.3.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/core.git",
@@ -84,16 +84,16 @@
         },
         {
             "name": "cakephp/database",
-            "version": "3.3.8",
+            "version": "3.3.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/database.git",
-                "reference": "4834dde9bd17409c663632dd3247c898290a8e70"
+                "reference": "9dedfca0e3e95f8bef72ec14b9aefe5978dd7a2c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/database/zipball/4834dde9bd17409c663632dd3247c898290a8e70",
-                "reference": "4834dde9bd17409c663632dd3247c898290a8e70",
+                "url": "https://api.github.com/repos/cakephp/database/zipball/9dedfca0e3e95f8bef72ec14b9aefe5978dd7a2c",
+                "reference": "9dedfca0e3e95f8bef72ec14b9aefe5978dd7a2c",
                 "shasum": ""
             },
             "require": {
@@ -121,11 +121,11 @@
                 }
             ],
             "description": "Flexible and powerful Database abstraction library with a familiar PDO-like API",
-            "time": "2016-11-03 02:29:15"
+            "time": "2016-11-14 12:41:10"
         },
         {
             "name": "cakephp/datasource",
-            "version": "3.3.8",
+            "version": "3.3.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/datasource.git",
@@ -165,7 +165,7 @@
         },
         {
             "name": "cakephp/event",
-            "version": "3.3.8",
+            "version": "3.3.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/event.git",
@@ -198,16 +198,16 @@
         },
         {
             "name": "cakephp/orm",
-            "version": "3.3.8",
+            "version": "3.3.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/orm.git",
-                "reference": "bba423c17f121bc3fd1dd536b0d43ef4bae630fc"
+                "reference": "a06578a6a6fa52f9892ab841587f877afb26cfce"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/orm/zipball/bba423c17f121bc3fd1dd536b0d43ef4bae630fc",
-                "reference": "bba423c17f121bc3fd1dd536b0d43ef4bae630fc",
+                "url": "https://api.github.com/repos/cakephp/orm/zipball/a06578a6a6fa52f9892ab841587f877afb26cfce",
+                "reference": "a06578a6a6fa52f9892ab841587f877afb26cfce",
                 "shasum": ""
             },
             "require": {
@@ -239,20 +239,20 @@
                 }
             ],
             "description": "CakePHP ORM - Provides a flexible and powerful ORM implementing a data-mapper pattern.",
-            "time": "2016-11-05 01:48:02"
+            "time": "2016-11-09 17:13:14"
         },
         {
             "name": "cakephp/utility",
-            "version": "3.3.8",
+            "version": "3.3.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/utility.git",
-                "reference": "2a9a22374680fe4a614d38aed73f58c258c4d459"
+                "reference": "97c2b65f3c34ebe082aa0ec2ed9810048ee3c7b6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/utility/zipball/2a9a22374680fe4a614d38aed73f58c258c4d459",
-                "reference": "2a9a22374680fe4a614d38aed73f58c258c4d459",
+                "url": "https://api.github.com/repos/cakephp/utility/zipball/97c2b65f3c34ebe082aa0ec2ed9810048ee3c7b6",
+                "reference": "97c2b65f3c34ebe082aa0ec2ed9810048ee3c7b6",
                 "shasum": ""
             },
             "suggest": {
@@ -278,11 +278,11 @@
                 }
             ],
             "description": "CakePHP Utility classes such as Inflector, String, Hash, and Security",
-            "time": "2016-10-27 01:29:45"
+            "time": "2016-11-17 22:13:33"
         },
         {
             "name": "cakephp/validation",
-            "version": "3.3.8",
+            "version": "3.3.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/validation.git",
@@ -533,16 +533,16 @@
         },
         {
             "name": "slim/slim",
-            "version": "3.5.0",
+            "version": "3.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/slimphp/Slim.git",
-                "reference": "184352bc1913d7ba552ab4131d62f4730ddb0893"
+                "reference": "a685fe91a9435e1432e8eeb7cf516e2f5cee7f64"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/slimphp/Slim/zipball/184352bc1913d7ba552ab4131d62f4730ddb0893",
-                "reference": "184352bc1913d7ba552ab4131d62f4730ddb0893",
+                "url": "https://api.github.com/repos/slimphp/Slim/zipball/a685fe91a9435e1432e8eeb7cf516e2f5cee7f64",
+                "reference": "a685fe91a9435e1432e8eeb7cf516e2f5cee7f64",
                 "shasum": ""
             },
             "require": {
@@ -599,7 +599,7 @@
                 "micro",
                 "router"
             ],
-            "time": "2016-07-26 15:12:13"
+            "time": "2016-11-20 20:48:49"
         }
     ],
     "packages-dev": [],

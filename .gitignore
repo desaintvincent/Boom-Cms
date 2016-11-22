@@ -53,4 +53,4 @@ crashlytics-build.properties
 fabric.properties
 .idea
 ## image folder
-Static/img/cms/*
+## Static/img/cms/*

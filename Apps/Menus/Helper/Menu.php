@@ -47,7 +47,8 @@ class Menu {
         if (!empty($menu_id)) {
             $model = TableRegistry::get('MenuItems');
             $model_page = TableRegistry::get('Pages');
-            $mitems = $model->find()->where(['menu_id' => $menu_id], ['parent_id' => null])->order('display_order');
+
+            $mitems = $model->find()->where(['menu_id' => $menu_id], ['parent_id' => null])->order(['display_order' => 'ASC']);
             $html = "<ul class='main_menu'>";
             foreach ($mitems as $mitem) {
                 $href = '#';

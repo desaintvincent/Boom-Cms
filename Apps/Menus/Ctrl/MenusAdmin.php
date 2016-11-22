@@ -75,7 +75,7 @@ class MenusAdmin extends ControllerAdmin
                     }
                     $entity = $model->newEntity($this->request->getParsedBody());
                     $model->save($entity);
-                    $this->redirect("admin/update/$appname/" . ucfirst($crudName) . "/{$entity->id}");
+                    return $this->redirect("admin/update/$appname/" . ucfirst($crudName) . "/{$entity->id}");
                 }
                 return $this->view('crud', ['crud' => $crud, 'config' => $config_app], true);
             } else {

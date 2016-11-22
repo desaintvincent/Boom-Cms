@@ -1,9 +1,9 @@
 <?php
 return [
     'required' => true,
-    'default_ctrl' => 'menus',
+    'default_ctrl' => 'Menus',
     'icon' => 'fa-bars',
-    'default_listing' => 'menus',
+    'default_listing' => 'Menus',
     'default_crud' => 'Menus',
 
 
@@ -11,7 +11,7 @@ return [
     'title' => 'title',
 
     'appdesk' => [
-        'menus' => [
+        'Menus' => [
             'name' => __('Menus'),
             'icon' => 'fa-bars',
             'type' => 'listing',
@@ -21,8 +21,8 @@ return [
             ],
             'add_item' => [
                 [
-                    'appname' => 'menu',
-                    'crud' => 'menus',
+                    'appname' => 'Menus',
+                    'crud' => 'Menus',
                     'name' => __('Ajouter un menu')
                 ]
             ]

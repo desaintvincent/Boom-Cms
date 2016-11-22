@@ -12,7 +12,6 @@ class Crud
         if ($item) {
             self::$item = $item;
         }
-
         $html = '<form class="form" enctype="multipart/form-data" action="#" method="post">';
         foreach ($conf as $key => $item) {
             if (method_exists(self::class, 'input_'.$item['type'])) {
@@ -100,7 +99,7 @@ class Crud
                         <select class='form-control' name='{$key}' id='{$key}'>";
 
         foreach ($item['value'] as $kval => $val) {
-            if ($kval == self::$item->$key) {
+            if (isset(self::$item->{$key}) && $kval == self::$item->{$key}) {
                 $html .= "<option value='{$kval}' selected>{$val}</option>";
             } else {
                 $html .= "<option value='{$kval}'>{$val}</option>";

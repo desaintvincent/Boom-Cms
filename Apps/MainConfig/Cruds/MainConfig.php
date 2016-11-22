@@ -1,9 +1,9 @@
 <?php
-$model = \Cake\ORM\TableRegistry::get('Menus');
-$items = $model->find();
+$model_menu = \Cake\ORM\TableRegistry::get('Menus');
+$items_menus = $model_menu->find();
 $menus = [];
-foreach ($items as $item) {
-    $menus[$item->id] = $item->title;
+foreach ($items_menus as $item_menu) {
+    $menus[$item_menu->id] = $item_menu->title;
 }
 return [
     'title' => array(
@@ -23,7 +23,7 @@ return [
         'value' => $menus
     ],
     'image_header' => array(
-    'label' => 'Image du header',
-    'type' => 'image'
+        'label' => 'Image du header',
+        'type' => 'image'
     )
 ];
