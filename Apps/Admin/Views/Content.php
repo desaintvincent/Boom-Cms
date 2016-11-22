@@ -16,7 +16,11 @@
 
  */
 ?>
-<div id="embed-api-auth-container"></div>
+<div id="embed-api-auth-container" style="    border-bottom: 1px solid #FC5050;
+    margin-bottom: 1em;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 1.5em;
+    padding: 0.5em 25px 0.5em 0;"></div>
 <div id="chart-container"></div>
 <div id="view-selector-container"></div>
 <script>
@@ -28,7 +32,7 @@
     }(window,document,'script'));
 </script>
 <script>
-
+    var CLIENT_ID = '65560463981-piudj4ee0q78c8s94j2g5g3bgahj9a6h.apps.googleusercontent.com';
     gapi.analytics.ready(function() {
 
         /**
@@ -38,7 +42,7 @@
          */
         gapi.analytics.auth.authorize({
             container: 'embed-api-auth-container',
-            clientid: 'UA-72853064-3'
+            clientid: CLIENT_ID
         });
 
 
@@ -75,7 +79,13 @@
             }
         });
 
+        gapi.analytics.auth.on('success', function(response) {
+            //hide the auth-button
+            document.querySelector("#view-selector-container").style.display='none';
 
+            timeline.execute();
+
+        });
         /**
          * Render the dataChart on the page whenever a new view is selected.
          */
