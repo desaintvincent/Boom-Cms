@@ -52,7 +52,7 @@ class Menu {
             $html = "<ul class='main_menu'>";
             foreach ($mitems as $mitem) {
                 $href = '#';
-                if ($mitem->type == 'pages') {
+                if ($mitem->type == 'pages' && !empty($mitem->arg)) {
                     $page = $model_page->get($mitem->arg);
                     if (!empty($page)) {
                         $href = $page->slug;
