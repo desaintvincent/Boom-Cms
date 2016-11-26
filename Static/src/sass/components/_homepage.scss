@@ -1,0 +1,34 @@
+.homepage {
+  .main_container {
+    height: calc(100vh - #{$header_height} - #{$height_h1} - #{$margin_h1});
+    display: table;
+    position: relative;
+
+    .ctr_container {
+      display: table-cell;
+      text-align: center;
+      vertical-align: middle;
+
+      .img_container {
+        position: relative;
+
+        img {
+          object-fit: cover;
+          width: 100%;
+          -webkit-box-shadow: 0 0 15px 7px rgba(143, 143, 143, 0.5);
+          -moz-box-shadow: 0 0 15px 7px rgba(143, 143, 143, 0.5);
+          box-shadow: 0 0 15px 7px rgba(20, 20, 20, 0.5);
+        }
+
+        .text {
+          position: absolute;
+          top: 0;
+          right: 0;
+          left: 0;
+          color: white;
+        }
+      }
+
+    }
+  }
+}

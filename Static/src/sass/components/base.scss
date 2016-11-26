@@ -2,6 +2,8 @@ body {
   width: 100vw;
   height: 100vh;
   display: block;
+  font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+  font-size: 14px;
   overflow: hidden;
 
   .content {
@@ -11,7 +13,7 @@ body {
     bottom: 0;
     top: $header_height;
     display: block;
-    background: lightblue;
+    background: white;
     //transition: left,right 0.5s;
 
     &.content-new {
@@ -22,6 +24,27 @@ body {
     &.content-old {
       //left: -100vw;
       //right: 100vw;
+    }
+
+    .hidentitle {
+      display: none;
+    }
+
+    h1 {
+      display: inline-block;
+      margin: 0;
+      padding-left: 25px;
+      height: $height_h1;
+      line-height: $height_h1;
+      background: #0156A1;
+      text-transform: uppercase;
+      color: white;
+      font-size: 1em;
+      width: 500px;
+      max-width: 100%;
+      margin-bottom: $margin_h1;
+      margin-left: $margin_h1;
+      font-weight: bold;
     }
   }
 }

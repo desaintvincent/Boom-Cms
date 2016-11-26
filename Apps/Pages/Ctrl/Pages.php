@@ -3,6 +3,7 @@ namespace Apps\Pages\Ctrl;
 
 use Boom\Ctrl\Controller;
 use Boom\Helper\Data;
+use Cake\ORM\TableRegistry;
 
 class Pages extends Controller
 {
@@ -13,6 +14,13 @@ class Pages extends Controller
             $_SESSION['previous_url'] = $_SESSION['current_url'];
         }
         $_SESSION['current_url'] = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+    }
+
+    function setLayoutVars() {
+        $config = TableRegistry::get('MainConfig');
+        $config = $config->find()->first();
+        $this->layoutVars['logo'] = $config->logo;
+        $this->layoutVars['img_header'] = $config->image_header;
     }
 
     function action_sethome($params)
@@ -65,10 +73,14 @@ class Pages extends Controller
             return $tampon;
         }, htmlspecialchars_decode($page->content_gauche));
 
+
+
+        $this->layoutVars['title'] = $page->title;
+
         if (isset($_GET['ajax'])) {
-            return $this->view('pages', ['page' => $page], false);
+            return $this->view($page->layout, ['page' => $page], false);
         } else {
-            return $this->view('pages', ['page' => $page], $page->layout);
+            return $this->view($page->layout, ['page' => $page], 'default');
         }
     }
 }

@@ -3,5 +3,64 @@
   left: 0;
   top: 0;
   right: 0;
-  background: grey;
+  height: $header_height;
+
+  //override des row et cols
+  .row, .columns {
+    margin: 0;
+    padding: 0;
+  }
+
+  .row {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .img_header {
+    height: $header_height;
+
+    img {
+      width: 100%;
+      height: calc(100% - #{$padding});
+      object-fit: cover;
+      -webkit-box-shadow: 0px 7px 15px 0px rgba(143,143,143,0.5);
+      -moz-box-shadow: 0px 7px 15px 0px rgba(143,143,143,0.5);
+      box-shadow: 0px 7px 15px 0px rgba(20, 20, 20, 0.5);
+    }
+  }
+
+  .logo {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+
+    img {
+      max-height: calc(100% - 5px);
+      max-width: calc(100% - 5px);
+    }
+  }
+
+  .main_menu {
+    background: $blue_theme;
+    margin: 0;
+    padding: 0 $padding 0 calc(3 * #{$padding});
+    margin-left: -#{$padding};
+    height: $header_height;
+
+
+    li {
+      list-style-type: none;
+
+      a {
+        color: white;
+        font-weight: bold;
+      }
+
+      @for $i from 1 to 8 {
+        &:nth-child(#{$i}) {
+          margin-left: calc(#{$margin_menu} * (#{$i} - 1));
+        }
+      }
+    }
+  }
 }
