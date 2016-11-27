@@ -7,7 +7,7 @@ use Cake\Event\Event;
 use Cake\ORM\Table;
 
 // @todo : To move in site.config ??
-define('TARGET', 'Static/img/cms/');    // Repertoire cible
+define('TARGET', 'Static/img/cms');    // Repertoire cible
 define('MAX_SIZE', 100000);    // Taille max en octets du fichier
 define('WIDTH_MAX', 800);    // Largeur max de l'image en pixels
 define('HEIGHT_MAX', 800);    // Hauteur max de l'image en pixels
@@ -24,7 +24,7 @@ class Model extends Table
                     $delete = !!$data[$key . '_delete'];
                     if ($delete) {
                         foreach ($tabExt as $ext) {
-                            $filename = TARGET . $this->table() . '_' . $key . '.' . $ext;
+                            $filename = TARGET . $_SERVER['REQUEST_URI'] . '/' . $key . '.' . $ext;
                             if (file_exists($filename)) {
                                 unlink($filename);
                                 $data[$key] = '';
@@ -37,7 +37,11 @@ class Model extends Table
                 $extension = pathinfo($_FILES[$key]['name'], PATHINFO_EXTENSION);
 
                 if (in_array($extension, $tabExt)) {
-                    $nomImage = $this->table() . '_' . $key . '.' . $extension;
+                    $dir = TARGET . $_SERVER['REQUEST_URI'];
+                    if (!file_exists($dir)) {
+                        mkdir($dir, 0777, true);
+                    }
+                    $nomImage = $_SERVER['REQUEST_URI'] . '/' . $key . '.' . $extension;
                     if (!move_uploaded_file($_FILES[$key]['tmp_name'], TARGET . $nomImage)) {
                         error(__('Impossible d\'upload le fichier sur le serveur'));
                     }

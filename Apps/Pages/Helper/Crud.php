@@ -11,7 +11,7 @@ class Crud extends \Boom\Helper\Crud
             self::$item = $item;
         }
 
-        $html = '<form class="form" enctype="multipart/form-data" action="#" method="post">';
+        $html = '<form class="form" enctype="multipart/form-data" action="" method="post">';
         foreach ($conf as $key => $item) {
             if (method_exists(self::class, 'input_'.$item['type'])) {
                 $function_name = 'input_'.$item['type'];

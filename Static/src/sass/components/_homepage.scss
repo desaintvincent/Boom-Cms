@@ -1,4 +1,5 @@
 .homepage {
+
   .main_container {
     height: calc(100vh - #{$header_height} - #{$height_h1} - #{$margin_h1});
     display: table;
@@ -28,7 +29,6 @@
           color: white;
         }
       }
-
     }
   }
 }

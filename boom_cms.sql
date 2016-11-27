@@ -1,185 +1,303 @@
-# ************************************************************
-# Sequel Pro SQL dump
-# Version 4541
-#
-# http://www.sequelpro.com/
-# https://github.com/sequelpro/sequelpro
-#
-# Hôte: 127.0.0.1 (MySQL 5.5.42)
-# Base de données: boom_cms
-# Temps de génération: 2016-10-12 19:28:20 +0000
-# ************************************************************
+-- phpMyAdmin SQL Dump
+-- version 4.5.4.1deb2ubuntu2
+-- http://www.phpmyadmin.net
+--
+-- Client :  localhost
+-- Généré le :  Dim 27 Novembre 2016 à 20:08
+-- Version du serveur :  5.7.16-0ubuntu0.16.04.1
+-- Version de PHP :  7.0.8-0ubuntu0.16.04.3
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+/*!40101 SET NAMES utf8mb4 */;
 
+--
+-- Base de données :  `boom_cms`
+--
 
-# Affichage de la table categories
-# ------------------------------------------------------------
+-- --------------------------------------------------------
 
-DROP TABLE IF EXISTS `categories`;
+--
+-- Structure de la table `categories`
+--
 
 CREATE TABLE `categories` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL DEFAULT '',
   `slug` varchar(255) NOT NULL DEFAULT '',
-  `content` text NOT NULL,
-  PRIMARY KEY (`id`)
+  `content` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-LOCK TABLES `categories` WRITE;
-/*!40000 ALTER TABLE `categories` DISABLE KEYS */;
+--
+-- Contenu de la table `categories`
+--
 
-INSERT INTO `categories` (`id`, `title`, `slug`, `content`)
-VALUES
-	(1,'cat1 updated','cat1','<p>je suis la cat1</p>');
+INSERT INTO `categories` (`id`, `title`, `slug`, `content`) VALUES
+(1, 'cat1 updated', 'cat1', '<p>je suis la cat1</p>');
 
-/*!40000 ALTER TABLE `categories` ENABLE KEYS */;
-UNLOCK TABLES;
+-- --------------------------------------------------------
 
+--
+-- Structure de la table `form_contact`
+--
 
-# Affichage de la table menu_items
-# ------------------------------------------------------------
+CREATE TABLE `form_contact` (
+  `id` int(11) NOT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `autre` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-DROP TABLE IF EXISTS `menu_items`;
+--
+-- Contenu de la table `form_contact`
+--
+
+INSERT INTO `form_contact` (`id`, `email`, `autre`) VALUES
+(1, 'destvincent@hotmail.fr', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `main_config`
+--
+
+CREATE TABLE `main_config` (
+  `id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `menu` int(11) NOT NULL DEFAULT '1',
+  `logo` varchar(255) DEFAULT NULL,
+  `image_header` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `main_config`
+--
+
+INSERT INTO `main_config` (`id`, `title`, `menu`, `logo`, `image_header`) VALUES
+(1, 'Kim tan', 1, '/Static/img/cms/admin/update/MainConfig/1/logo.png', '/Static/img/cms/admin/update/MainConfig/1/image_header.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `menus`
+--
+
+CREATE TABLE `menus` (
+  `id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `menus`
+--
+
+INSERT INTO `menus` (`id`, `title`) VALUES
+(1, 'menu principale');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `menu_items`
+--
 
 CREATE TABLE `menu_items` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `parent_id` int(11) DEFAULT NULL,
   `display_order` int(11) NOT NULL,
   `menu_id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL DEFAULT '',
   `arg` varchar(255) DEFAULT NULL,
-  `type` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
+  `type` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='`id`, `name`, `parent_id`, `display_order`';
 
-LOCK TABLES `menu_items` WRITE;
-/*!40000 ALTER TABLE `menu_items` DISABLE KEYS */;
+--
+-- Contenu de la table `menu_items`
+--
 
-INSERT INTO `menu_items` (`id`, `parent_id`, `display_order`, `menu_id`, `title`, `arg`, `type`)
-VALUES
-	(2,NULL,1,1,'Level 1',NULL,1),
-	(3,2,2,1,'Level 2',NULL,0),
-	(9,NULL,1,1,'qzd','3',0),
-	(10,NULL,2,1,'qzd','3',0);
+INSERT INTO `menu_items` (`id`, `parent_id`, `display_order`, `menu_id`, `title`, `arg`, `type`) VALUES
+(21, NULL, 0, 1, 'Accueil', '5', 'pages'),
+(22, NULL, 1, 1, 'Maison traditionnelle & contemporaine', '6', 'pages'),
+(23, NULL, 2, 1, 'Maison bois', '7', 'pages'),
+(24, NULL, 4, 1, 'Nos services', '8', 'pages'),
+(25, NULL, 5, 1, 'Contact', '9', 'pages'),
+(26, NULL, 3, 1, 'Rénovation', '10', 'pages');
 
-/*!40000 ALTER TABLE `menu_items` ENABLE KEYS */;
-UNLOCK TABLES;
+-- --------------------------------------------------------
 
-
-# Affichage de la table menus
-# ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `menus`;
-
-CREATE TABLE `menus` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-LOCK TABLES `menus` WRITE;
-/*!40000 ALTER TABLE `menus` DISABLE KEYS */;
-
-INSERT INTO `menus` (`id`, `title`)
-VALUES
-	(1,'menu principaleuh');
-
-/*!40000 ALTER TABLE `menus` ENABLE KEYS */;
-UNLOCK TABLES;
-
-
-# Affichage de la table pages
-# ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `pages`;
+--
+-- Structure de la table `pages`
+--
 
 CREATE TABLE `pages` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
   `slug` varchar(255) NOT NULL,
-  `content` text NOT NULL,
-  PRIMARY KEY (`id`)
+  `content_gauche` text,
+  `image_gauche` varchar(255) DEFAULT NULL,
+  `layout` varchar(255) NOT NULL DEFAULT 'default',
+  `content_droit` text,
+  `image_droit` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-LOCK TABLES `pages` WRITE;
-/*!40000 ALTER TABLE `pages` DISABLE KEYS */;
+--
+-- Contenu de la table `pages`
+--
 
-INSERT INTO `pages` (`id`, `title`, `slug`, `content`)
-VALUES
-	(1,'page1','page1','<p>debut enhancer 1</p>\r\n<p>&nbsp;</p>\r\n<p>&nbsp;</p>\r\n<p>fin enhancer 1</p>\r\n<p>&nbsp;</p>\r\n<p>debut enhancer 2</p>\r\n<p>&nbsp;</p>\r\n<p>fin enhancer 2</p>\r\n<p>&nbsp;</p>'),
-	(2,'page2','page2','&lt;p&gt;&lt;enhancer class=&quot;noneditable list_products_category&quot; data-params=&quot;{&amp;quot;appname&amp;quot;:&amp;quot;catalogue&amp;quot;,&amp;quot;name&amp;quot;:&amp;quot;Liste les produits d&#039;une cat\\u00e9gorie&amp;quot;,&amp;quot;controller&amp;quot;:&amp;quot;categories&amp;quot;,&amp;quot;action&amp;quot;:&amp;quot;main&amp;quot;}&quot;&gt;Liste les produits d&#039;une cat&amp;eacute;gorie&lt;/enhancer&gt;&lt;/p&gt;'),
-	(3,'test','','<p>test</p>');
+INSERT INTO `pages` (`id`, `title`, `slug`, `content_gauche`, `image_gauche`, `layout`, `content_droit`, `image_droit`) VALUES
+(5, 'Accueil', 'accueil', '<p>TRUC CHOSE</p>', '/Static/img/cms/admin/update/Pages/Pages/5/image_gauche.jpg', 'homepage', '<p>bloblo</p>', '/Static/img/cms/admin/update/Pages/Pages/5/image_droit.jpg'),
+(6, 'Maison traditionnelle & contemporaine', 'maison-traditionnelle-contemporaine', '<p>Nous vous accompagnons et r&eacute;alision votre projet de construction de maison traditionnelle et/ou contemporaine.</p>\r\n<p>&nbsp;</p>\r\n<p>Nous accordons une attention particuli&egrave;re &agrave; l\'int&eacute;gration de votre projet aux contraintes de site (exposition, pente, optimisation du terrain...)</p>', '/Static/img/cms/admin/update/Pages/Pages/6/image_gauche.jpg', 'default', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis gravida libero sem, nec dictum lorem cursus quis. Aliquam augue elit, auctor a felis quis, commodo aliquam orci. In mollis diam libero, at placerat eros bibendum ut. Interdum et malesuada fames ac ante ipsum primis in faucibus. Duis sed egestas lorem. Curabitur facilisis justo sit amet nulla euismod, tempus gravida magna consequat. Vestibulum mattis lectus a mauris pulvinar, aliquet porttitor dui condimentum. Donec pretium ipsum massa, in facilisis lectus lobortis vitae. Fusce nec eros tincidunt, egestas est sit amet, tincidunt dui. Aenean sed ex lobortis, sollicitudin est ac, feugiat risus.</p>', '/Static/img/cms/admin/update/Pages/Pages/6/image_droit.jpg'),
+(7, 'Maison bois', 'maison-bois', '<p>Tan Ma&icirc;trise d\'oeuvre vous propose de r&eacute;aliser votre projet de maison ossature bois.</p>\r\n<p>Pour cela, nous travaillons en partenariat avec Olivier Juredieu, architecte DPLG, qui est expert en la mati&egrave;re et &agrave; la recherche de produits et solutions innovantes afin de vous proposer une maison globalement efficiente.</p>', '/Static/img/cms/admin/update/Pages/Pages/7/image_gauche.jpg', 'default', '', '/Static/img/cms/admin/update/Pages/Pages/7/image_droit.jpg'),
+(8, 'Nos services', 'nos-services', '<p>Nous vous accompagnons aux travers de plusieurs missions :</p>\r\n<p>&nbsp;</p>\r\n<ul>\r\n<li>Mission globale (conception et r&eacute;alisation)</li>\r\n<li>Etude avant projet</li>\r\n<li>Permis de construire</li>\r\n<li>Consultation des entreprises</li>\r\n<li>Ex&eacute;cution des travaux</li>\r\n<li>Mission d\'ex&eacute;cution</li>\r\n<li>Consultation des entreprises</li>\r\n<li>Consultation des entreprises</li>\r\n</ul>', NULL, 'default', '', '/Static/img/cms/admin/update/Pages/Pages/8/image_droit.jpg'),
+(9, 'Contact', 'contact', '<p><enhancer class="noneditable form_contact" data-params="{\'appname\':\'MainConfig\',\'name\':\'Formulaire de contact\',\'controller\':\'MainConfig\',\'action\':\'main\'}">Formulaire de contact</enhancer></p>', NULL, 'default', '', ''),
+(10, 'Rénovation', 'renovation', '<p>Vous souhaitez r&eacute;nover une maison, un appartement ou encore un vieux corps de ferme, TAN Ma&icirc;trise dOeuvre vous conseille et vous accompagne dans la r&eacute;alisatio de votre projet.</p>\r\n<p>&nbsp;</p>\r\n<p>Ainsi notre objectif est de vous permettre de valoriser votre bien tout en respectant votre enveloppe budg&eacute;taire.</p>', '/Static/img/cms/admin/update/Pages/Pages/10/image_gauche.jpg', 'default', '', '/Static/img/cms/admin/update/Pages/Pages/10/image_droit.jpg');
 
-/*!40000 ALTER TABLE `pages` ENABLE KEYS */;
-UNLOCK TABLES;
+-- --------------------------------------------------------
 
-
-# Affichage de la table products
-# ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `products`;
+--
+-- Structure de la table `products`
+--
 
 CREATE TABLE `products` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL DEFAULT '',
   `slug` varchar(255) NOT NULL DEFAULT '',
   `content` text,
   `category_id` int(1) DEFAULT NULL,
-  `reference` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `reference` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-LOCK TABLES `products` WRITE;
-/*!40000 ALTER TABLE `products` DISABLE KEYS */;
+--
+-- Contenu de la table `products`
+--
 
-INSERT INTO `products` (`id`, `title`, `slug`, `content`, `category_id`, `reference`)
-VALUES
-	(1,'produit1 updated','produit1','<p>sqdsd</p>',1,NULL),
-	(2,'test','','&lt;p&gt;test&lt;/p&gt;',0,NULL),
-	(3,'Nouveau produit','','<p>blabablabla</p>',NULL,NULL);
+INSERT INTO `products` (`id`, `title`, `slug`, `content`, `category_id`, `reference`) VALUES
+(1, 'produit1 updated', 'produit1', '<p>sqdsd</p>', 1, NULL),
+(2, 'test', '', '&lt;p&gt;test&lt;/p&gt;', 0, NULL),
+(3, 'Nouveau produit', '', '<p>blabablabla</p>', NULL, NULL);
 
-/*!40000 ALTER TABLE `products` ENABLE KEYS */;
-UNLOCK TABLES;
+-- --------------------------------------------------------
 
-
-# Affichage de la table users
-# ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `users`;
+--
+-- Structure de la table `users`
+--
 
 CREATE TABLE `users` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(11) UNSIGNED NOT NULL,
   `firstname` varchar(255) DEFAULT NULL,
   `lastname` varchar(255) DEFAULT NULL,
   `login` varchar(255) NOT NULL DEFAULT '',
   `password` varchar(255) NOT NULL DEFAULT '',
-  `token` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `token` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-LOCK TABLES `users` WRITE;
-/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+--
+-- Contenu de la table `users`
+--
 
-INSERT INTO `users` (`id`, `firstname`, `lastname`, `login`, `password`, `token`)
-VALUES
-	(1,'admin','admin','admin','90b9aa7e25f80cf4f64e990b78a9fc5ebd6cecad','5c707f3d4d096437beaa616c3db9840402e02a2a');
+INSERT INTO `users` (`id`, `firstname`, `lastname`, `login`, `password`, `token`) VALUES
+(1, 'admin', 'admin', 'admin', '90b9aa7e25f80cf4f64e990b78a9fc5ebd6cecad', '8699b2b7922f7d878d353b6252b5571f15e417dd'),
+(2, 'Kim', 'Tan', 'kimtan', 'a346bc80408d9b2a5063fd1bddb20e2d5586ec30', NULL);
 
-/*!40000 ALTER TABLE `users` ENABLE KEYS */;
-UNLOCK TABLES;
+--
+-- Index pour les tables exportées
+--
 
+--
+-- Index pour la table `categories`
+--
+ALTER TABLE `categories`
+  ADD PRIMARY KEY (`id`);
 
+--
+-- Index pour la table `form_contact`
+--
+ALTER TABLE `form_contact`
+  ADD PRIMARY KEY (`id`);
 
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+--
+-- Index pour la table `main_config`
+--
+ALTER TABLE `main_config`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `menus`
+--
+ALTER TABLE `menus`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `menu_items`
+--
+ALTER TABLE `menu_items`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `pages`
+--
+ALTER TABLE `pages`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `products`
+--
+ALTER TABLE `products`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT pour les tables exportées
+--
+
+--
+-- AUTO_INCREMENT pour la table `categories`
+--
+ALTER TABLE `categories`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT pour la table `form_contact`
+--
+ALTER TABLE `form_contact`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT pour la table `main_config`
+--
+ALTER TABLE `main_config`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT pour la table `menus`
+--
+ALTER TABLE `menus`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT pour la table `menu_items`
+--
+ALTER TABLE `menu_items`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+--
+-- AUTO_INCREMENT pour la table `pages`
+--
+ALTER TABLE `pages`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+--
+-- AUTO_INCREMENT pour la table `products`
+--
+ALTER TABLE `products`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT pour la table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
