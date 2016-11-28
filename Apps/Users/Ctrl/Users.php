@@ -13,32 +13,28 @@ class Users extends Controller
 
     public function action_adminConnect()
     {
-        if ($this->_connect()) {
-            return $this->redirect("admin");
-        }
+        return $this->_connect('admin');
     }
 
-    private function _connect()
+    private function _connect($redirect = 'accueil')
     {
         $user = $this->Users->newEntity();
         if ($this->request->isPost()) {
             $user = $this->Users->newEntity($this->request->getParsedBody());
             $user->password = Security::crypt($user->password);
             if ($this->Users->authentify($user)) {
-                return true;
+                return $this->redirect($redirect);
             } else {
-                return false;
+                return $this->view('Connect', ['error' => __('Utilisateur ou mot de passe incorecte')]);
             }
         }
 
-        $this->view('Connect', compact('user'));
+        return $this->view('Connect', compact('user'));
     }
 
     public function action_userConnect()
     {
-        if ($this->_connect()) {
-            return $this->redirect('accueil');
-        }
+        return $this->_connect('accueil');
     }
 
     public function action_logout()

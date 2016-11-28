@@ -1,4 +1,4 @@
-<footer class="footer <?!\Boom\Helper\Auth::connected() ? 'full' : '' ?>">
+<footer class="footer <?=!\Boom\Helper\Auth::connected() ? 'full' : '' ?>">
     <div class="wrapper">
         <span>BoomCms made by <a href="http://www.swith.fr/" target="_blank">Jeremy SMITH</a> & <a href="http://www.desaintvincent.com/" target="_blank">Thomas ROBERT de SAINT VINCENT</a>. © 2016 Copyright.</span>
     </div>

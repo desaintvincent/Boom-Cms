@@ -1,9 +1,19 @@
 .content.full.signin {
   left: 0;
+
+
 }
 
 .form-signin {
   max-width: 330px;
   padding: 15px;
   margin: 0 auto;
+
+
+  .error {
+    text-align: center;
+    margin: 2em;
+    font-size: 1.2em;
+    color: $red;
+  }
 }
