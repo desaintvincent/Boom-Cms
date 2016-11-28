@@ -17,12 +17,4 @@ return [
             ],
         ]
     ],
-    'enhancers' => [
-        'form_contact' => [
-            'appname' => 'MainConfig',
-            'name' => 'Formulaire de contact' ,
-            'controller' => 'MainConfig',
-            'action' => 'main'
-        ]
-    ],
 ];
