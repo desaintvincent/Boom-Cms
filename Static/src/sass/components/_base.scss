@@ -1,20 +1,28 @@
 body {
-  width: 100vw;
-  height: 100vh;
   display: block;
   font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
   font-size: 14px;
-  overflow: hidden;
+
+  @media screen and (min-width: $small) {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+  }
 
   .content {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    top: $header_height;
     display: block;
     background: white;
+    padding-top: $header_height;
     //transition: left,right 0.5s;
+
+    @media screen and (min-width: $small) {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      top: $header_height;
+      padding-top: 0;
+    }
 
     &.content-new {
       left: 100vw;
@@ -32,7 +40,7 @@ body {
 
     h1 {
       display: inline-block;
-      margin: 0;
+      margin: $margin_h1;
       padding-left: 25px;
       height: $height_h1;
       line-height: $height_h1;
@@ -41,9 +49,7 @@ body {
       color: white;
       font-size: 1em;
       width: 500px;
-      max-width: 100%;
-      margin-bottom: $margin_h1;
-      margin-left: $margin_h1;
+      max-width: calc(100% - 2 * #{$margin_h1});
       font-weight: bold;
     }
   }

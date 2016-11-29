@@ -4,6 +4,7 @@
   top: 0;
   right: 0;
   height: $header_height;
+  z-index: 200;
 
   //override des row et cols
   .row, .columns {
@@ -13,7 +14,7 @@
 
   .row {
     width: 100%;
-    max-width: 100%;
+    max-width: 100vw;
   }
 
   .img_header {
@@ -40,6 +41,43 @@
     }
   }
 
+  .mmenu {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+
+    .hamburger {
+      height: 50px;
+      width: 50px;
+      position: relative;
+      display: block;
+
+      span {
+        width: 30px;
+        height: 5px;
+        position: absolute;
+        background: red;
+        content: ' ';
+        transition: all 0.2s linear;
+
+        &:first-child {
+          left: 10px;
+          top: 14px;
+        }
+
+        &:nth-child(2) {
+          left: 10px;
+          top: calc(50px / 2 - 2px);
+        }
+
+        &:last-child {
+          left: 10px;
+          bottom: 13px;
+        }
+      }
+    }
+  }
+
   .main_menu {
     background: $blue_theme;
     margin: 0;
@@ -50,10 +88,12 @@
 
     li {
       list-style-type: none;
+      overflow: hidden;
 
       a {
         color: white;
         font-weight: bold;
+        white-space: nowrap;
       }
 
       @for $i from 1 to 8 {

@@ -4,7 +4,7 @@
     </div>
     <h1><?= $page->title ?></h1>
     <div class="row">
-        <div class="columns large-6">
+        <div class="columns large-6 medium-6">
             <div class="main_container">
                 <div class="ctr_container">
                 <div class="img_container">
@@ -16,7 +16,7 @@
             </div>
         </div>
         </div>
-        <div class="columns large-6">
+        <div class="columns large-6 medium-6">
             <div class="main_container">
                 <div class="ctr_container">
                     <div class="img_container">

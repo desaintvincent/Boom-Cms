@@ -1,6 +1,6 @@
 <footer class="footer <?=!\Boom\Helper\Auth::connected() ? 'full' : '' ?>">
     <div class="wrapper">
-        <span>BoomCms made by <a href="http://www.swith.fr/" target="_blank">Jeremy SMITH</a> & <a href="http://www.desaintvincent.com/" target="_blank">Thomas ROBERT de SAINT VINCENT</a>. © 2016 Copyright.</span>
+        <span>Made by <?php /*/ ?><a href="http://www.swith.fr/" target="_blank">Jeremy SMITH</a> & <?php /*/ ?><a href="http://www.desaintvincent.com/" target="_blank">Thomas ROBERT de SAINT VINCENT</a> pour le projet KIM TAN. © 2016 Copyright.</span>
     </div>
     <script src="<?=BASE_URL?>Apps/Admin/Static/dist/js/admin.js"></script>
     <script src="<?=BASE_URL?>Apps/Admin/Static/dist/js/tinymce/tinymce.min.js"></script>

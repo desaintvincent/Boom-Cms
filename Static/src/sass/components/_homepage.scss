@@ -4,6 +4,9 @@
     height: calc(100vh - #{$header_height} - #{$height_h1} - #{$margin_h1});
     display: table;
     position: relative;
+    @media screen and (max-width: $small) {
+      height: auto;
+    }
 
     .ctr_container {
       display: table-cell;
@@ -13,12 +16,20 @@
       .img_container {
         position: relative;
 
+        @media screen and (max-width: $small) {
+          margin-bottom: 2em;
+        }
+
         img {
           object-fit: cover;
           width: 100%;
           -webkit-box-shadow: 0 0 15px 7px rgba(143, 143, 143, 0.5);
           -moz-box-shadow: 0 0 15px 7px rgba(143, 143, 143, 0.5);
           box-shadow: 0 0 15px 7px rgba(20, 20, 20, 0.5);
+
+          @media screen and (max-width: $small) {
+            height: auto !important;
+          }
         }
 
         .text {

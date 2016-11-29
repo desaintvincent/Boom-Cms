@@ -6,17 +6,17 @@
     <h1><?= $page->title ?></h1>
     <div class="row">
         <?php if (!empty($page->image_gauche)) : ?>
-        <div class="columns large-3">
+        <div class="columns large-3 medium-3">
             <img src="<?=$page->image_gauche?>">
         </div>
-        <div class="columns large-6">
+        <div class="columns large-6 medium-6">
         <?php else : ?>
-        <div class="columns large-9">
+        <div class="columns large-9 medium-9">
         <?php endif; ?>
             <?= $page->content_gauche ?>
         </div>
 
-        <div class="columns large-3">
+        <div class="columns large-3 medium-3">
             <?php if (!empty($page->image_droit)) : ?>
             <img src="<?= $page->image_droit ?>">
             <?php else : ?>

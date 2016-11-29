@@ -1,13 +1,15 @@
-<?php
-echo \Apps\Pages\Ctrl\Pages::view_static('Commun/Head', $params);
-echo \Apps\Pages\Ctrl\Pages::view_static('Commun/Header', array_merge($params, [
-    'logo' => $logo,
-    'img_header' => $img_header,
-]));
-?>
-<h1>template de base front</h1>
-<div class="content">
-    <?= $tampon ?>
+<?= \Apps\Pages\Ctrl\Pages::view_static('Commun/Head', $params); ?>
+<nav id="menu">
+    <?= \Apps\Menus\Helper\Menu::display_main_menu(); ?>
+</nav>
+<div id="page">
+    <?= \Apps\Pages\Ctrl\Pages::view_static('Commun/Header', array_merge($params, [
+        'logo' => $logo,
+        'img_header' => $img_header,
+    ]));
+    ?>
+    <div class="content">
+        <?= $tampon ?>
+    </div>
 </div>
-<?php
-echo \Apps\Pages\Ctrl\Pages::view_static('Commun/Foot');
+<?= \Apps\Pages\Ctrl\Pages::view_static('Commun/Foot'); ?>

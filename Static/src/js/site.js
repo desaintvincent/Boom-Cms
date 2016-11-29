@@ -13,8 +13,13 @@ function equalize_home_picture() {
 $( document ).ready(function() {
     $(document).foundation();
     equalize_home_picture();
+    $("#menu").mmenu({
+        "offCanvas": {
+            "position": "right"
+        }
+    });
 
-    $('.main_menu a').on('click tap', function (e) {
+    $('.main_menu.ajax a').on('click tap', function (e) {
         e.preventDefault();
         var $this = $(this);
         var href = $this.attr('href');

@@ -9,7 +9,7 @@ if (__DIR__ == '/var/www/html/Boom-Cms') {
     define('BASE_URL', '/');
 }
 
-if ($_SERVER['HTTP_HOST'] == "boom.desaintvincent.com") {
+if ($_SERVER['HTTP_HOST'] == "boom.desaintvincent.com" || $_SERVER['HTTP_HOST'] == "kimtan.desaintvincent.com") {
 
     define('DB_HOST', '0.0.0.0');
     define('DB_USER', 'kisaaaco_boom');

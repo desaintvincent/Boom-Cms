@@ -40,7 +40,7 @@ class Menu {
         return $html;
     }
 
-    static function display_main_menu() {
+    static function display_main_menu($class = '') {
         $config = TableRegistry::get('MainConfig');
         $menu_id = $config->find()->first();
         $menu_id = $menu_id->menu;
@@ -49,7 +49,11 @@ class Menu {
             $model_page = TableRegistry::get('Pages');
 
             $mitems = $model->find()->where(['menu_id' => $menu_id], ['parent_id' => null])->order(['display_order' => 'ASC']);
-            $html = "<ul class='main_menu'>";
+            if (isset($class) && !empty($class)) {
+                $html = "<ul class='main_menu {$class}'>";
+            } else {
+                $html = "<ul class='main_menu'>";
+            }
             foreach ($mitems as $mitem) {
                 $href = '#';
                 if ($mitem->type == 'pages' && !empty($mitem->arg)) {
