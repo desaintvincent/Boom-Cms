@@ -25,7 +25,7 @@ class Users extends Controller
             if ($this->Users->authentify($user)) {
                 return $this->redirect($redirect);
             } else {
-                return $this->view('Connect', ['error' => __('Utilisateur ou mot de passe incorecte')]);
+                return $this->view('Connect', ['error' => __('Utilisateur ou mot de passe incorrect')]);
             }
         }
 
