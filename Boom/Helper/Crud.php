@@ -49,6 +49,16 @@ class Crud
         return $html;
     }
 
+    public static function input_number($key, $item)
+    {
+        $val = isset(self::$item->{$key}) ? self::$item->{$key} : '';
+        $html = "<div class='{$item['type']}-field'>
+                    <div class='sub-title'>{$item['label']}</div>
+                    <input type='number' step='any' class='form-control' value='" . $val . "' name='{$key}' id='{$key}' " . self::required($item) . ">
+                </div>";
+        return $html;
+    }
+
     public static function input_slug($key, $item)
     {
         $val = isset(self::$item->{$key}) ? self::$item->{$key} : '';

@@ -2,8 +2,10 @@
     <div class="hidentitle">
         <?= $page->title ?>
     </div>
-    <h1><?= $page->title ?></h1>
     <div class="row">
+        <div class="columns small-12">
+            <h1><?= $page->title ?></h1>
+        </div>
         <div class="columns large-6 medium-6">
             <div class="main_container">
                 <div class="ctr_container">

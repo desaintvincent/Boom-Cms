@@ -1,10 +1,12 @@
-<div class="homepage">
+<div class="classique">
 
     <div class="hidentitle">
         <?= $page->title ?>
     </div>
-    <h1><?= $page->title ?></h1>
     <div class="row">
+        <div class="columns small-12">
+            <h1><?= $page->title ?></h1>
+        </div>
         <?php if (!empty($page->image_gauche)) : ?>
         <div class="columns large-3 medium-3">
             <img src="<?=$page->image_gauche?>">

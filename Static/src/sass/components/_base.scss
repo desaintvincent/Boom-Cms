@@ -3,6 +3,10 @@ body {
   font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
   font-size: 14px;
 
+  p {
+    font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+  }
+
   @media screen and (min-width: $small) {
     width: 100vw;
     height: 100vh;
@@ -16,7 +20,7 @@ body {
     //transition: left,right 0.5s;
 
     @media screen and (min-width: $small) {
-      position: absolute;
+      position: fixed;
       left: 0;
       right: 0;
       bottom: 0;
@@ -40,7 +44,7 @@ body {
 
     h1 {
       display: inline-block;
-      margin: $margin_h1;
+      margin: $margin_h1 0;
       padding-left: 25px;
       height: $height_h1;
       line-height: $height_h1;

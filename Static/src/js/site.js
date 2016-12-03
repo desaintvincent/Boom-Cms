@@ -23,15 +23,22 @@ $( document ).ready(function() {
         e.preventDefault();
         var $this = $(this);
         var href = $this.attr('href');
+        if (href ==window.location.href.substr(this.href.lastIndexOf('/') + 1)) {
+            return ;
+        }
+
+        $('.content').addClass('content-old');
         $.ajax({
             url: href + '?ajax'
         }).done(function( data ) {
             $content = $('<div>').html(data);
             $content.addClass('content content-new');
-            $('.content').addClass('content-old');
             $content.find('img').on('load', equalize_home_picture);
-            $('body').append($content);
-
+            $('#page').append($content);
+            if ( $( "#jsajax" ).length ) {
+                eval(document.getElementById("jsajax").innerHTML);
+                $('#jsajax').remove();
+            }
             $(document).foundation();
 
             $(".content-new").animate({

@@ -11,5 +11,7 @@
     <div class="content">
         <?= $tampon ?>
     </div>
+
+    <?= \Apps\Pages\Ctrl\Pages::view_static('Commun/Foot'); ?>
+
 </div>
-<?= \Apps\Pages\Ctrl\Pages::view_static('Commun/Foot'); ?>

@@ -238,7 +238,7 @@ class App
         foreach ($apps as $app) {
             $enhancers = self::getAllEnhancersConfig($app['name']);
             if (!empty($enhancers)) {
-                $result = array_merge($enhancers);
+                $result = array_merge($result, $enhancers);
             }
         }
         return $result;

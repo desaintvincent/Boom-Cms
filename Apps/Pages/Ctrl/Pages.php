@@ -73,6 +73,25 @@ class Pages extends Controller
             return $tampon;
         }, htmlspecialchars_decode($page->content_gauche));
 
+        $page->content_droit = preg_replace_callback($pattern, function ($matches) use ($params) {
+            //parsing enhancer
+            $params_enhancer = '{' . GetBetween("data-params=\"{", "}\"", $matches[0]) . '}';
+            $params_enhancer = str_replace("'", "\"", $params_enhancer);
+            $params_enhancer = str_replace("&appostroph;", "'", $params_enhancer);
+            $params_enhancer = json_decode($params_enhancer);
+            $appname = ucfirst($params_enhancer->appname);
+            $ctrl = ucfirst($params_enhancer->controller);
+            $action = $params_enhancer->action;
+            //creation des nouveaux params
+            array_unshift($params, $ctrl, $action);
+            $_SERVER['enhancer'] = true;
+            //on dispatch dans un tampon
+            $boom = new \Boom\Bootstrap($this->request, $this->response);
+            $tampon = $boom->dispatch($appname, $params);
+            $_SERVER['enhancer'] = false;
+            return $tampon;
+        }, htmlspecialchars_decode($page->content_droit));
+
 
 
         $this->layoutVars['title'] = $page->title;
