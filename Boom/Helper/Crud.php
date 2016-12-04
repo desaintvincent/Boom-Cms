@@ -43,7 +43,9 @@ class Crud
     {
         $val = isset(self::$item->{$key}) ? self::$item->{$key} : '';
         $html = "<div class='{$item['type']}-field'>
-                    <div class='sub-title'>{$item['label']}</div>
+                    <div class='sub-title'>{$item['label']}";
+        $html .= self::help($item);
+        $html .= "</div>
                     <input type='text' class='form-control' value='" . $val . "' name='{$key}' id='{$key}' " . self::required($item) . ">
                 </div>";
         return $html;
@@ -125,7 +127,9 @@ class Crud
         $html = "<div class='checkbox-custom'>
                     <div class='sub-title'>{$item['label']}</div>
                     <input type='checkbox' class='cbx hidden' name='{$key}' id='{$key}' " . (isset(self::$item) && self::$item->{$key} ? "checked " : " ") . self::required($item) . ">
-                    <label for='{$key}' class='lbl'></label>
+                    <label for='{$key}' class='lbl'>";
+        $html .= self::help($item);
+        $html .= "</label>
                 </div>";
         return $html;
     }
@@ -148,8 +152,9 @@ class Crud
         $html .= "<input name=\"{$key}\" type=\"file\" id=\"{$key}\" class=\"input-file\"/>";
         $html .= "<label for=\"{$key}\" class=\"btn btn-tertiary js-labelFile\">
                     <i class=\"icon fa fa-check\"></i>
-                    <span class=\"js-fileName\">{$text_pick}</span>
-                </label>";
+                    <span class=\"js-fileName\">{$text_pick}</span>";
+        $html .= self::help($item);
+        $html .= "</label>";
         $html .= "</div>";
         return $html;
     }
@@ -157,6 +162,20 @@ class Crud
     public static function required($item) {
         if (isset($item['options']['required'])) {
             return "required";
+        } else {
+            return '';
+        }
+    }
+
+    public static function help($item) {
+        if (isset($item['options']['help'])) {
+            $html = "
+                <div class='help'>
+                    <i class=\"fa fa-question\" aria-hidden=\"true\"></i>
+                    <div class='notice'>{$item['options']['help']}</div>
+                </div>
+            ";
+            return $html;
         } else {
             return '';
         }

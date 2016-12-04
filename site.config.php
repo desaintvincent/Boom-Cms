@@ -15,15 +15,14 @@ if ($_SERVER['HTTP_HOST'] == "boom.desaintvincent.com" || $_SERVER['HTTP_HOST'] 
     define('DB_USER', 'kisaaaco_boom');
     define('DB_PASS', 'supermdpde0uF');
     define('DB_NAME', 'kisaaaco_boom_cms');
+    define('ENV', 'prod');
 } else {
     define('DB_HOST', '0.0.0.0');
     define('DB_USER', 'boom_cms');
     define('DB_PASS', 'boom_cms');
     define('DB_NAME', 'boom_cms');
+    define('ENV', 'dev');
 }
-
-
-define('ENV', 'dev');//or prod
 
 \Cake\Datasource\ConnectionManager::config('default', [
     'className' => 'Cake\Database\Connection',

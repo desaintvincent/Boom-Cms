@@ -34,7 +34,9 @@ class Admin extends Controller
 
     function action_main($params = null)
     {
-        return $this->view('content', [], true);
+        $config = TableRegistry::get('MainConfig');
+        $config = $config->find()->first();
+        return $this->view('content', ['config' => $config], true);
     }
 
     function action_listing($params = null)

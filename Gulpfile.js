@@ -13,7 +13,7 @@ var css_site_dest = './Static/dist/css/';
 var sass_admin_files = 'Apps/Admin/Static/sass/admin.scss';
 var css_admin_dest = './Apps/Admin/Static/dist/css/';
 
-var js_site_files = ['Static/src/js/libs/jquery.min.js','Static/src/js/libs/*.js', 'Static/src/js/site.js', 'Apps/**/Static/src/js/*.js'];
+var js_site_files = ['Static/src/js/libs/jquery.min.js', 'Static/src/js/libs/foundation.min.js', 'Static/src/js/libs/*.js', 'Static/src/js/site.js', 'Apps/**/Static/src/js/*.js'];
 var js_site_dest = 'Static/dist/js';
 
 var js_admin_files = ['Static/src/js/libs/jquery.min.js','Static/src/js/libs/bootstrap.min.js', './Apps/Admin/Static/js/libs/*.js', './Apps/Admin/Static/js/components/*.js', './Apps/Admin/Static/js/admin.js'];

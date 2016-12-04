@@ -94,6 +94,21 @@
         color: white;
         font-weight: bold;
         white-space: nowrap;
+        position: relative;
+
+        &:not(.active):hover {
+          text-decoration: underline;
+        }
+
+        &.active:after {
+          content: " ";
+          position: absolute;
+          height: 1px;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: red;
+        }
       }
 
       @for $i from 1 to 8 {

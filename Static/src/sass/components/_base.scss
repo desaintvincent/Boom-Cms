@@ -13,6 +13,13 @@ body {
     overflow: hidden;
   }
 
+
+  @media screen and (min-width: $small) {
+    #menu {
+      display: none;
+    }
+  }
+
   .content {
     display: block;
     background: white;
@@ -43,18 +50,43 @@ body {
     }
 
     h1 {
-      display: inline-block;
       margin: $margin_h1 0;
-      padding-left: 25px;
-      height: $height_h1;
-      line-height: $height_h1;
       background: #0156A1;
       text-transform: uppercase;
+      padding: calc(#{$height_h1} / 2) 0 calc(#{$height_h1} / 2) calc(#{$height_h1} / 2);
       color: white;
       font-size: 1em;
-      width: 500px;
-      max-width: calc(100% - 2 * #{$margin_h1});
       font-weight: bold;
+
+      @media screen and (min-width: $small) {
+        width: 500px;
+        display: inline-block;
+        line-height: $height_h1;
+        max-width: calc(100% - 2 * #{$margin_h1});
+        height: $height_h1;
+        padding: 0;
+        padding-left: 25px;
+      }
+    }
+
+    .img_container {
+      position: relative;
+
+      img {
+        width: 100%;
+      }
+
+      a {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        padding: 5px 10px;
+        color: white;
+        background: rgba(0, 0, 0, 0.5);
+        border-top: 1px solid white;
+        border-left: 1px solid white;
+        border-top-left-radius: 10px;
+      }
     }
   }
 }

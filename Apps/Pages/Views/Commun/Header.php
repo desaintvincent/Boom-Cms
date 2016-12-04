@@ -8,7 +8,9 @@
                 <img src="<?=$img_header?>">
             </div>
             <div class="logo">
-                <img src="<?=$logo?>">
+                <a href="/">
+                    <img src="<?=$logo?>">
+                </a>
             </div>
             <div class="mmenu show-for-small-only">
                 <a href="#menu">

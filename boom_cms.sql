@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Dim 27 Novembre 2016 à 20:08
+-- Généré le :  Dim 04 Décembre 2016 à 18:28
 -- Version du serveur :  5.7.16-0ubuntu0.16.04.1
 -- Version de PHP :  7.0.8-0ubuntu0.16.04.3
 
@@ -83,6 +83,27 @@ INSERT INTO `main_config` (`id`, `title`, `menu`, `logo`, `image_header`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `map`
+--
+
+CREATE TABLE `map` (
+  `id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `longitude` double(11,6) NOT NULL,
+  `latitude` double(11,6) NOT NULL,
+  `text` text
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `map`
+--
+
+INSERT INTO `map` (`id`, `title`, `longitude`, `latitude`, `text`) VALUES
+(1, 'Kim tan', 45.766067, 4.843673, '<p>BANANALUL MOGOYO</p>');
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `menus`
 --
 
@@ -148,11 +169,11 @@ CREATE TABLE `pages` (
 --
 
 INSERT INTO `pages` (`id`, `title`, `slug`, `content_gauche`, `image_gauche`, `layout`, `content_droit`, `image_droit`) VALUES
-(5, 'Accueil', 'accueil', '<p>TRUC CHOSE</p>', '/Static/img/cms/admin/update/Pages/Pages/5/image_gauche.jpg', 'homepage', '<p>bloblo</p>', '/Static/img/cms/admin/update/Pages/Pages/5/image_droit.jpg'),
+(5, 'Accueil', 'accueil', '<p>TRUC CHOSE</p>', '/Static/img/cms/admin/update/Pages/Pages/5/image_gauche.jpg', 'homepage', '<p>autre content</p>', '/Static/img/cms/admin/update/Pages/Pages/5/image_droit.jpg'),
 (6, 'Maison traditionnelle & contemporaine', 'maison-traditionnelle-contemporaine', '<p>Nous vous accompagnons et r&eacute;alision votre projet de construction de maison traditionnelle et/ou contemporaine.</p>\r\n<p>&nbsp;</p>\r\n<p>Nous accordons une attention particuli&egrave;re &agrave; l\'int&eacute;gration de votre projet aux contraintes de site (exposition, pente, optimisation du terrain...)</p>', '/Static/img/cms/admin/update/Pages/Pages/6/image_gauche.jpg', 'default', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis gravida libero sem, nec dictum lorem cursus quis. Aliquam augue elit, auctor a felis quis, commodo aliquam orci. In mollis diam libero, at placerat eros bibendum ut. Interdum et malesuada fames ac ante ipsum primis in faucibus. Duis sed egestas lorem. Curabitur facilisis justo sit amet nulla euismod, tempus gravida magna consequat. Vestibulum mattis lectus a mauris pulvinar, aliquet porttitor dui condimentum. Donec pretium ipsum massa, in facilisis lectus lobortis vitae. Fusce nec eros tincidunt, egestas est sit amet, tincidunt dui. Aenean sed ex lobortis, sollicitudin est ac, feugiat risus.</p>', '/Static/img/cms/admin/update/Pages/Pages/6/image_droit.jpg'),
 (7, 'Maison bois', 'maison-bois', '<p>Tan Ma&icirc;trise d\'oeuvre vous propose de r&eacute;aliser votre projet de maison ossature bois.</p>\r\n<p>Pour cela, nous travaillons en partenariat avec Olivier Juredieu, architecte DPLG, qui est expert en la mati&egrave;re et &agrave; la recherche de produits et solutions innovantes afin de vous proposer une maison globalement efficiente.</p>', '/Static/img/cms/admin/update/Pages/Pages/7/image_gauche.jpg', 'default', '', '/Static/img/cms/admin/update/Pages/Pages/7/image_droit.jpg'),
 (8, 'Nos services', 'nos-services', '<p>Nous vous accompagnons aux travers de plusieurs missions :</p>\r\n<p>&nbsp;</p>\r\n<ul>\r\n<li>Mission globale (conception et r&eacute;alisation)</li>\r\n<li>Etude avant projet</li>\r\n<li>Permis de construire</li>\r\n<li>Consultation des entreprises</li>\r\n<li>Ex&eacute;cution des travaux</li>\r\n<li>Mission d\'ex&eacute;cution</li>\r\n<li>Consultation des entreprises</li>\r\n<li>Consultation des entreprises</li>\r\n</ul>', NULL, 'default', '', '/Static/img/cms/admin/update/Pages/Pages/8/image_droit.jpg'),
-(9, 'Contact', 'contact', '<p><enhancer class="noneditable form_contact" data-params="{\'appname\':\'MainConfig\',\'name\':\'Formulaire de contact\',\'controller\':\'MainConfig\',\'action\':\'main\'}">Formulaire de contact</enhancer></p>', NULL, 'default', '', ''),
+(9, 'Contact', 'contact', '<p><enhancer class="noneditable form_contact" data-params="{\'appname\':\'FormContact\',\'name\':\'Formulaire de contact\',\'controller\':\'FormContact\',\'action\':\'main\'}">Formulaire de contact</enhancer></p>', NULL, 'default', '<p><enhancer class="noneditable map" data-params="{\'appname\':\'Map\',\'name\':\'Google Map\',\'controller\':\'Map\',\'action\':\'main\'}">Google Map</enhancer></p>', ''),
 (10, 'Rénovation', 'renovation', '<p>Vous souhaitez r&eacute;nover une maison, un appartement ou encore un vieux corps de ferme, TAN Ma&icirc;trise dOeuvre vous conseille et vous accompagne dans la r&eacute;alisatio de votre projet.</p>\r\n<p>&nbsp;</p>\r\n<p>Ainsi notre objectif est de vous permettre de valoriser votre bien tout en respectant votre enveloppe budg&eacute;taire.</p>', '/Static/img/cms/admin/update/Pages/Pages/10/image_gauche.jpg', 'default', '', '/Static/img/cms/admin/update/Pages/Pages/10/image_droit.jpg');
 
 -- --------------------------------------------------------
@@ -199,7 +220,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `firstname`, `lastname`, `login`, `password`, `token`) VALUES
-(1, 'admin', 'admin', 'admin', '90b9aa7e25f80cf4f64e990b78a9fc5ebd6cecad', '8699b2b7922f7d878d353b6252b5571f15e417dd'),
+(1, 'admin', 'admin', 'admin', '90b9aa7e25f80cf4f64e990b78a9fc5ebd6cecad', '4eae373e342dc8d487e98aa95931969c10ee2d4c'),
 (2, 'Kim', 'Tan', 'kimtan', 'a346bc80408d9b2a5063fd1bddb20e2d5586ec30', NULL);
 
 --
@@ -222,6 +243,12 @@ ALTER TABLE `form_contact`
 -- Index pour la table `main_config`
 --
 ALTER TABLE `main_config`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `map`
+--
+ALTER TABLE `map`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -272,6 +299,11 @@ ALTER TABLE `form_contact`
 -- AUTO_INCREMENT pour la table `main_config`
 --
 ALTER TABLE `main_config`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT pour la table `map`
+--
+ALTER TABLE `map`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT pour la table `menus`

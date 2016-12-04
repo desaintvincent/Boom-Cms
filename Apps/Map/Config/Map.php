@@ -4,7 +4,7 @@ return [
     'icon' => 'fa-cog',
     'default_ctrl' => 'Map',
     'default_listing' => 'Map',
-    'name' => __('Formulaire de contact'),
+    'name' => __('Configuration de la carte'),
 
     'appdesk' => [
         'Map' => [

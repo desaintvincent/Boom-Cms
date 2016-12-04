@@ -16,6 +16,7 @@
 
  */
 ?>
+<?php if (isset($config->apikey) && !empty($config->apikey)) : ?>
 <div id="embed-api-auth-container" style="    border-bottom: 1px solid #FC5050;
     margin-bottom: 1em;
     font-family: 'Roboto Condensed', sans-serif;
@@ -32,7 +33,7 @@
     }(window,document,'script'));
 </script>
 <script>
-    var CLIENT_ID = '65560463981-piudj4ee0q78c8s94j2g5g3bgahj9a6h.apps.googleusercontent.com';
+    var CLIENT_ID = '<?=$config->apikey?>';
     gapi.analytics.ready(function() {
 
         /**
@@ -95,3 +96,6 @@
 
     });
 </script>
+<?php else : ?>
+    <h1><?= __('La clé d\'API Google Analytics n\'est pas définie') ?></h1>
+<?php endif ?>

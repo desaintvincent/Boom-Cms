@@ -13,6 +13,13 @@ return [
             'required' => true,
         ),
     ),
+    'apikey' => array(
+        'label' => __('Clé API google analytics'),
+        'type' => 'text',
+        'options' => array(
+            'help' => 'wip',
+        ),
+    ),
     'logo' => array(
         'label' => 'Logo du site',
         'type' => 'image'

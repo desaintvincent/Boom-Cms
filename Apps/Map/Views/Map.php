@@ -31,7 +31,19 @@
             });
         }
     </script>
-
-    <script id="jsajax" src="https://maps.googleapis.com/maps/api/js?callback=myMap"></script>
+    <?php
+    d(ENV);
+    ?>
+    <?php if (ENV == 'dev') : ?>
+        <script  async defer id="jsajax" src="https://maps.googleapis.com/maps/api/js?callback=myMap"></script>
+    <?php elseif (isset($map->apikey) && !empty($map->apikey)) : ?>
+        <script async defer id="jsajax"
+                src="https://maps.googleapis.com/maps/api/js?key=<?= $map->apikey ?>&callback=myMap">
+        </script>
+    <?php else : ?>
+        <div class="warning" style="border: 1px solid red; padding: 10px; color: red">
+            Google Map API not defined
+        </div>
+    <?php endif; ?>
 
 </div>

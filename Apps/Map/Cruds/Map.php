@@ -7,6 +7,13 @@ return [
             'required' => true,
         ),
     ),
+    'apikey' => array(
+        'label' => 'Clé API Google map',
+        'type' => 'text',
+        'option' => array(
+            'help' => 'help'
+        )
+    ),
     'longitude' => array(
         'label' => 'Longitude',
         'type' => 'number',

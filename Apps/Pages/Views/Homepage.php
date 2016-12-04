@@ -14,6 +14,7 @@
                     <div class="text">
                         <?= $page->content_gauche ?>
                     </div>
+                    <a class="zoom" href="<?= $page->image_gauche ?>" data-lightbox="<?= $page->image_gauche ?>"><i class="fa fa-search-plus" aria-hidden="true"></i></a>
                 </div>
             </div>
         </div>
@@ -27,6 +28,7 @@
                         <div class="text">
                             <?= $page->content_droit ?>
                         </div>
+                        <a class="zoom" href="<?= $page->image_droit ?>" data-lightbox="<?= $page->image_droit ?>"><i class="fa fa-search-plus" aria-hidden="true"></i></a>
                     </div>
                 </div>
             </div>

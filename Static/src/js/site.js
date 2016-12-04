@@ -31,6 +31,8 @@ $( document ).ready(function() {
         $.ajax({
             url: href + '?ajax'
         }).done(function( data ) {
+            $('.header .main_menu li a').removeClass('active');
+            $('.header .main_menu li a[href="'+href+'"]').addClass('active');
             $content = $('<div>').html(data);
             $content.addClass('content content-new');
             $content.find('img').on('load', equalize_home_picture);

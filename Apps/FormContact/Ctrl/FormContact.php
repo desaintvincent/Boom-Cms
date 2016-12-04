@@ -32,14 +32,29 @@ class FormContact extends Controller
 
             $name = $_POST['name'];
             $email = $_POST['email'];
-            $message = $_POST['message'];
+            $message = "
+            <html>
+                <head>
+                    <title>Email du site</title>
+                </head>
+                <body>
+                    {$_POST['message']}
+                </body>
+            </html>
+            ";
             $destinataire = $config->email;
+
 
             $sujet = 'Message depuis kimtan.fr';
 
-            $headers = "From: \"{$name}\"<{$email}>\n";
-            $headers .= "Reply-To: {$email}\n";
-            $headers .= "Content-Type: text/html; charset=\"iso-8859-1\"";
+            // Pour envoyer un mail HTML, l'en-tête Content-type doit être défini
+            $headers  = 'MIME-Version: 1.0' . "\r\n";
+            $headers .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
+            // En-têtes additionnels
+            $headers .= "To: Web <{$destinataire}>" . "\r\n";
+            $headers .= "From: {$name} <{$email}>" . "\r\n";
+            $headers .= "Reply-To: {$name} <{$email}>" . "\r\n";
+
             if(mail($destinataire, $sujet, $message, $headers))
             {
                 return true;

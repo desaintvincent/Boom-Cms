@@ -9,21 +9,29 @@
         </div>
         <?php if (!empty($page->image_gauche)) : ?>
         <div class="columns large-3 medium-3">
-            <img src="<?=$page->image_gauche?>">
+
+            <div class="img_container">
+                <img src="<?=$page->image_gauche?>">
+                <a class="zoom" href="<?= $page->image_gauche ?>" data-lightbox="<?= $page->image_gauche ?>"><i class="fa fa-search-plus" aria-hidden="true"></i></a>
+            </div>
         </div>
         <div class="columns large-6 medium-6">
-        <?php else : ?>
-        <div class="columns large-9 medium-9">
-        <?php endif; ?>
-            <?= $page->content_gauche ?>
-        </div>
-
-        <div class="columns large-3 medium-3">
-            <?php if (!empty($page->image_droit)) : ?>
-            <img src="<?= $page->image_droit ?>">
             <?php else : ?>
-                <?= $page->content_droit ?>
-            <?php endif; ?>
+            <div class="columns large-9 medium-9">
+                <?php endif; ?>
+                <?= $page->content_gauche ?>
+            </div>
+
+            <div class="columns large-3 medium-3">
+                <?php if (!empty($page->image_droit)) : ?>
+
+                    <div class="img_container">
+                        <img src="<?= $page->image_droit ?>">
+                        <a class="zoom" href="<?= $page->image_droit ?>" data-lightbox="<?= $page->image_droit ?>"><i class="fa fa-search-plus" aria-hidden="true"></i></a>
+                    </div>
+                <?php else : ?>
+                    <?= $page->content_droit ?>
+                <?php endif; ?>
+            </div>
         </div>
     </div>
-</div>

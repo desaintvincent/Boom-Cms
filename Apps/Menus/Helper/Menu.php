@@ -56,13 +56,17 @@ class Menu {
             }
             foreach ($mitems as $mitem) {
                 $href = '#';
+                $active = '';
                 if ($mitem->type == 'pages' && !empty($mitem->arg)) {
                     $page = $model_page->get($mitem->arg);
                     if (!empty($page)) {
                         $href = $page->slug;
+                        if ($page->slug == URL_PAGE) {
+                            $active = 'class="active"';
+                        }
                     }
                 }
-                $html .= "<li><a href='{$href}'>{$mitem->title}</a></li>";
+                $html .= "<li><a href='{$href}' {$active}>{$mitem->title}</a></li>";
             }
             $html .= "</ul>";
             return $html;
