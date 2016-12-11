@@ -1,16 +1,13 @@
 body {
   display: block;
-  font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
   font-size: 14px;
 
-  p {
-    font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
-  }
 
-  @media screen and (min-width: $small) {
+  @media screen and (min-width: $medium) {
     width: 100vw;
     height: 100vh;
     overflow: hidden;
+
   }
 
 
@@ -20,13 +17,16 @@ body {
     }
   }
 
+  .row {
+    max-width: 1000px;
+  }
+
   .content {
     display: block;
     background: white;
     padding-top: $header_height;
-    //transition: left,right 0.5s;
 
-    @media screen and (min-width: $small) {
+    @media screen and (min-width: $medium) {
       position: fixed;
       left: 0;
       right: 0;
@@ -53,7 +53,7 @@ body {
       margin: $margin_h1 0;
       background: #0156A1;
       text-transform: uppercase;
-      padding: calc(#{$height_h1} / 2) 0 calc(#{$height_h1} / 2) calc(#{$height_h1} / 2);
+      padding: calc(#{$height_h1} / 3) 0 calc(#{$height_h1} / 3) calc(#{$height_h1} / 3);
       color: white;
       font-size: 1em;
       font-weight: bold;

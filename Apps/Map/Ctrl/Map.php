@@ -19,7 +19,7 @@ class Map extends Controller
     {
 
         $model = TableRegistry::get('Map');
-        $map = $model->find()->first();
+        $map = $model->find()/*->contain(['MapCircle'])*/->first();
         return $this->view('map', ['map' => $map]);
     }
 

@@ -5,13 +5,10 @@ use Apps\Map\Model\Entities\MapEntity;
 use Apps\Pages\Model\Entities\PageEntity;
 use Boom\Model\Model;
 
-class MapTable extends Model {
+class MapCircleTable extends Model {
     public function initialize(array $config)
     {
         $this->entityClass(MapEntity::class);
-        /*$this->hasMany('MapCircle', [
-            'className' => 'MapCircle'
-        ]);
-        */
+        //$this->belongsTo('Map');
     }
 }

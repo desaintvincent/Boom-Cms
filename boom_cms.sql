@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Dim 04 Décembre 2016 à 18:28
+-- Généré le :  Dim 11 Décembre 2016 à 23:22
 -- Version du serveur :  5.7.16-0ubuntu0.16.04.1
 -- Version de PHP :  7.0.8-0ubuntu0.16.04.3
 
@@ -68,6 +68,7 @@ INSERT INTO `form_contact` (`id`, `email`, `autre`) VALUES
 CREATE TABLE `main_config` (
   `id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
+  `apikey` varchar(255) DEFAULT NULL,
   `menu` int(11) NOT NULL DEFAULT '1',
   `logo` varchar(255) DEFAULT NULL,
   `image_header` varchar(255) DEFAULT NULL
@@ -77,8 +78,8 @@ CREATE TABLE `main_config` (
 -- Contenu de la table `main_config`
 --
 
-INSERT INTO `main_config` (`id`, `title`, `menu`, `logo`, `image_header`) VALUES
-(1, 'Kim tan', 1, '/Static/img/cms/admin/update/MainConfig/1/logo.png', '/Static/img/cms/admin/update/MainConfig/1/image_header.jpg');
+INSERT INTO `main_config` (`id`, `title`, `apikey`, `menu`, `logo`, `image_header`) VALUES
+(1, 'Kim tan', '65560463981-piudj4ee0q78c8s94j2g5g3bgahj9a6h.apps.googleusercontent.com', 1, '/Static/img/cms/admin/update/MainConfig/1/logo.png', '/Static/img/cms/admin/update/MainConfig/1/image_header.jpg');
 
 -- --------------------------------------------------------
 
@@ -89,8 +90,10 @@ INSERT INTO `main_config` (`id`, `title`, `menu`, `logo`, `image_header`) VALUES
 CREATE TABLE `map` (
   `id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
+  `apikey` varchar(255) DEFAULT NULL,
   `longitude` double(11,6) NOT NULL,
   `latitude` double(11,6) NOT NULL,
+  `zoom_map` int(11) NOT NULL DEFAULT '16',
   `text` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -98,8 +101,27 @@ CREATE TABLE `map` (
 -- Contenu de la table `map`
 --
 
-INSERT INTO `map` (`id`, `title`, `longitude`, `latitude`, `text`) VALUES
-(1, 'Kim tan', 45.766067, 4.843673, '<p>BANANALUL MOGOYO</p>');
+INSERT INTO `map` (`id`, `title`, `apikey`, `longitude`, `latitude`, `zoom_map`, `text`) VALUES
+(1, 'Kim tan', '', 45.766067, 4.843673, 13, '<p>BANANALUL MOGOYO</p>');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `map_circle`
+--
+
+CREATE TABLE `map_circle` (
+  `id` int(11) NOT NULL,
+  `map_id` int(11) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `map_circle`
+--
+
+INSERT INTO `map_circle` (`id`, `map_id`) VALUES
+(1, 1),
+(2, 1);
 
 -- --------------------------------------------------------
 
@@ -220,7 +242,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `firstname`, `lastname`, `login`, `password`, `token`) VALUES
-(1, 'admin', 'admin', 'admin', '90b9aa7e25f80cf4f64e990b78a9fc5ebd6cecad', '4eae373e342dc8d487e98aa95931969c10ee2d4c'),
+(1, 'admin', 'admin', 'admin', '90b9aa7e25f80cf4f64e990b78a9fc5ebd6cecad', 'fb65486ebe830bb9a5d6ac406ec43efa8f3d7e6a'),
 (2, 'Kim', 'Tan', 'kimtan', 'a346bc80408d9b2a5063fd1bddb20e2d5586ec30', NULL);
 
 --
@@ -249,6 +271,12 @@ ALTER TABLE `main_config`
 -- Index pour la table `map`
 --
 ALTER TABLE `map`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `map_circle`
+--
+ALTER TABLE `map_circle`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -305,6 +333,11 @@ ALTER TABLE `main_config`
 --
 ALTER TABLE `map`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT pour la table `map_circle`
+--
+ALTER TABLE `map_circle`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT pour la table `menus`
 --

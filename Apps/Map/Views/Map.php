@@ -1,14 +1,13 @@
 <div class="enhancer_map">
 
     <div id="map" style="width:100%;height:500px"></div>
-
     <script>
         function myMap() {
             var mapCanvas = document.getElementById("map");
             var coor = new google.maps.LatLng(<?= $map->longitude ?>, <?= $map->latitude ?>);
             var mapOptions = {
                 center: coor,
-                zoom: 16
+                zoom: <?= $map->zoom_map ?>
             };
 
 
@@ -29,11 +28,17 @@
             marker.addListener('click', function() {
                 infowindow.open(map, marker);
             });
+
+            var cityCircle = new google.maps.Circle({
+                strokeColor: '#000000',
+                strokeOpacity: 0.8,
+                strokeWeight: 2,
+                map: map,
+                center: coor,
+                radius: 603
+            });
         }
     </script>
-    <?php
-    d(ENV);
-    ?>
     <?php if (ENV == 'dev') : ?>
         <script  async defer id="jsajax" src="https://maps.googleapis.com/maps/api/js?callback=myMap"></script>
     <?php elseif (isset($map->apikey) && !empty($map->apikey)) : ?>

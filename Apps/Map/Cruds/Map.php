@@ -28,6 +28,13 @@ return [
             'required' => true,
         ),
     ),
+    'zoom_map' => array(
+        'label' => 'Zoom de la Carte',
+        'type' => 'number',
+        'options' => array(
+            'required' => true,
+        ),
+    ),
     'text' => array(
         'label' => 'Texte',
         'type' => 'wysiwyg',
