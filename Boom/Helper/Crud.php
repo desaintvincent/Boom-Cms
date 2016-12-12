@@ -51,6 +51,19 @@ class Crud
         return $html;
     }
 
+    public static function input_color($key, $item)
+    {
+        $val = isset(self::$item->{$key}) ? self::$item->{$key} : '';
+        $html = "<div class='{$item['type']}-field'>
+                    <div class='sub-title'>{$item['label']}";
+        $html .= self::help($item);
+        $html .= "</div>
+                    <input class='form-control color_picker' value='" . $val . "' name='{$key}' id='{$key}' " . self::required($item) . ">
+                </div>";
+        $html = '<input type="text" maxlength="6" size="6" class="colorpicker" value="00ff00" />';
+        return $html;
+    }
+
     public static function input_number($key, $item)
     {
         $val = isset(self::$item->{$key}) ? self::$item->{$key} : '';

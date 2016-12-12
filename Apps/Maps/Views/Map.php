@@ -35,7 +35,7 @@
                 strokeWeight: 2,
                 map: map,
                 center: coor,
-                radius: 603
+                radius: <?= $map->rayon?>
             });
         }
     </script>

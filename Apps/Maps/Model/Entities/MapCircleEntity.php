@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Apps\Map\Model\Entities;
+namespace Apps\Maps\Model\Entities;
 
 
 use Cake\ORM\Entity;

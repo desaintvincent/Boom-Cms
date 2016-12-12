@@ -9,7 +9,7 @@ function slugify(text)
 }
 
 $(document).ready(function () {
-//confirmation popup
+    //confirmation popup
     $('.popup_confirm').click(function (e) {
         e.preventDefault();
         var $this = $(this);
@@ -53,6 +53,24 @@ $(document).ready(function () {
         }
     });
 
+
+    //color picker
+    $('.color_picker').ColorPicker({
+        color: '#0000ff',
+        onShow: function (colpkr) {
+            $(colpkr).fadeIn(500);
+            return false;
+        },
+        onHide: function (colpkr) {
+            $(colpkr).fadeOut(500);
+            return false;
+        },
+        onChange: function (hsb, hex, rgb) {
+            $('#color_picker div').css('backgroundColor', '#' + hex);
+        }
+    });
+
+
     //selects
     $(".select-basic").select2({
         minimumResultsForSearch: Infinity,
@@ -82,4 +100,5 @@ $(document).ready(function () {
             $slug.val(slugify($slug.val()));
         });
     });
+
 });

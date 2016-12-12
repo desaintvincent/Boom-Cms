@@ -1,19 +1,5 @@
 <?php
 return [
-    'title' => array(
-        'label' => 'Titre',
-        'type' => 'text',
-        'options' => array(
-            'required' => true,
-        ),
-    ),
-    'apikey' => array(
-        'label' => 'Clé API Google map',
-        'type' => 'text',
-        'option' => array(
-            'help' => 'help'
-        )
-    ),
     'longitude' => array(
         'label' => 'Longitude',
         'type' => 'number',
@@ -28,8 +14,8 @@ return [
             'required' => true,
         ),
     ),
-    'zoom_map' => array(
-        'label' => 'Zoom de la Carte',
+    'rayon' => array(
+        'label' => 'Rayon',
         'type' => 'number',
         'options' => array(
             'required' => true,

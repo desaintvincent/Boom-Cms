@@ -298,8 +298,8 @@
     },
     {
         "name": "cakephp/utility",
-        "version": "3.3.9",
-        "version_normalized": "3.3.9.0",
+        "version": "3.3.10",
+        "version_normalized": "3.3.10.0",
         "source": {
             "type": "git",
             "url": "https://github.com/cakephp/utility.git",
@@ -339,8 +339,8 @@
     },
     {
         "name": "cakephp/validation",
-        "version": "3.3.9",
-        "version_normalized": "3.3.9.0",
+        "version": "3.3.10",
+        "version_normalized": "3.3.10.0",
         "source": {
             "type": "git",
             "url": "https://github.com/cakephp/validation.git",
@@ -377,8 +377,8 @@
     },
     {
         "name": "cakephp/event",
-        "version": "3.3.9",
-        "version_normalized": "3.3.9.0",
+        "version": "3.3.10",
+        "version_normalized": "3.3.10.0",
         "source": {
             "type": "git",
             "url": "https://github.com/cakephp/event.git",
@@ -412,8 +412,8 @@
     },
     {
         "name": "cakephp/core",
-        "version": "3.3.9",
-        "version_normalized": "3.3.9.0",
+        "version": "3.3.10",
+        "version_normalized": "3.3.10.0",
         "source": {
             "type": "git",
             "url": "https://github.com/cakephp/core.git",
@@ -453,8 +453,8 @@
     },
     {
         "name": "cakephp/datasource",
-        "version": "3.3.9",
-        "version_normalized": "3.3.9.0",
+        "version": "3.3.10",
+        "version_normalized": "3.3.10.0",
         "source": {
             "type": "git",
             "url": "https://github.com/cakephp/datasource.git",
@@ -495,17 +495,17 @@
     },
     {
         "name": "cakephp/database",
-        "version": "3.3.9",
-        "version_normalized": "3.3.9.0",
+        "version": "3.3.10",
+        "version_normalized": "3.3.10.0",
         "source": {
             "type": "git",
             "url": "https://github.com/cakephp/database.git",
-            "reference": "9dedfca0e3e95f8bef72ec14b9aefe5978dd7a2c"
+            "reference": "bc952f97ce79b6055892273f90bbdd42a29baadc"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/cakephp/database/zipball/9dedfca0e3e95f8bef72ec14b9aefe5978dd7a2c",
-            "reference": "9dedfca0e3e95f8bef72ec14b9aefe5978dd7a2c",
+            "url": "https://api.github.com/repos/cakephp/database/zipball/bc952f97ce79b6055892273f90bbdd42a29baadc",
+            "reference": "bc952f97ce79b6055892273f90bbdd42a29baadc",
             "shasum": ""
         },
         "require": {
@@ -516,7 +516,7 @@
             "cakephp/cache": "Require this if you decide to use the schema caching feature",
             "cakephp/log": "Require this if you want to use the built-in query logger"
         },
-        "time": "2016-11-14 12:41:10",
+        "time": "2016-12-08 04:21:24",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -538,8 +538,8 @@
     },
     {
         "name": "cakephp/collection",
-        "version": "3.3.9",
-        "version_normalized": "3.3.9.0",
+        "version": "3.3.10",
+        "version_normalized": "3.3.10.0",
         "source": {
             "type": "git",
             "url": "https://github.com/cakephp/collection.git",
@@ -576,17 +576,17 @@
     },
     {
         "name": "cakephp/orm",
-        "version": "3.3.9",
-        "version_normalized": "3.3.9.0",
+        "version": "3.3.10",
+        "version_normalized": "3.3.10.0",
         "source": {
             "type": "git",
             "url": "https://github.com/cakephp/orm.git",
-            "reference": "a06578a6a6fa52f9892ab841587f877afb26cfce"
+            "reference": "6f349531fcfede5936bc4ada4a50bfb24579f372"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/cakephp/orm/zipball/a06578a6a6fa52f9892ab841587f877afb26cfce",
-            "reference": "a06578a6a6fa52f9892ab841587f877afb26cfce",
+            "url": "https://api.github.com/repos/cakephp/orm/zipball/6f349531fcfede5936bc4ada4a50bfb24579f372",
+            "reference": "6f349531fcfede5936bc4ada4a50bfb24579f372",
             "shasum": ""
         },
         "require": {
@@ -601,7 +601,7 @@
         "suggest": {
             "cakephp/i18n": "If you are using Translate / Timestamp Behavior."
         },
-        "time": "2016-11-09 17:13:14",
+        "time": "2016-12-03 08:11:39",
         "type": "library",
         "installation-source": "dist",
         "autoload": {

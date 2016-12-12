@@ -2,26 +2,26 @@
 return [
     'required' => true,
     'icon' => 'fa-cog',
-    'default_ctrl' => 'Map',
-    'default_listing' => 'Map',
+    'default_ctrl' => 'Maps',
+    'default_listing' => 'Maps',
     'name' => __('Configuration de la carte'),
 
     'appdesk' => [
-        'Map' => [
+        'Maps' => [
             'name' => __('Google Map'),
             'type' => 'update',
             'icon' => 'fa-map',
-            'model' => 'Map',
+            'model' => 'Maps',
             'fields' => [
                 'title' => __('Google Map')
             ],
         ]
     ],
     'enhancers' => [
-        'map' => [
-            'appname' => 'Map',
+        'maps' => [
+            'appname' => 'Maps',
             'name' => __('Google Map'),
-            'controller' => 'Map',
+            'controller' => 'Maps',
             'action' => 'main'
         ]
     ],
