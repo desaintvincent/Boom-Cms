@@ -73,4 +73,36 @@ class Menu {
         }
         return null;
     }
+
+    static function display_main_menu_footer($class = '') {
+        $config = TableRegistry::get('MainConfig');
+        $menu_id = $config->find()->first();
+        $menu_id = $menu_id->menu;
+        if (!empty($menu_id)) {
+            $model = TableRegistry::get('MenuItems');
+            $model_page = TableRegistry::get('Pages');
+
+            $mitems = $model->find()->where(['menu_id' => $menu_id], ['parent_id' => null])->order(['display_order' => 'ASC']);
+            if (isset($class) && !empty($class)) {
+                $html = "<ul class='foot_menu {$class}'>";
+            } else {
+                $html = "<ul class='foot_menu'>";
+            }
+            foreach ($mitems as $mitem) {
+                $href = '#';
+                $active = '';
+                if ($mitem->type == 'pages' && !empty($mitem->arg)) {
+                    $page = $model_page->get($mitem->arg);
+                    if (!empty($page)) {
+                        $href = $page->slug;
+                    }
+                }
+                $size = 100 / $mitems->count();
+                $html .= "<li style='width: {$size}%'><a href='{$href}'>{$mitem->title}</a></li>";
+            }
+            $html .= "</ul>";
+            return $html;
+        }
+        return null;
+    }
 }

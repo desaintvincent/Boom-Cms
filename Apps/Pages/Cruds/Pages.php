@@ -1,7 +1,7 @@
 <?php
 $layout = \Boom\Helper\App::getConfig('Pages');
 $layout = $layout['layouts'];
-return [
+$tab = [
     'title' => array(
         'label' => 'Titre',
         'type' => 'text',
@@ -14,6 +14,20 @@ return [
         'type' => 'slug',
         'options' => array(
             'linked' => 'title',
+        ),
+    ),
+    'description' => array (
+        'label' => 'Description',
+        'type' => 'textarea',
+        'options' => array(
+            'help' => 'Indique aux moteurs de recherche une phrase résumant le contenu de la page',
+        ),
+    ),
+    'keywords' => array (
+        'label' => 'Mot clés',
+        'type' => 'text',
+        'options' => array(
+            'help' => 'Indique des mots clés supplémentaires aux moteurs de recherche, séparés par une virgule',
         ),
     ),
     'layout' => [
@@ -30,11 +44,22 @@ return [
         'type' => 'image'
     ),
     'content_droit' => array(
-    'label' => 'Contenu de droite',
-    'type' => 'wysiwyg'
+        'label' => 'Contenu de droite',
+        'type' => 'wysiwyg'
     ),
     'image_droit' => array(
-    'label' => 'Image de droite',
-    'type' => 'image'
+        'label' => 'Image de droite',
+        'type' => 'image'
     )
 ];
+for ($i = 1; $i <= 20; $i++) {
+    $tab['image_'.$i] = [
+        'label' => 'Image mosaique ' . $i,
+        'type' => 'image'
+    ];
+    $tab['legend_'.$i] = [
+        'label' => 'Légende mosaique ' . $i,
+        'type' => 'text',
+    ];
+}
+return $tab;

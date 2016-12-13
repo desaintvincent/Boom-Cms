@@ -32,5 +32,6 @@ return [
     'layouts' => [
         'default' => __('Classique'),
         'homepage' => __('Page d\'accueil'),
+        'mosaique' => __('Mosaïque'),
     ]
 ];

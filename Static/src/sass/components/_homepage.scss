@@ -1,7 +1,7 @@
 .homepage {
 
   .main_container {
-    height: calc(100vh - #{$header_height} - #{$height_h1} - #{$margin_h1});
+    height: calc(100vh - #{$header_height} - #{$height_h1} - #{$margin_h1} - 85px);
     display: table;
     position: relative;
     @media screen and (max-width: $small) {
@@ -37,7 +37,19 @@
           top: 0;
           right: 0;
           left: 0;
+          bottom: 0;
           color: white;
+          overflow: hidden;
+
+          & > p {
+            margin: 0;
+            height: 100%;
+
+            & > a {
+              height: 100%;
+              display: block;
+            }
+          }
         }
       }
     }

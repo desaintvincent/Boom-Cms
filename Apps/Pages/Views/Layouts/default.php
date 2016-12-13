@@ -8,8 +8,10 @@
         'img_header' => $img_header,
     ]));
     ?>
-    <div class="content">
-        <?= $tampon ?>
+    <div class="container-content">
+        <div class="content">
+            <?= $tampon ?>
+        </div>
     </div>
 
     <?= \Apps\Pages\Ctrl\Pages::view_static('Commun/Foot'); ?>

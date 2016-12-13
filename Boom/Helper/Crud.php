@@ -111,7 +111,9 @@ class Crud
     {
         $val = isset(self::$item->{$key}) ? self::$item->{$key} : '';
         $html = "<div class='{$item['type']}-field'>
-            <div class=\"sub-title\">{$item['label']}</div>
+            <div class=\"sub-title\">{$item['label']}";
+        $html .= self::help($item);
+        $html .= "</div>
                 <textarea name='{$key}' id='{$key}'>".$val."</textarea>
         </div>";
         return $html;
