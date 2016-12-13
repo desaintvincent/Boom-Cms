@@ -1,14 +1,15 @@
 body {
   display: block;
   font-size: 14px;
+  min-height: 100vh;
+  overflow-x: hidden;
 
-
-  @media screen and (min-width: $medium) {
+  /*@media screen and (min-width: $medium) {
     width: 100vw;
     height: 100vh;
     overflow: hidden;
 
-  }
+  }*/
 
 
   @media screen and (min-width: $small) {
@@ -21,17 +22,28 @@ body {
     max-width: 1000px;
   }
 
+
+  a {
+    text-decoration: none;
+    color: inherit;
+
+    &:hover {
+      color: inherit;
+    }
+  }
+
   .content {
     display: block;
     background: white;
     padding-top: $header_height;
 
-    @media screen and (min-width: $medium) {
-      position: fixed;
+    @media screen and (min-width: $small) {
+      padding-bottom: 70px;
+      position: absolute;
       left: 0;
       right: 0;
-      bottom: 0;
       top: $header_height;
+      min-height: calc(100vh - #{$header_height});
       padding-top: 0;
     }
 
@@ -76,7 +88,7 @@ body {
         width: 100%;
       }
 
-      a {
+      a.zoom {
         position: absolute;
         right: 0;
         bottom: 0;

@@ -36,7 +36,7 @@ $( document ).ready(function() {
             $content = $('<div>').html(data);
             $content.addClass('content content-new');
             $content.find('img').on('load', equalize_home_picture);
-            $('#page').append($content);
+            $('.container-content').append($content);
             if ( $( "#jsajax" ).length ) {
                 eval(document.getElementById("jsajax").innerHTML);
                 $('#jsajax').remove();
