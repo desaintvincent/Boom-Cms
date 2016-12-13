@@ -20072,6 +20072,7 @@ $( document ).ready(function() {
         $('.content').addClass('content-old');
         $.ajax({
             url: href + '?ajax'
+
         }).done(function( data ) {
             $('.header .main_menu li a').removeClass('active');
             $('.header .main_menu li a[href="'+href+'"]').addClass('active');
@@ -20086,8 +20087,7 @@ $( document ).ready(function() {
             $(document).foundation();
 
             $(".content-new").animate({
-                left: "0",
-                right: "0"
+                left: "0"
             }, 500, function() {
                 $('.content-old').remove();
                 $('.content-new').removeClass('content-new');

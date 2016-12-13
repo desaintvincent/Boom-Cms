@@ -41,7 +41,7 @@ body {
       padding-bottom: 70px;
       position: absolute;
       left: 0;
-      right: 0;
+      width: 100vw;
       top: $header_height;
       min-height: calc(100vh - #{$header_height});
       padding-top: 0;
@@ -49,7 +49,7 @@ body {
 
     &.content-new {
       left: 100vw;
-      right: -100vw;
+      //right: -100vw;
     }
 
     &.content-old {
